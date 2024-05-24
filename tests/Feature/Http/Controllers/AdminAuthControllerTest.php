@@ -8,6 +8,7 @@ describe('AdminAuthController', function() {
         $this->seed(AdminSeeder::class);
         $this->admin = Admin::query()->where('username', 'alpha')->first();
     });
+
     it('should be able to access admin login page', function () {
         $this->get(route('admin.auth.login'))
             ->assertStatus(200)->assertSee('Administrator Login')->assertViewIs('pages.admin.login');
@@ -20,7 +21,7 @@ describe('AdminAuthController', function() {
         ])->assertRedirect(route('admin.dashboard'));
     });
 
-    it('should reject login request with wrong credentials', function () {
+    it('should not be able to login with wrong credentials', function () {
         $this->post(route('admin.auth.authenticate'), [
             'username' => 'alpha',
             'password' => 'wrong',
