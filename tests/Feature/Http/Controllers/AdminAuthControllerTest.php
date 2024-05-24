@@ -20,6 +20,13 @@ describe('AdminAuthController', function() {
         ])->assertRedirect(route('admin.dashboard'));
     });
 
+    it('should reject login request with wrong credentials', function () {
+        $this->post(route('admin.auth.authenticate'), [
+            'username' => 'alpha',
+            'password' => 'wrong',
+        ])->assertRedirect(route('admin.auth.login'))->assertSessionHasErrors(['error' => 'Username or password is wrong.']);
+    });
+
     it('should be able to logout as admin', function () {
         $this->actingAs($this->admin)->delete(route('admin.auth.logout'))->assertRedirect(route('admin.auth.login'));
     });
