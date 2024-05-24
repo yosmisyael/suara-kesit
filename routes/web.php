@@ -16,7 +16,7 @@ Route::prefix('control-panel')->group(function () {
         Route::delete('/', 'logout')->middleware(AllowAuthenticateAdmin::class)->name('admin.auth.logout');
     });
 
-    Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
+    Route::get('/', AdminDashboardController::class)->middleware(AllowAuthenticateAdmin::class)->name('admin.dashboard');
 //    Route::get('/', 'index')->name('admin.user.index');
 //    Route::get('/create', 'create')->name('admin.user.create');
 //    Route::post('/store', 'store')->name('admin.user.store');
