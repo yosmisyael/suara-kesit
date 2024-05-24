@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('control-panel')->group(function () {
@@ -11,9 +12,7 @@ Route::prefix('control-panel')->group(function () {
         Route::delete('/', 'logout')->name('admin.auth.logout');
     });
 
-    Route::get('/', function () {
-        return 'login as admin';
-    })->name('admin.dashboard');
+    Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
 //    Route::get('/', 'index')->name('admin.user.index');
 //    Route::get('/create', 'create')->name('admin.user.create');
 //    Route::post('/store', 'store')->name('admin.user.store');
