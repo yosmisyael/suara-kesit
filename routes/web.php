@@ -3,13 +3,17 @@
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Middleware\AllowAuthenticateAdmin;
+use App\Http\Middleware\DenyAuthenticatedAdmin;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('control-panel')->group(function () {
     Route::prefix('auth')->controller(AdminAuthController::class)->group(function () {
-        Route::get('/', 'login')->name('admin.auth.login');
-        Route::post('/', 'authenticate')->name('admin.auth.authenticate');
-        Route::delete('/', 'logout')->name('admin.auth.logout');
+        Route::middleware(DenyAuthenticatedAdmin::class)->group(function () {
+            Route::get('/', 'login')->name('admin.auth.login');
+            Route::post('/', 'authenticate')->name('admin.auth.authenticate');
+        });
+        Route::delete('/', 'logout')->middleware(AllowAuthenticateAdmin::class)->name('admin.auth.logout');
     });
 
     Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
