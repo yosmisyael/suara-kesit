@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Alpine from 'alpinejs';
+import 'flowbite/dist/flowbite.min.js';
 
 window.axios = axios;
 
