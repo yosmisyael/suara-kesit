@@ -12,9 +12,9 @@ class UserUpdateRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'username' => Str::lower(),
-            'email' => Str::lower(),
-            'name' => Str::title(),
+            'username' => Str::lower($this->username),
+            'email' => Str::lower($this->email),
+            'name' => Str::title($this->name),
         ]);
     }
 
