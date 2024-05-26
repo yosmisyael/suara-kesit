@@ -8,31 +8,31 @@
                 <div class="grid grid-cols-3 items-center">
                     <label for="name" class="col-span-1 block text-sm font-medium text-gray-700">Name</label>
                     <div class="col-span-2">
-                        <input type="text" id="name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter name here" />
+                        <input name="name" type="text" id="name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter name here" />
                     </div>
                 </div>
                 <div class="grid grid-cols-3 items-center">
                     <label for="username" class="col-span-1 block text-sm font-medium text-gray-700">Username</label>
                     <div class="col-span-2">
-                        <input type="text" id="username" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter username here" />
+                        <input name="username" type="text" id="username" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter username here" />
                     </div>
                 </div>
                 <div class="grid grid-cols-3 items-center">
                     <label for="email" class="col-span-1 block text-sm font-medium text-gray-700">Email</label>
                     <div class="col-span-2">
-                        <input type="email" id="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter email here" />
+                        <input name="email" type="email" id="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter email here" />
                     </div>
                 </div>
                 <div class="grid grid-cols-3 items-center">
                     <label for="password" class="col-span-1 block text-sm font-medium text-gray-700">Password</label>
                     <div class="col-span-2">
-                        <input type="password" id="password" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter password here" />
+                        <input name="password" type="password" id="password" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter password here" />
                     </div>
                 </div>
                 <div class="grid grid-cols-3 items-center">
                     <label for="role" class="col-span-1 block text-sm font-medium text-gray-700">Role</label>
                     <div class="max-w-xs w-full col-span-2">
-                        <select id="role" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50">
+                        <select name="role" id="role" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50">
                             <option value="">Member</option>
                             <option value="">Author</option>
                         </select>
