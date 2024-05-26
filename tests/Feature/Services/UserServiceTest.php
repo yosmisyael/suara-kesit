@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use App\Services\UserService;
 use Database\Seeders\UserSeeder;
+use Illuminate\Support\Collection;
 
 describe('UserService', function() {
     beforeEach(function () {
@@ -33,5 +35,11 @@ describe('UserService', function() {
         $user = $this->userService->findByUsername('alpha');
         expect($this->userService->delete($user->id))->toBeTrue()
             ->and($this->userService->findByUsername('alpha'))->toBeNull();
+    });
+
+    it('should be able to get all user', function () {
+        User::factory()->count(5)->create();
+        expect($this->userService->all())->toBeInstanceOf(Collection::class)
+            ->and($this->userService->all()->count())->toBe(6);
     });
 });
