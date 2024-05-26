@@ -83,7 +83,7 @@ class AdminUserController extends Controller
         if (!$result) return redirect()->back()
             ->withErrors(['error' => 'An error occurred when updating user.'])->withInput();
 
-        return redirect(route('admin.user.index', ['id' => $id]))
+        return redirect(route('admin.user.index'))
             ->with('success', 'User successfully updated.');
     }
 
