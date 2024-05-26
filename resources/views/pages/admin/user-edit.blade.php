@@ -6,22 +6,23 @@
             <form action="{{ route('admin.user.update', ['id' => $user->id]) }}" method="POST" class="space-y-5">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="id" value="{{ $user->id }}">
                 <div class="grid grid-cols-3 items-center">
                     <label for="name" class="col-span-1 block text-sm font-medium text-gray-700">Name</label>
                     <div class="col-span-2">
-                        <input type="text" id="name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter name here" value="{{ old('name') ?? $user->name }}" />
+                        <input name="name" type="text" id="name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter name here" value="{{ old('name') ?? $user->name }}" />
                     </div>
                 </div>
                 <div class="grid grid-cols-3 items-center">
                     <label for="username" class="col-span-1 block text-sm font-medium text-gray-700">Username</label>
                     <div class="col-span-2">
-                        <input type="text" id="username" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter username here" value="{{ old('username') ?? $user->username }}" />
+                        <input name="username" type="text" id="username" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter username here" value="{{ old('username') ?? $user->username }}" />
                     </div>
                 </div>
                 <div class="grid grid-cols-3 items-center">
                     <label for="email" class="col-span-1 block text-sm font-medium text-gray-700">Email</label>
                     <div class="col-span-2">
-                        <input type="email" id="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter email here" value="{{ old('email') ?? $user->email }}" />
+                        <input name="email" type="email" id="email" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="enter email here" value="{{ old('email') ?? $user->email }}" />
                     </div>
                 </div>
                 <div class="grid grid-cols-3 items-center">
