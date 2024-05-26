@@ -20,8 +20,10 @@ class AdminUserController extends Controller
      */
     public function index(): Response
     {
+        $users = $this->userService->all();
         return response()->view('pages.admin.user', [
             'title' => 'User Management',
+            'users' => $users,
         ]);
     }
 
