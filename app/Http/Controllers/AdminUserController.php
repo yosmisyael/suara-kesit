@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class AdminUserController extends Controller
@@ -61,17 +61,30 @@ class AdminUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(string $id): Response
     {
-        //corresponding
+        $user = $this->userService->findById($id);
+
+        return response()->view('pages.admin.user-edit', [
+            'title' => 'User Management | Edit User',
+            'user' => $user,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update()
+    public function update(UserUpdateRequest $request, string $id): RedirectResponse
     {
-        //
+        $validated = $request->validated();
+
+        $result = $this->userService->update($id, $validated);
+
+        if (!$result) return redirect()->back()
+            ->withErrors(['error' => 'An error occurred when updating user.'])->withInput();
+
+        return redirect(route('admin.user.index', ['id' => $id]))
+            ->with('success', 'User successfully updated.');
     }
 
     /**
