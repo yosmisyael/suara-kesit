@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Admin;
+use App\Models\User;
 use App\Services\UserService;
 use Database\Seeders\AdminSeeder;
 use Database\Seeders\UserSeeder;
@@ -10,6 +11,7 @@ describe('AdminUserController', function() {
         $this->userService = app()->make(UserService::class);
         $this->seed([AdminSeeder::class, UserSeeder::class]);
         $this->admin = Admin::query()->where('username', 'alpha')->first();
+        $this->user = User::query()->where('username', 'alpha')->first();
     });
 
     it('should be able to access user list page', function() {
@@ -125,5 +127,12 @@ describe('AdminUserController', function() {
                 'password' => 'Password',
                 'name' => 'beta',
             ])->assertSessionHasErrors(['password' => 'The password field must contain at least one symbol.']);
+    });
+
+    it('should be able to access user edit page', function() {
+        $this->actingAs($this->admin)
+            ->get(route('admin.user.edit', ['id' => $this->user->id]))
+            ->assertStatus(200)
+            ->assertViewIs('pages.admin.user-edit');
     });
 });
