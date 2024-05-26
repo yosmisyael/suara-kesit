@@ -23,7 +23,7 @@ Route::prefix('control-panel')->group(function () {
         Route::get('/', 'index')->name('admin.user.index');
         Route::get('/create', 'create')->name('admin.user.create');
         Route::post('/store', 'store')->name('admin.user.store');
-        Route::get('/edit/{id}', 'edit')->name('admin.user.edit');
+        Route::get('/{id}/edit', 'edit')->name('admin.user.edit');
         Route::put('/{id}', 'update')->name('admin.user.update');
         Route::delete('/{id}', 'delete')->name('admin.user.delete');
     })->middleware(AllowAuthenticateAdmin::class);
