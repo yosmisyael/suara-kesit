@@ -4,10 +4,13 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 interface UserService
 {
     public function create(string $username, string $name, string $email, string $password): bool;
+
+    public function all(): Collection;
 
     public function findById(string $id): ?Model;
 

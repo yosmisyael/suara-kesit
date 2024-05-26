@@ -5,6 +5,7 @@ namespace App\Services\Impl;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class UserServiceImpl implements UserService
 {
@@ -17,6 +18,11 @@ class UserServiceImpl implements UserService
             'password' => $password,
         ]);
         return $user->save();
+    }
+
+    public function all(): Collection
+    {
+        return User::all();
     }
 
     public function findById(string $id): ?Model
