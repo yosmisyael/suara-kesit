@@ -37,6 +37,46 @@ describe('AdminUserController', function() {
                 ->assertSessionHas('success', 'User successfully created.');
     });
 
+    it('should not be able to create user when name is empty', function() {
+        $this->actingAs($this->admin)
+            ->post(route('admin.user.store'), [
+                'username' => 'beta',
+                'email' => 'beta@example.com',
+                'password' => 'P@assw0rd',
+                'name' => '',
+            ])->assertSessionHasErrors(['name' => 'The name field is required.']);
+    });
+
+    it('should not be able to create user when email is empty', function() {
+        $this->actingAs($this->admin)
+            ->post(route('admin.user.store'), [
+                'username' => 'beta',
+                'email' => '',
+                'password' => 'P@assw0rd',
+                'name' => 'beta',
+            ])->assertSessionHasErrors(['email' => 'The email field is required.']);
+    });
+
+    it('should not be able to create user when email is already taken', function() {
+        $this->actingAs($this->admin)
+            ->post(route('admin.user.store'), [
+                'username' => 'beta',
+                'email' => 'alpha@test.com',
+                'password' => 'P@assw0rd',
+                'name' => 'beta',
+            ])->assertSessionHasErrors(['email' => 'The email has already been taken.']);
+    });
+
+    it('should not be able to create user when username is empty', function() {
+        $this->actingAs($this->admin)
+            ->post(route('admin.user.store'), [
+                'username' => '',
+                'email' => 'beta@example.com',
+                'password' => 'P@assw0rd',
+                'name' => 'beta',
+            ])->assertSessionHasErrors(['username' => 'The username field is required.']);
+    });
+
     it('should not be able to create user when username is already taken', function() {
         $this->actingAs($this->admin)
             ->post(route('admin.user.store'), [
