@@ -2,7 +2,6 @@
 
 namespace App\Services\Impl;
 
-use App\Models\Admin;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +21,7 @@ class UserServiceImpl implements UserService
 
     public function findById(string $id): ?Model
     {
-        return Admin::query()->find($id);
+        return User::query()->find($id);
     }
 
     public function findByUsername(string $username): ?User
