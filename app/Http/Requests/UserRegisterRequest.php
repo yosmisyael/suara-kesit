@@ -32,7 +32,7 @@ class UserRegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:100'],
-            'email' =>  ['required', 'string', 'max:100', 'email'],
+            'email' =>  ['required', 'string', 'max:100', 'email', 'unique:users,email'],
             'password' =>  ['required', 'string', 'max:100', Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
             'username' => ['required', 'string', 'alpha_dash:ascii', 'max:100', 'unique:users,username'],
         ];
