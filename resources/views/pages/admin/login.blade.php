@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title  }}</x-slot:title>
     <div class="font-[sans-serif] text-[#333]">
         <div class="min-h-screen flex flex-col items-center justify-center py-6 px-4 relative">
-        <p class="mt-10 lg:absolute top-0 left-10 mr-auto">
+        <p class="mt-10 lg:absolute absolute top-0 left-10">
             <a href="/" class="flex w-fit align-middle gap-2 text-white font-semibold hover:underline ml-1 bg-black rounded-md px-2 py-1">
                 <i class="fa-solid fa-arrow-left pt-1"></i>
                 Back to home
