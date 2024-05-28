@@ -3,12 +3,13 @@
 use App\Models\Admin;
 use App\Models\User;
 use App\Services\UserService;
-use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\AdminSeeder;
+use Database\Seeders\UserSeeder;
 
 describe('AdminUserController', function() {
     beforeEach(function() {
         $this->userService = app()->make(UserService::class);
-        $this->seed(DatabaseSeeder::class);
+        $this->seed([AdminSeeder::class, UserSeeder::class]);
         $this->admin = Admin::query()->where('username', 'alpha')->first();
         $this->user = User::query()->where('username', 'alpha')->first();
     });
@@ -34,7 +35,6 @@ describe('AdminUserController', function() {
                 'email' => 'beta@example.com',
                 'password' => 'P@assw0rd',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertStatus(302)->assertRedirect(route('admin.user.index'))
                 ->assertSessionHas('success', 'User successfully created.');
     });
@@ -46,7 +46,6 @@ describe('AdminUserController', function() {
                 'email' => 'beta@example.com',
                 'password' => 'P@assw0rd',
                 'name' => '',
-                'role' => 'member'
             ])->assertSessionHasErrors(['name' => 'The name field is required.']);
     });
 
@@ -57,7 +56,6 @@ describe('AdminUserController', function() {
                 'email' => '',
                 'password' => 'P@assw0rd',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertSessionHasErrors(['email' => 'The email field is required.']);
     });
 
@@ -68,7 +66,6 @@ describe('AdminUserController', function() {
                 'email' => 'alpha@test.com',
                 'password' => 'P@assw0rd',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertSessionHasErrors(['email' => 'The email has already been taken.']);
     });
 
@@ -79,7 +76,6 @@ describe('AdminUserController', function() {
                 'email' => 'beta@example.com',
                 'password' => 'P@assw0rd',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertSessionHasErrors(['username' => 'The username field is required.']);
     });
 
@@ -90,7 +86,6 @@ describe('AdminUserController', function() {
                 'email' => 'beta@example.com',
                 'password' => 'P@assw0rd',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertSessionHasErrors(['username' => 'The username has already been taken.']);
     });
 
@@ -101,7 +96,6 @@ describe('AdminUserController', function() {
                 'email' => 'beta@example.com',
                 'password' => '0987123#',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertSessionHasErrors(['password' => 'The password field must contain at least one letter.']);
     });
 
@@ -112,7 +106,6 @@ describe('AdminUserController', function() {
                 'email' => 'beta@example.com',
                 'password' => 'p@ssw0rd',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertSessionHasErrors(['password' => 'The password field must contain at least one uppercase and one lowercase letter.']);
     });
 
@@ -123,7 +116,6 @@ describe('AdminUserController', function() {
                 'email' => 'beta@example.com',
                 'password' => 'Passw0rd',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertSessionHasErrors(['password' => 'The password field must contain at least one symbol.']);
     });
 
@@ -134,29 +126,7 @@ describe('AdminUserController', function() {
                 'email' => 'beta@example.com',
                 'password' => 'Password',
                 'name' => 'beta',
-                'role' => 'member'
             ])->assertSessionHasErrors(['password' => 'The password field must contain at least one symbol.']);
-    });
-
-    it('should not be able to create user when role field is not sent', function() {
-        $this->actingAs($this->admin)
-            ->post(route('admin.user.store'), [
-                'username' => 'beta',
-                'email' => 'beta@example.com',
-                'password' => 'P@ssw0rd',
-                'name' => 'beta'
-            ])->assertSessionHasErrors(['role' => 'The role field is required.']);
-    });
-
-    it('should not be able to create user when role is invalid', function() {
-        $this->actingAs($this->admin)
-            ->post(route('admin.user.store'), [
-                'username' => 'beta',
-                'email' => 'beta@example.com',
-                'password' => 'P@ssw0rd',
-                'name' => 'beta',
-                'role' => 'unknown'
-            ])->assertSessionHasErrors(['role' => 'The selected role is invalid.']);
     });
 
     it('should be able to access user edit page', function() {
