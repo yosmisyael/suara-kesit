@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 interface UserService
 {
-    public function create(string $username, string $name, string $email, string $password): bool;
+    public function create(array $data): bool;
 
     public function all(): Collection;
 

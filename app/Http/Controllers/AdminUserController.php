@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Role;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -34,6 +35,7 @@ class AdminUserController extends Controller
     {
         return response()->view('pages.admin.user-create', [
             'title' => 'User Management | Create User',
+            'roles' => Role::all(),
         ]);
     }
 
@@ -44,7 +46,9 @@ class AdminUserController extends Controller
     {
         $validated = $request->validated();
 
-        $result = $this->userService->create($validated['username'], $validated['name'], $validated['email'], $validated['password']);
+        $result = $this->userService->create(
+            $validated['username'], $validated['name'], $validated['email'], $validated['password'], $validated['role']
+        );
 
         if (!$result) return redirect()->back()->withErrors(['error' => 'An error occurred when creating user.'])->withInput();
 

@@ -9,14 +9,12 @@ use Illuminate\Support\Collection;
 
 class UserServiceImpl implements UserService
 {
-    public function create(string $username, string $name, string $email, string $password): bool
+    public function create(array $data): bool
     {
-        $user = new User([
-            'username' => $username,
-            'name' => $name,
-            'email' => $email,
-            'password' => $password,
-        ]);
+        $user = new User($data);
+
+        $data['role'] === 'member' ? $user->assignRole('member') : $user->assignRole('author');
+
         return $user->save();
     }
 
