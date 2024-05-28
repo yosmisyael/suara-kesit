@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Middleware\AllowAuthenticateAdmin;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 
 Route::prefix('control-panel')->group(function () {
     Route::prefix('auth')->controller(AdminAuthController::class)->group(function () {
@@ -22,7 +23,7 @@ Route::prefix('control-panel')->group(function () {
     Route::prefix('/user')->controller(AdminUserController::class)->group(function () {
         Route::get('/', 'index')->name('admin.user.index');
         Route::get('/create', 'create')->name('admin.user.create');
-        Route::post('/store', 'store')->name('admin.user.store');
+        Route::post('/store', 'store')->name('admin.user.store')->middleware(HandlePrecognitiveRequests::class);
         Route::get('/{id}/edit', 'edit')->name('admin.user.edit');
         Route::put('/{id}', 'update')->name('admin.user.update');
         Route::delete('/{id}', 'delete')->name('admin.user.delete');
