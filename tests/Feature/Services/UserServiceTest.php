@@ -2,17 +2,24 @@
 
 use App\Models\User;
 use App\Services\UserService;
+use Database\Seeders\RolesAndPermissionSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Support\Collection;
 
 describe('UserService', function() {
     beforeEach(function () {
         $this->userService = app()->make(UserService::class);
-        $this->seed(UserSeeder::class);
+        $this->seed([UserSeeder::class, RolesAndPermissionSeeder::class]);
     });
 
     it('should be able to create user', function () {
-        expect($this->userService->create('beta', 'beta', 'beta@test.com', 'password'))->toBeTrue();
+        expect($this->userService->create([
+            'username' => 'beta',
+            'name' =>'beta',
+            'email' => 'beta@test.com',
+            'password' => 'password',
+            'role' => 'member'
+        ]))->toBeTrue();
     });
 
     it('should be able to find user by username', function () {
