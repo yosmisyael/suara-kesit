@@ -46,9 +46,7 @@ class AdminUserController extends Controller
     {
         $validated = $request->validated();
 
-        $result = $this->userService->create(
-            $validated['username'], $validated['name'], $validated['email'], $validated['password'], $validated['role']
-        );
+        $result = $this->userService->create($validated);
 
         if (!$result) return redirect()->back()->withErrors(['error' => 'An error occurred when creating user.'])->withInput();
 
