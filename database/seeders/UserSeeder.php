@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
             'username' => 'alpha',
         ]);
-        $user->assignRole('member');
         $user->save();
+        $user->assignRole('member');
     }
 }
