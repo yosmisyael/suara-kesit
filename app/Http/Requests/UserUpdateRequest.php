@@ -11,11 +11,12 @@ class UserUpdateRequest extends FormRequest
 {
     protected function prepareForValidation(): void
     {
-        $this->merge([
-            'username' => Str::lower($this->username),
-            'email' => Str::lower($this->email),
-            'name' => Str::title($this->name),
-        ]);
+        if ($this->username) $this->merge([
+            'username' => Str::lower($this->username)]);
+        if ($this->email) $this->merge([
+            'email' => Str::lower($this->email)]);
+        if ($this->name) $this->merge([
+            'name' => Str::title($this->name)]);
     }
 
     /**
@@ -46,11 +47,12 @@ class UserUpdateRequest extends FormRequest
 
         return [
             'id' => ['required', 'exists:users,id', 'uuid'],
-            'name' => ['required', 'string', 'max:100'],
-            'email' =>  ['required', 'string', 'max:100', 'email'],
+            'name' => ['string', 'max:100'],
+            'email' =>  ['string', 'max:100', 'email'],
             'username' => [
-                'required', 'string', 'alpha_dash:ascii', 'max:100', Rule::unique('users', 'username')->ignore($this->id)
+                'string', 'alpha_dash:ascii', 'max:100', Rule::unique('users', 'username')->ignore($this->id)
             ],
+            'role' => ['string', 'max:100', Rule::in(['member', 'author'])],
         ];
     }
 }
