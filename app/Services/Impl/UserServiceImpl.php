@@ -35,6 +35,8 @@ class UserServiceImpl implements UserService
 
     public function update(string $id, array $data): bool
     {
+        if (array_key_exists('role', $data) && isset($data['role']))
+            User::query()->find($id)->syncRoles($data['role']);
         return User::query()->find($id)->update($data);
     }
 
