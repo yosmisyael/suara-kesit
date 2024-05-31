@@ -88,7 +88,7 @@ class AdminUserController extends Controller
             ->withErrors(['error' => 'An error occurred when updating user.'])->withInput();
 
         return redirect(route('admin.user.index'))
-            ->with('success', 'User successfully updated.');
+            ->with('success', 'User role successfully updated.');
     }
 
     /**
