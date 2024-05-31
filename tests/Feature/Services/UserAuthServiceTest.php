@@ -1,11 +1,13 @@
 <?php
 
 use App\Services\UserAuthService;
+use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\RolesAndPermissionSeeder;
 use Database\Seeders\UserSeeder;
 
 describe('UserAuthService', function() {
     beforeEach(function () {
-        $this->seed(UserSeeder::class);
+        $this->seed([RolesAndPermissionSeeder::class, UserSeeder::class]);
         $this->userAuthService = app()->make(UserAuthService::class);
     });
 
