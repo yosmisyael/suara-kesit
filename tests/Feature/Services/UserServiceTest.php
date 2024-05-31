@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 describe('UserService', function() {
     beforeEach(function () {
         $this->userService = app()->make(UserService::class);
-        $this->seed([UserSeeder::class, RolesAndPermissionSeeder::class]);
+        $this->seed([RolesAndPermissionSeeder::class, UserSeeder::class]);
     });
 
     it('should be able to create user', function () {
