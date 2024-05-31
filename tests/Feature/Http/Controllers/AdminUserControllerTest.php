@@ -177,4 +177,12 @@ describe('AdminUserController', function () {
         expect($user->roles->count())->toBe(1)
             ->and($user->roles[0]->name)->toBe('author');
     });
+
+    it('should be able to delete user', function () {
+        $this->actingAs($this->admin)
+            ->delete(route('admin.user.delete', ['id' => $this->user->id]))
+                ->assertRedirect(route('admin.user.index'))
+                    ->assertSessionHas('success', 'User successfully deleted.');
+        expect($this->userService->findById($this->user->id))->toBeNull();
+    });
 });
