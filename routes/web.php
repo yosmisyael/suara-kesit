@@ -26,7 +26,7 @@ Route::prefix('control-panel')->group(function () {
         Route::post('/store', 'store')->name('admin.user.store')->middleware(HandlePrecognitiveRequests::class);
         Route::get('/{id}/edit', 'edit')->name('admin.user.edit');
         Route::put('/{id}', 'update')->name('admin.user.update');
-        Route::delete('/{id}', 'delete')->name('admin.user.delete');
+        Route::delete('/{id}', 'destroy')->name('admin.user.delete');
     })->middleware(AllowAuthenticateAdmin::class);
 });
 
