@@ -70,12 +70,12 @@
                 <i class="fa-solid fa-arrow-left text-white"></i>
                 Back
             </a>
-
-            <div class="h-80">
+            <template x-if="showModal">
                 <div x-on:keydown.window.escape="showModal = false">
-                    <div x-cloak x-show="showModal" x-transition.opacity
+
+                    <div x-cloak x-transition.opacity
                          class="fixed inset-0 z-10 bg-secondary-700/50"></div>
-                    <div x-cloak x-show="showModal" x-transition
+                    <div x-cloak x-transition
                          class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-0">
                         <div class="mx-auto w-full overflow-hidden rounded-lg bg-white shadow-xl sm:max-w-sm">
                             <div class="relative p-5">
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </template>
         </div>
     </x-dashboard-shell>
 
