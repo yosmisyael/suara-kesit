@@ -12,7 +12,7 @@ interface UserService
 
     public function all(): Collection;
 
-    public function userByRole(string $role): Collection;
+    public function getByRole(string $role): Collection;
 
     public function findById(string $id): ?Model;
 

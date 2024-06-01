@@ -23,7 +23,7 @@ class UserServiceImpl implements UserService
         return User::all();
     }
 
-    public function userByRole(string $role): Collection
+    public function getByRole(string $role): Collection
     {
         $filter = [$role];
 
