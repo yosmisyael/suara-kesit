@@ -20,7 +20,7 @@ class AdminUserController extends Controller
     {
         $users = $this->userService->getByRole('member');
         return response()->view('pages.admin.user', [
-            'title' => 'User | Member List',
+            'title' => 'User | Overview',
             'users' => $users,
         ]);
     }
@@ -82,7 +82,7 @@ class AdminUserController extends Controller
         if (!$result) return redirect()->back()
             ->withErrors(['error' => 'An error occurred when updating user.'])->withInput();
 
-        return redirect(route('admin.user.index'))
+        return redirect()->back()
             ->with('success', 'User role successfully updated.');
     }
 
@@ -90,7 +90,7 @@ class AdminUserController extends Controller
     {
         $this->userService->delete($id);
 
-        return redirect(route('admin.user.index'))
+        return redirect()->back()
             ->with('success', 'User successfully deleted.');
     }
 }
