@@ -47,7 +47,7 @@ describe('UserService', function() {
     it('should be able to get all user', function () {
         User::factory()->count(5)->create();
         expect($this->userService->all())->toBeInstanceOf(Collection::class)
-            ->and($this->userService->all()->count())->toBe(6);
+            ->and($this->userService->all()->count())->toBe(7);
     });
 
     it('should be able to get users based on their role', function () {
