@@ -12,6 +12,8 @@ interface UserService
 
     public function all(): Collection;
 
+    public function userByRole(string $role): Collection;
+
     public function findById(string $id): ?Model;
 
     public function findByUsername(string $username): ?User;

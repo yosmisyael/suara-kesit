@@ -23,6 +23,15 @@ class UserServiceImpl implements UserService
         return User::all();
     }
 
+    public function userByRole(string $role): Collection
+    {
+        $filter = [$role];
+
+        return User::with('roles')->whereHas('roles', function ($query) use ($filter) {
+            $query->whereIn('name', $filter);
+        })->get();
+    }
+
     public function findById(string $id): ?Model
     {
         return User::with('roles')->find($id);
