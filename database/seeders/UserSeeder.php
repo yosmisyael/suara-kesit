@@ -20,5 +20,14 @@ class UserSeeder extends Seeder
         ]);
         $user->save();
         $user->assignRole('member');
+
+        $user = new User([
+            'name' => 'zeta',
+            'email' => 'zeta@test.com',
+            'password' => bcrypt('password'),
+            'username' => 'zeta',
+        ]);
+        $user->save();
+        $user->assignRole('author');
     }
 }
