@@ -28,6 +28,24 @@ class AdminUserController extends Controller
         ]);
     }
 
+    public function showMember(): Response
+    {
+        $users = $this->userService->getByRole('member');
+        return response()->view('pages.admin.user-member', [
+            'title' => 'User | Member List',
+            'users' => $users,
+        ]);
+    }
+
+    public function showAuthor(): Response
+    {
+        $users = $this->userService->getByRole('author');
+        return response()->view('pages.admin.user-member', [
+            'title' => 'User | Author List',
+            'users' => $users,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
