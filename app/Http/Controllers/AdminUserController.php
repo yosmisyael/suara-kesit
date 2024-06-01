@@ -16,9 +16,6 @@ class AdminUserController extends Controller
 
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index(): Response
     {
         $users = $this->userService->getByRole('member');
@@ -46,9 +43,6 @@ class AdminUserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): Response
     {
         return response()->view('pages.admin.user-create', [
@@ -57,9 +51,6 @@ class AdminUserController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(UserRegisterRequest $request): RedirectResponse
     {
         $validated = $request->validated();
@@ -72,9 +63,6 @@ class AdminUserController extends Controller
             ->with('success', 'User successfully created.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id): Response
     {
         $user = $this->userService->findById($id);
@@ -85,9 +73,6 @@ class AdminUserController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UserUpdateRequest $request, string $id): RedirectResponse
     {
         $validated = $request->validated();
@@ -101,9 +86,6 @@ class AdminUserController extends Controller
             ->with('success', 'User role successfully updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id): RedirectResponse
     {
         $this->userService->delete($id);
