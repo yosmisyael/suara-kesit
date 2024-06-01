@@ -49,4 +49,10 @@ describe('UserService', function() {
         expect($this->userService->all())->toBeInstanceOf(Collection::class)
             ->and($this->userService->all()->count())->toBe(6);
     });
+
+    it('should be able to get users based on their role', function () {
+        expect($this->userService->getByRole('author'))->toBeInstanceOf(Collection::class)
+            ->and($this->userService->getByRole('author')->count())->toBe(1)
+                ->and($this->userService->getByRole('member')->count())->toBe(1);
+    });
 });
