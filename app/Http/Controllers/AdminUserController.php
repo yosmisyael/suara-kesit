@@ -21,9 +21,9 @@ class AdminUserController extends Controller
      */
     public function index(): Response
     {
-        $users = $this->userService->all();
+        $users = $this->userService->getByRole('member');
         return response()->view('pages.admin.user', [
-            'title' => 'User Management',
+            'title' => 'User | Member List',
             'users' => $users,
         ]);
     }
@@ -34,7 +34,7 @@ class AdminUserController extends Controller
     public function create(): Response
     {
         return response()->view('pages.admin.user-create', [
-            'title' => 'User Management | Create User',
+            'title' => 'User | Add User',
             'roles' => Role::all(),
         ]);
     }
@@ -48,7 +48,7 @@ class AdminUserController extends Controller
 
         $result = $this->userService->create($validated);
 
-        if (!$result) return redirect()->back()->withErrors(['error' => 'An error occurred when creating user.'])->withInput();
+        if (!$result) return redirect()->back()->withErrors(['error' => 'An error occurred when registering user.'])->withInput();
 
         return redirect(route('admin.user.index'))
             ->with('success', 'User successfully created.');
@@ -62,7 +62,7 @@ class AdminUserController extends Controller
         $user = $this->userService->findById($id);
 
         return response()->view('pages.admin.user-edit', [
-            'title' => 'User Management | Edit User',
+            'title' => 'User | Edit',
             'user' => $user,
         ]);
     }
