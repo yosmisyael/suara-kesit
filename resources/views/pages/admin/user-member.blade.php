@@ -1,5 +1,5 @@
 <x-app>
-    <x-slot:title>User Management</x-slot:title>
+    <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
 
         <div x-data="{ showModal: false }" class="relative">
