@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('title', 255)->unique();
             $table->string('slug', 255)->unique();
-            $table->text('body');
+            $table->text('content');
             $table->uuid('user_id');
             $table->timestamps();
 
