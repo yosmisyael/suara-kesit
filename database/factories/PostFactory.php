@@ -17,7 +17,9 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $user = User::query()->where('username', 'alpha')->first();
+        $user = User::query()->whereHas('roles', function ($query) {
+            $query->where('name', 'author');
+        })->first();
 
         return [
             'title' => fake()->text(),
