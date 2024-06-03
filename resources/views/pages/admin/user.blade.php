@@ -1,7 +1,7 @@
 <x-app>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
-        <h1 class="text-5xl font-bold my-2">Stats</h1>
+        <h1 class="text-5xl font-medium my-2">Stats</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <div
                 class="shadow-lg rounded-lg bg-white h-32 md:h-32 flex p-4 items-center bg-gradient-to-r from-indigo-400 to-blue-700 text-white"
@@ -9,7 +9,7 @@
                 <div class="flex-auto text-2xl font-semibold">
                     All Active Users
                 </div>
-                <h1 class="flex-1 text-4xl font-bold">1000</h1>
+                <h1 class="flex-1 text-4xl font-bold">{{ $users->count() }}</h1>
             </div>
             <div
                 class="shadow-lg rounded-lg bg-white h-32 md:h-32 flex p-4 items-center bg-gradient-to-r from-indigo-400 to-blue-700 text-white"
@@ -17,7 +17,7 @@
                 <div class="flex-auto text-2xl font-semibold">
                     Member Total
                 </div>
-                <h1 class="flex-1 text-4xl font-bold">1000</h1>
+                <h1 class="flex-1 text-4xl font-bold">{{ $members->count() }}</h1>
             </div>
             <div
                 class="shadow-lg rounded-lg bg-white h-32 md:h-32 flex p-4 items-center bg-gradient-to-r from-indigo-400 to-blue-700 text-white"
@@ -25,7 +25,7 @@
                 <div class="flex-auto text-2xl font-semibold">
                     Author Total
                 </div>
-                <h1 class="flex-1 text-4xl font-bold">1000</h1>
+                <h1 class="flex-1 text-4xl font-bold">{{ $authors->count() }}</h1>
             </div>
             <div
                 class="shadow-lg rounded-lg bg-white h-32 md:h-32 flex p-4 items-center bg-gradient-to-r from-indigo-400 to-blue-700 text-white"
@@ -36,7 +36,7 @@
                 <h1 class="flex-1 text-4xl font-bold">1000</h1>
             </div>
         </div>
-        <h1 class="text-5xl font-bold my-2">Features</h1>
+        <h1 class="text-5xl font-medium my-2">Features</h1>
         <div class="grid grid-cols-2 gap-4 mb-4">
             <a href="{{ route('admin.user.create') }}"
                 class="shadow-lg rounded-lg col-span-2 md:col-span-1 h-56 p-4 flex gap-4 items-center hover:cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white"
