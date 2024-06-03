@@ -18,10 +18,14 @@ class AdminUserController extends Controller
 
     public function index(): Response
     {
-        $users = $this->userService->getByRole('member');
+        $users = $this->userService->all();
+        $members = $this->userService->getByRole('member');
+        $authors = $this->userService->getByRole('author');
         return response()->view('pages.admin.user', [
             'title' => 'User | Overview',
             'users' => $users,
+            'members' => $members,
+            'authors' => $authors,
         ]);
     }
 
