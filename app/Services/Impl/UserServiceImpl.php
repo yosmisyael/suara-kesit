@@ -20,7 +20,7 @@ class UserServiceImpl implements UserService
 
     public function all(): Collection
     {
-        return User::all();
+        return User::with('roles')->get();
     }
 
     public function getByRole(string $role): Collection
