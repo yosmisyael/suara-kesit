@@ -20,4 +20,12 @@ class AdminAuthorController extends Controller
             'applications' => $this->authorApplicationService->all()
         ]);
     }
+
+    public function indexToken(): Response
+    {
+        return response()->view('pages.admin.user-application-token', [
+            'title' => 'Applications | Token',
+            'token' => $this->tokenService->all()
+        ]);
+    }
 }
