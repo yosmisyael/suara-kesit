@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('role_applications', function (Blueprint $table) {
+        Schema::create('author_applications', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->enum('status', array_column(AuthorApplicationStatus::cases(), 'value'));
