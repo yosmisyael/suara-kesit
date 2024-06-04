@@ -19,6 +19,9 @@ class AuthorApplication extends Model
         'token',
         'user_id'
     ];
+    protected $attributes = [
+        'status' => AuthorApplicationStatus::Pending
+    ];
 
     public function user(): BelongsTo
     {
