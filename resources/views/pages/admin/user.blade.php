@@ -43,7 +43,7 @@
             >
                 <div class="flex flex-col items-center gap-3">
                     <i class="fa-solid fa-address-book text-7xl"></i>
-                    <div class="text-center">
+                    <div class="text-center px-6">
                         <h1 class="font-bold">Registration</h1>
                         <p class="text-sm font-medium">Streamline user onboarding with effortless registration management.</p>
                     </div>
@@ -58,7 +58,7 @@
             >
                 <div class="flex flex-col items-center gap-3">
                     <i class="fa-solid fa-users-gear text-7xl"></i>
-                    <div class="text-center">
+                    <div class="text-center px-6">
                         <h1 class="font-bold">Member Management</h1>
                         <p class="text-sm font-medium">Simplify member oversight with centralized account control.</p>
                     </div>
@@ -73,7 +73,7 @@
             >
                 <div class="flex flex-col items-center gap-3">
                     <i class="fa-solid fa-feather text-7xl"></i>
-                    <div class="text-center">
+                    <div class="text-center px-6">
                         <h1 class="font-bold">Author Management</h1>
                         <p class="text-sm font-medium">Manage author accounts and content with ease.</p>
                     </div>
@@ -88,7 +88,7 @@
             >
                 <div class="flex flex-col items-center gap-3">
                     <i class="fa-solid fa-user-check text-7xl"></i>
-                    <div class="text-center">
+                    <div class="text-center px-6">
                         <h1 class="font-bold">Author Application</h1>
                         <p class="text-sm font-medium">Effortlessly onboard new authors through streamlined requests.</p>
                     </div>
