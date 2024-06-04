@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tokens', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('token', 36)->unique();
+            $table->uuid('token')->unique();
             $table->boolean('is_active');
             $table->timestamps();
         });
