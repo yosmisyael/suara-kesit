@@ -83,7 +83,7 @@
                     <i class="fa-solid fa-circle-chevron-right text-4xl"></i>
                 </div>
             </a>
-            <a href="#"
+            <a href="{{ route('admin.application.index') }}"
                class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
                 <div class="flex flex-col items-center gap-3">
