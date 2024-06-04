@@ -40,7 +40,7 @@ class AdminAuthorController extends Controller
 
         return response()->view('pages.admin.user-application-token-create', [
             'title' => 'Applications | Generate Token',
-            'tokenId' => $token->id
+            'tokenId' => $token
         ]);
     }
 }
