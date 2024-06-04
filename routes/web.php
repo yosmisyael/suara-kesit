@@ -35,6 +35,7 @@ Route::prefix('control-panel')->group(function () {
 
         Route::prefix('/application')->controller(AdminAuthorController::class)->group(function () {
             Route::get('/', 'index')->name('admin.application.index');
+            Route::get('/token', 'indexToken')->name('admin.application.token');
         });
     })->middleware(AllowAuthenticateAdmin::class);
 });
