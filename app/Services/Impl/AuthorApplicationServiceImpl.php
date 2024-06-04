@@ -6,10 +6,16 @@ use App\AuthorApplicationStatus;
 use App\Models\AuthorApplication;
 use App\Models\Token;
 use App\Services\AuthorApplicationService;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class AuthorApplicationServiceImpl implements AuthorApplicationService
 {
+
+    public function all(): Collection
+    {
+        return AuthorApplication::with('user')->get();
+    }
 
     public function approve(string $applicationId): bool
     {
