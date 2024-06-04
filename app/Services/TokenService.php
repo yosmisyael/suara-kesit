@@ -8,5 +8,5 @@ interface TokenService
 {
     public function all(): Collection;
 
-    public function create(): bool;
+    public function create(): string|null;
 }

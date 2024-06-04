@@ -14,13 +14,13 @@ class TokenServiceImpl implements TokenService
         return Token::all();
     }
 
-    public function create(): bool
+    public function create(): string|null
     {
         $token = new Token([
             'token' => Str::uuid()->toString(),
         ]);
 
-        return $token->save();
+        return $token->save() ? $token->token : null;
     }
 
 }
