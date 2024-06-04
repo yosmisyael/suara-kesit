@@ -26,7 +26,7 @@ class AdminAuthorController extends Controller
     {
         return response()->view('pages.admin.user-application-token', [
             'title' => 'Applications | Token',
-            'token' => $this->tokenService->all()
+            'tokens' => $this->tokenService->all()
         ]);
     }
 
