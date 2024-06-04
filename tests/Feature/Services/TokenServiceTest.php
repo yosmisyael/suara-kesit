@@ -8,7 +8,7 @@ describe('TokenService', function() {
     });
 
     it('should be able to generate token.', function () {
-        expect($this->tokenService->create())->toBeTrue();
+        expect($this->tokenService->create())->toBeString();
     });
 });
 
