@@ -37,50 +37,65 @@
             </div>
         </div>
         <h1 class="text-5xl font-medium my-2">Features</h1>
-        <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="grid grid-cols-4 gap-4 mb-4">
             <a href="{{ route('admin.user.create') }}"
-                class="shadow-lg rounded-lg col-span-2 md:col-span-1 h-56 p-4 flex gap-4 items-center hover:cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white"
+                class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 items-center justify-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
-                <div>
-                    <i class="fa-solid fa-address-book text-7xl md:text-9xl"></i>
+                <div class="flex flex-col items-center gap-3">
+                    <i class="fa-solid fa-address-book text-7xl"></i>
+                    <div class="text-center">
+                        <h1 class="font-bold">Registration</h1>
+                        <p class="text-sm font-medium">Streamline user onboarding with effortless registration management.</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-2xl md:text-4xl font-bold">Registration</h1>
-                    <p class="text-lg md:text-2xl">Streamline user onboarding with effortless registration management.</p>
+
+                <div class="absolute bottom-5 right-5">
+                    <i class="fa-solid fa-circle-chevron-right text-4xl"></i>
                 </div>
             </a>
             <a href="{{ route('admin.user.member') }}"
-                class="shadow-lg rounded-lg col-span-2 md:col-span-1 h-56 p-4 gap-4 flex items-center hover:cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white"
+               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 items-center justify-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
-                <div>
-                    <i class="fa-solid fa-users-gear text-7xl md:text-9xl"></i>
+                <div class="flex flex-col items-center gap-3">
+                    <i class="fa-solid fa-users-gear text-7xl"></i>
+                    <div class="text-center">
+                        <h1 class="font-bold">Member Management</h1>
+                        <p class="text-sm font-medium">Simplify member oversight with centralized account control.</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-2xl md:text-4xl font-bold">Member Management</h1>
-                    <p class="text-lg md:text-2xl">Simplify member oversight with centralized account control.</p>
+
+                <div class="absolute bottom-5 right-5">
+                    <i class="fa-solid fa-circle-chevron-right text-4xl"></i>
                 </div>
             </a>
             <a href="{{ route('admin.user.author') }}"
-                class="shadow-lg rounded-lg col-span-2 md:col-span-1 h-56 p-4 flex gap-4 items-center hover:cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white"
+               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
-                <div>
-                    <i class="fa-solid fa-feather text-7xl md:text-9xl"></i>
+                <div class="flex flex-col items-center gap-3">
+                    <i class="fa-solid fa-feather text-7xl"></i>
+                    <div class="text-center">
+                        <h1 class="font-bold">Author Management</h1>
+                        <p class="text-sm font-medium">Manage author accounts and content with ease.</p>
+                    </div>
                 </div>
 
-                <div>
-                    <h1 class="text-2xl md:text-4xl font-bold">Author Management</h1>
-                    <p class="text-lg md:text-2xl">Manage author accounts and content with ease.</p>
+                <div class="absolute bottom-5 right-5">
+                    <i class="fa-solid fa-circle-chevron-right text-4xl"></i>
                 </div>
             </a>
-            <a href="{{ route('admin.user.index') }}"
-                class="shadow-lg rounded-lg col-span-2 md:col-span-1 h-56 p-4 flex gap-4 items-center hover:cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white"
+            <a href="#"
+               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-red-500 to-orange-400 text-white hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
-                <div>
-                    <i class="fa-solid fa-user-check text-7xl md:text-9xl"></i>
+                <div class="flex flex-col items-center gap-3">
+                    <i class="fa-solid fa-user-check text-7xl"></i>
+                    <div class="text-center">
+                        <h1 class="font-bold">Author Application</h1>
+                        <p class="text-sm font-medium">Effortlessly onboard new authors through streamlined requests.</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-2xl md:text-4xl font-bold">Author Application</h1>
-                    <p class="text-lg md:text-2xl">Effortlessly onboard new authors through streamlined requests.</p>
+
+                <div class="absolute bottom-5 right-5">
+                    <i class="fa-solid fa-circle-chevron-right text-4xl"></i>
                 </div>
             </a>
         </div>
