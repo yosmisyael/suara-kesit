@@ -12,5 +12,15 @@ class Token extends Model
 
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $fillable = ['hashed_token'];
+    protected $fillable = ['token'];
+    protected $attributes = [
+        'is_active' => false
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_active' => 'boolean'
+        ];
+    }
 }
