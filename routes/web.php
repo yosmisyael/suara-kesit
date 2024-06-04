@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminAuthorController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Middleware\AllowAuthenticateAdmin;
@@ -20,15 +21,21 @@ Route::prefix('control-panel')->group(function () {
 
     Route::get('/', AdminDashboardController::class)->middleware(AllowAuthenticateAdmin::class)->name('admin.dashboard');
 
-    Route::prefix('/user')->controller(AdminUserController::class)->group(function () {
-        Route::get('/', 'index')->name('admin.user.index');
-        Route::get('/member', 'showMember')->name('admin.user.member');
-        Route::get('/author', 'showAuthor')->name('admin.user.author');
-        Route::get('/create', 'create')->name('admin.user.create');
-        Route::post('/store', 'store')->name('admin.user.store')->middleware(HandlePrecognitiveRequests::class);
-        Route::get('/{id}/edit', 'edit')->name('admin.user.edit');
-        Route::put('/{id}', 'update')->name('admin.user.update');
-        Route::delete('/{id}', 'destroy')->name('admin.user.delete');
+    Route::prefix('/user')->group(function () {
+        Route::controller(AdminUserController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.user.index');
+            Route::get('/member', 'showMember')->name('admin.user.member');
+            Route::get('/author', 'showAuthor')->name('admin.user.author');
+            Route::get('/create', 'create')->name('admin.user.create');
+            Route::post('/store', 'store')->name('admin.user.store')->middleware(HandlePrecognitiveRequests::class);
+            Route::get('/{id}/edit', 'edit')->name('admin.user.edit');
+            Route::put('/{id}', 'update')->name('admin.user.update');
+            Route::delete('/{id}', 'destroy')->name('admin.user.delete');
+        });
+
+        Route::prefix('/application')->controller(AdminAuthorController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.application.index');
+        });
     })->middleware(AllowAuthenticateAdmin::class);
 });
 
