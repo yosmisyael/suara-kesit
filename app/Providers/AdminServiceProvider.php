@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Services\AdminAuthService;
 use App\Services\Impl\AdminAuthServiceImpl;
+use App\Services\Impl\TokenServiceImpl;
 use App\Services\TokenService;
-use App\Services\TokenServiceImpl;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
