@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionSeeder::class,
             AdminSeeder::class,
             UserSeeder::class,
+            TokenSeeder::class,
+            AuthorApplicationSeeder::class
         ]);
     }
 }
