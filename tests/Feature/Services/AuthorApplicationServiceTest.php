@@ -7,6 +7,7 @@ use Database\Seeders\AuthorApplicationSeeder;
 use Database\Seeders\RolesAndPermissionSeeder;
 use Database\Seeders\TokenSeeder;
 use Database\Seeders\UserSeeder;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Str;
 
 describe('AuthorApplicationService', function () {
@@ -38,12 +39,13 @@ describe('AuthorApplicationService', function () {
     });
 
     it('should be able to reject author application if token is invalid', function () {
+        $this->expectException(Exception::class);
         expect($this->authorApplicationService->create([
             'user_id' => $this->user->id,
             'token' => Str::uuid(),
         ]))->toBeTrue();
         $application = AuthorApplication::query()->where('user_id', $this->user->id)->first();
-        expect($this->authorApplicationService->verify($application->id))->toBeFalse();
+        expect($this->authorApplicationService->verify($application->id))->toThrow(Exception::class, 'Token is unauthorized.');
     });
 
     it('should be able to list all applications', function () {
