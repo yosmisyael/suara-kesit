@@ -40,7 +40,9 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
         return DB::transaction(function () use ($applicationId) {
             $application = AuthorApplication::query()->find($applicationId);
 
-            $isMember = User::with('roles')->find($application->user_id)->roles->first()->getAttribute('name') === 'member';
+            $user = User::with('roles')->find($application->user_id);
+
+            $isMember = $user->roles->first()->getAttribute('name') === 'member';
 
             if (!$isMember) return false;
 
@@ -62,6 +64,8 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
             $result = $application->update([
                 'status' => AuthorApplicationStatus::Approved
             ]);
+
+            $user->syncRoles('author');
 
             if (!$result) return false;
 
