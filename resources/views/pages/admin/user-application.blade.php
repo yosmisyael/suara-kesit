@@ -50,7 +50,7 @@
                                 @endswitch
                             </td>
                             <td class="flex justify-start gap-4 px-6 py-4 font-medium">
-                                <a href=""
+                                <a href="{{ route('admin.application.review', ['id' => $application->id]) }}"
                                    class="inline-flex items-center gap-1.5 rounded-lg border border-yellow-300 bg-yellow-300 px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-yellow-500 hover:bg-yellow-500 focus:ring focus:ring-green-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                          class="fill-white">
