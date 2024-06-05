@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\AuthorApplicationService;
 use App\Services\TokenService;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -53,13 +54,19 @@ class AdminAuthorController extends Controller
 
     }
 
-//    public function handleApprove()
-//    {
-//
-//    }
-//
-//    public function handleReject()
-//    {
-//
-//    }
+    public function handleVerification(string $id): RedirectResponse
+    {
+        try {
+            $application = $this->authorApplicationService->verify($id);
+
+            if (!$application)
+                return redirect(route('admin.application.review', ['id' => $id]))
+                    ->withErrors(['error' => 'An error occurred when verifying application.']);
+            return redirect(route('admin.application.review', ['id' => $id]))
+                ->with('success', 'Application approved, user role changed to author successfully.');
+        } catch (Exception $e) {
+            return redirect(route('admin.application.review', ['id' => $id]))
+                ->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 }
