@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Token;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -17,5 +16,6 @@ class TokenSeeder extends Seeder
         $token = new Token([
             'token' => Str::uuid(),
         ]);
+        $token->save();
     }
 }
