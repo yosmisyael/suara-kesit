@@ -14,12 +14,11 @@ return new class extends Migration
     {
         Schema::create('author_applications', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->enum('status', array_column(AuthorApplicationStatus::cases(), 'value'));
             $table->uuid('token')->unique();
+            $table->enum('status', array_column(AuthorApplicationStatus::cases(), 'value'));
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('token_id')->nullable()->constrained('tokens');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
