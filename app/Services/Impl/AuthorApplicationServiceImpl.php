@@ -25,7 +25,7 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
 
     public function verify(string $applicationId): bool
     {
-        return DB::transaction(function () use($applicationId) {
+        return DB::transaction(function () use ($applicationId) {
             $application = AuthorApplication::query()->find($applicationId);
 
             $token = Token::query()->where('token', '=', $application->id)->first();
