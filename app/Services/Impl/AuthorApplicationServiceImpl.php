@@ -5,6 +5,7 @@ namespace App\Services\Impl;
 use App\AuthorApplicationStatus;
 use App\Models\AuthorApplication;
 use App\Models\Token;
+use App\Models\User;
 use App\Services\AuthorApplicationService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -14,6 +15,10 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
 
     public function create(array $data): bool
     {
+        $isMember = User::with('roles')->find($data['user_id'])->roles->first()->getAttribute('name') === 'member';
+
+        if (!$isMember) return false;
+
         $application = new AuthorApplication($data);
         return $application->save();
     }
@@ -28,7 +33,11 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
         return DB::transaction(function () use ($applicationId) {
             $application = AuthorApplication::query()->find($applicationId);
 
-            $token = Token::query()->where('token', '=', $application->id)->first();
+            $isMember = User::with('roles')->find($application->user_id)->roles->first()->getAttribute('name') === 'member';
+
+            if (!$isMember) return false;
+
+            $token = Token::query()->where('token', '=', $application->token)->first();
 
             if (!$token) {
                 AuthorApplication::query()->find($applicationId)->update([
