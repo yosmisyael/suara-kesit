@@ -9,7 +9,7 @@ use Database\Seeders\TokenSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Support\Str;
 
-describe('AuthorApplicationService', function() {
+describe('AuthorApplicationService', function () {
     beforeEach(function () {
         $this->authorApplicationService = app()->make(AuthorApplicationService::class);
         $this->seed([RolesAndPermissionSeeder::class, UserSeeder::class]);
@@ -49,5 +49,11 @@ describe('AuthorApplicationService', function() {
     it('should be able to list all applications', function () {
         $this->seed([TokenSeeder::class, AuthorApplicationSeeder::class]);
         expect($this->authorApplicationService->all()->count())->toBe(1);
+    });
+
+    it('should be able to get application by id', function () {
+        $this->seed([TokenSeeder::class, AuthorApplicationSeeder::class]);
+        $application = AuthorApplication::query()->where('user_id', $this->user->id)->first();
+        expect($this->authorApplicationService->getById($application->id)->getAttribute('user_id'))->toBe($this->user->id);
     });
 });
