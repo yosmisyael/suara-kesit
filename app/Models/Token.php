@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Token extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
-    protected $keyType = 'string';
-    public $incrementing = false;
     protected $fillable = [
         'token',
         'is_active'
@@ -19,6 +17,11 @@ class Token extends Model
     protected $attributes = [
         'is_active' => false
     ];
+
+    public function AuthorApplication(): BelongsTo
+    {
+        return $this->belongsTo(AuthorApplication::class);
+    }
 
     protected function casts(): array
     {
