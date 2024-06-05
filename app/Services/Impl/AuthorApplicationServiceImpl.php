@@ -7,6 +7,7 @@ use App\Models\AuthorApplication;
 use App\Models\Token;
 use App\Models\User;
 use App\Services\AuthorApplicationService;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,11 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
     public function all(): Collection
     {
         return AuthorApplication::with('user')->get();
+    }
+
+    public function getById(string $id): Model|null
+    {
+        return AuthorApplication::with('user')->find($id);
     }
 
     public function verify(string $applicationId): bool
