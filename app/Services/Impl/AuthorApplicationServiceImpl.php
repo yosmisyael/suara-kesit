@@ -7,6 +7,7 @@ use App\Models\AuthorApplication;
 use App\Models\Token;
 use App\Models\User;
 use App\Services\AuthorApplicationService;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +50,7 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
                 AuthorApplication::query()->find($applicationId)->update([
                     'status' => AuthorApplicationStatus::Rejected
                 ]);
-                return false;
+                throw new Exception('Token is unauthorized.');
             }
 
             $activateToken = Token::query()->find($token->id)->update([
