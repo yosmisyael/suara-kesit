@@ -34,13 +34,13 @@ Route::prefix('control-panel')->group(function () {
         });
 
         Route::prefix('/application')->controller(AdminAuthorController::class)->group(function () {
-            Route::get('/', 'index')->name('admin.application.index');
-            Route::get('/{id}', 'show')->name('admin.application.review');
-            Route::patch('/{id}/verify', 'handlerVerification')->name('admin.application.verification');
             Route::prefix('/token')->group(function () {
                 Route::get('/', 'indexToken')->name('admin.application.token');
                 Route::get('/generate', 'generateToken')->name('admin.application.token-generate');
             });
+            Route::get('/', 'index')->name('admin.application.index');
+            Route::get('/{id}', 'show')->name('admin.application.review');
+            Route::patch('/{id}/verify', 'handleVerification')->name('admin.application.verification');
         });
     })->middleware(AllowAuthenticateAdmin::class);
 });
