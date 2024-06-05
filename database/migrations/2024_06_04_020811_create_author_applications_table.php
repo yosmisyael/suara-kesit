@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('author_applications', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->uuid('token')->unique();
             $table->enum('status', array_column(AuthorApplicationStatus::cases(), 'value'));
             $table->foreignId('user_id')->constrained('users');

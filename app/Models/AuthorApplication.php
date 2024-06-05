@@ -10,10 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AuthorApplication extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
-    protected $keyType = 'string';
-    public $incrementing = false;
     protected $fillable = [
         'status',
         'token',
