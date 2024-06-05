@@ -23,14 +23,19 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
         return AuthorApplication::with('user')->get();
     }
 
-    public function approve(string $applicationId): bool
+    public function verify(string $applicationId): bool
     {
         return DB::transaction(function () use($applicationId) {
             $application = AuthorApplication::query()->find($applicationId);
 
             $token = Token::query()->where('token', '=', $application->id)->first();
 
-            if (!$token) return false;
+            if (!$token) {
+                AuthorApplication::query()->find($applicationId)->update([
+                    'status' => AuthorApplicationStatus::Rejected
+                ]);
+                return false;
+            }
 
             $activateToken = Token::query()->find($token->id)->update([
                 'is_active' => true
@@ -46,12 +51,5 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
 
             return true;
         });
-    }
-
-    public function deny(string $applicationId): bool
-    {
-        return AuthorApplication::query()->find($applicationId)->update([
-            'status' => AuthorApplicationStatus::Rejected
-        ]);
     }
 }
