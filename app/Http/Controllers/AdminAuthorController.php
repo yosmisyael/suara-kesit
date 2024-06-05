@@ -43,4 +43,23 @@ class AdminAuthorController extends Controller
             'token' => $token
         ]);
     }
+
+    public function show(string $id): Response
+    {
+        return response()->view('pages.admin.user-application-review', [
+            'title' => 'Applications | Review',
+            'application' => $this->authorApplicationService->getById($id)
+        ]);
+
+    }
+
+//    public function handleApprove()
+//    {
+//
+//    }
+//
+//    public function handleReject()
+//    {
+//
+//    }
 }
