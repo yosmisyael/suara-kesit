@@ -12,7 +12,10 @@ class Token extends Model
 
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $fillable = ['token'];
+    protected $fillable = [
+        'token',
+        'is_active'
+    ];
     protected $attributes = [
         'is_active' => false
     ];
