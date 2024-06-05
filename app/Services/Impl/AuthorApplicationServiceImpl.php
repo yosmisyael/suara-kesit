@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 class AuthorApplicationServiceImpl implements AuthorApplicationService
 {
 
+    public function create(array $data): bool
+    {
+        $application = new AuthorApplication($data);
+        return $application->save();
+    }
+
     public function all(): Collection
     {
         return AuthorApplication::with('user')->get();
