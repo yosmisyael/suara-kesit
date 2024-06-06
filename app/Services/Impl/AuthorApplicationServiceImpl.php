@@ -22,6 +22,13 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
         if (!$isMember) return false;
 
         $application = new AuthorApplication($data);
+
+        $token = Token::query()->where('token', '=', $application->token)->first();
+
+        $token?->update([
+            'is_active' => true
+        ]);
+
         return $application->save();
     }
 
