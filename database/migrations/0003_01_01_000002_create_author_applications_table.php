@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('token')->unique();
             $table->enum('status', array_column(AuthorApplicationStatus::cases(), 'value'));
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('token_id')->nullable()->constrained('tokens');
             $table->timestamps();
         });
