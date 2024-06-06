@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Models\Role;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Spatie\Permission\Models\Role;
 
 class AdminUserController extends Controller
 {
