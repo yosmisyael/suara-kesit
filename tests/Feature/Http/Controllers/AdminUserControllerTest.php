@@ -189,7 +189,7 @@ describe('AdminUserController', function () {
 
         $user = User::with('roles')->find($this->user->id);
         expect($user->roles->count())->toBe(1)
-            ->and($user->roles[0]->name)->toBe('author');
+            ->and($user->roles->first()->name)->toBe('author');
     });
 
     it('should be able to delete user', function () {
