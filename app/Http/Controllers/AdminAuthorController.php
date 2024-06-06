@@ -6,7 +6,6 @@ use App\Services\AuthorApplicationService;
 use App\Services\TokenService;
 use Exception;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class AdminAuthorController extends Controller
@@ -23,7 +22,7 @@ class AdminAuthorController extends Controller
         ]);
     }
 
-    public function indexToken(): Response
+    public function listTokens(): Response
     {
         return response()->view('pages.admin.user-application-token', [
             'title' => 'Applications | Token',
@@ -31,7 +30,7 @@ class AdminAuthorController extends Controller
         ]);
     }
 
-    public function generateToken(): Response|RedirectResponse
+    public function issueToken(): Response|RedirectResponse
     {
         $token = $this->tokenService->create();
 
