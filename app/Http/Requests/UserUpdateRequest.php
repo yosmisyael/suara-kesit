@@ -38,7 +38,7 @@ class UserUpdateRequest extends FormRequest
 
         if ($method === 'PATCH')
             return [
-                'id' => ['required', 'exists:users,id', 'uuid'],
+                'id' => ['required', 'exists:users,id'],
                 'password' => [
                     'required', 'string', 'confirmed', Password::min(8)->max(100)->letters()->mixedCase()->numbers()->symbols()
                 ],
@@ -46,7 +46,7 @@ class UserUpdateRequest extends FormRequest
             ];
 
         return [
-            'id' => ['required', 'exists:users,id', 'uuid'],
+            'id' => ['required', 'exists:users,id'],
             'name' => ['string', 'max:100'],
             'email' =>  ['string', 'max:100', 'email'],
             'username' => [
