@@ -4,9 +4,11 @@
     <x-dashboard-shell>
 
         <div>
-            <h1 class="text-4xl font-medium">Author Application List</h1>
+            <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
+                <h1 class="text-4xl font-medium">{{ explode('|', $title)[1] }}</h1>
+            </header>
             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 shadow-md border-[1px] mt-5">
-                <thead class="bg-gray-50">
+                <thead class="bg-gradient-to-l from-indigo-100 to-fuchsia-100 via-stone-100">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">No.</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Username</th>

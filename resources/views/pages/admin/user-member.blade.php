@@ -4,6 +4,10 @@
 
         <div x-data="{ showModal: false }" class="relative">
 
+            <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
+                <h1 class="text-4xl font-medium">{{ explode('|', $title)[1] }}</h1>
+            </header>
+
             <div class="w-fit left-1/2 -translate-x-1/2 absolute z-10">
                 @if(session('success'))
                     <div class="flex rounded-md bg-green-100 p-4 text-sm text-green-500" x-cloak x-show="showAlert" x-data="{ showAlert: true }">
@@ -38,7 +42,7 @@
 
             <div class="rounded-lg border border-gray-200 shadow-md">
                 <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gradient-to-l from-indigo-100 to-fuchsia-100 via-stone-100">
                     <tr>
                         <th scope="col" class="px-6 py-4 font-medium text-gray-900">Name</th>
                         <th scope="col" class="px-6 py-4 font-medium text-gray-900">Role</th>

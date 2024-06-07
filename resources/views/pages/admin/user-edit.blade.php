@@ -2,6 +2,9 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
         <div x-data="{ showModal: false }" class="relative">
+            <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
+                <h1 class="text-4xl font-medium">Edit User Role</h1>
+            </header>
             <div class="w-fit left-1/2 -translate-x-1/2 absolute z-10">
                 @if(session('success'))
                     <div class="flex rounded-md bg-green-100 p-4 text-sm text-green-500" x-cloak x-show="showAlert" x-data="{ showAlert: true }">
@@ -18,12 +21,12 @@
                 @endif
             </div>
 
-            <div class="bg-white overflow-hidden shadow rounded-lg border">
+            <div class="bg-gradient-to-l from-indigo-50 to-fuchsia-50 via-stone-50 overflow-hidden shadow rounded-lg border">
                 <div class="px-4 py-5 sm:px-6">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                    <h3 class="text-xl leading-6 font-medium text-gray-900">
                         User Profile
                     </h3>
-                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                    <p class="mt-1 max-w-2xl text-md text-gray-500">
                         This is some information about the user.
                     </p>
                 </div>
@@ -65,22 +68,22 @@
                             <dt class="text-sm font-medium text-gray-500">
                                 Change role status
                             </dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <button type="button" x-on:click="showModal = true"
-                                        class="rounded-lg border border-blue-500 bg-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-blue-700 hover:bg-blue-700 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-blue-300 disabled:bg-blue-300">
+                                        class="rounded-lg border border-slate-600 bg-slate-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-blue-300 disabled:bg-blue-300">
                                     @if($user->roles->first()->name === 'member')
                                         Switch to author
                                     @elseif($user->roles->first()->name === 'author')
                                         Switch to member
                                     @endif
                                 </button>
-                            </dd>
+                            </div>
                         </div>
                     </dl>
                 </div>
             </div>
 
-            <a href="{{ route('admin.user.index') }}"
+            <a href="{{ $user->roles->first()->name === 'member' ? route('admin.user.member') : route('admin.user.author')  }}"
                class="mt-5 block w-fit rounded-lg border border-gray-700 bg-gray-700 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-900 hover:bg-gray-900 focus:ring focus:ring-gray-200 disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300">
                 <i class="fa-solid fa-arrow-left text-white"></i>
                 Back

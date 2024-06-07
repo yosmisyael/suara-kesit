@@ -2,9 +2,11 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
         <div class="flex flex-col justify-center items-center gap-5" x-data="{ showAlert: false }">
-            <h1 class="text-4xl font-medium">Author Request Token Generate</h1>
+            <header class="mb-5 w-full text-center flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
+                <h1 class="text-4xl font-medium">{{ explode('|', $title)[1] }}</h1>
+            </header>
             <p>This token will expire in 20 minutes if not used to make an author request. Distribute this token securely with a validated member.</p>
-            <div class="bg-gray-200 p-10 rounded-lg">{{ $token }}</div>
+            <div id="token" class="bg-gradient-to-r from-indigo-100 to-fuchsia-100 via-stone-100 p-10 rounded-lg">{{ $token }}</div>
             <template x-if="showAlert">
                 <div class="flex rounded-md bg-blue-50 p-4 text-sm text-blue-500" x-cloak>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mr-3 h-5 w-5 flex-shrink-0">
@@ -19,12 +21,12 @@
                 </div>
             </template>
             <div class="flex gap-3">
-                <a href="{{ route('admin.application.token') }}" class="rounded-full border border-blue-500 bg-blue-500 p-4 text-center text-lg font-medium text-white shadow-sm transition-all hover:border-blue-700 hover:bg-blue-700 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-blue-300 disabled:bg-blue-300">
+                <a href="{{ route('admin.application.token') }}" class="rounded-full border border-blue-slate bg-slate-600 p-4 text-center text-lg font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-slate-200 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white" viewBox="0 0 24 24">
                         <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
                     </svg>
                 </a>
-                <button type="button" @click="copy(); showAlert = true; setTimeout(() => showAlert = false, 5000)" class="rounded-full border border-blue-500 bg-blue-500 p-4 text-center text-lg font-medium text-white shadow-sm transition-all hover:border-blue-700 hover:bg-blue-700 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-blue-300 disabled:bg-blue-300">
+                <button type="button" @click="copy(); showAlert = true; setTimeout(() => showAlert = false, 5000)" class="rounded-full border border-slate-500 bg-slate-600 p-4 text-center text-lg font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-slate-200 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white" viewBox="0 0 24 24">
                         <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"></path><path d="M6 12h6v2H6zm0 4h6v2H6z"></path>
                     </svg>
@@ -34,7 +36,7 @@
     </x-dashboard-shell>
     <script>
         function copy() {
-            const text = document.querySelector(".bg-gray-200").innerText;
+            const text = document.querySelector("#token").innerText;
             navigator.clipboard.writeText(text)
         }
     </script>

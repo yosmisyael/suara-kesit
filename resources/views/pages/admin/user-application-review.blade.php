@@ -17,7 +17,7 @@
                     </button>
                 </div>
             @enderror
-            <div class="w-full border-[1px] shadow-lg rounded-lg p-5">
+            <div class="w-full border-[1px] shadow-lg rounded-lg p-5 bg-gradient-to-r from-indigo-50 via-gray-50 to-pink-50">
                 <h1 class="text-4xl font-medium">Author Application Review</h1>
                 <h4 class="text-xl font-medium mt-5">User Detail</h4>
                 <div class="space-y-5">
