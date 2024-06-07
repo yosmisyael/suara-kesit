@@ -1,7 +1,7 @@
 <x-app>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
-        <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-gray-200 via-fuchsia-200 to-stone-100 shadow-lg text-slate-700">
+        <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
             <p class="text-3xl font-semibold">Welcome to</p>
             <h1 class="text-5xl font-semibold">User Management Console</h1>
             <p class="text-xl w-2/3 font-medium">Effortlessly manage your entire user base from a centralized dashboard. Streamline user creation, edit permissions, and track activity – all within a single, intuitive interface.</p>
@@ -9,7 +9,7 @@
         <h2 class="text-4xl font-medium my-2">Stats</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4 text-slate-700">
             <div
-                class="shadow-lg rounded-lg h-32 md:h-32 flex p-5 items-center bg-gradient-to-r from-gray-100 via-fuchsia-100 to-stone-100"
+                class="shadow-lg rounded-lg h-32 md:h-32 flex p-5 items-center bg-gradient-to-r from-fuchsia-100 via-gray-100 to-fuchsia-100"
             >
                 <div class="flex-auto text-2xl font-semibold">
                     All Active Users
@@ -25,7 +25,7 @@
                 <h1 class="flex-1 text-4xl font-bold text-center">{{ $members->count() }}</h1>
             </div>
             <div
-                class="shadow-lg rounded-lg h-32 md:h-32 flex p-4 items-center bg-gradient-to-r from-gray-100 via-fuchsia-100 to-stone-100"
+                class="shadow-lg rounded-lg h-32 md:h-32 flex p-4 items-center bg-gradient-to-r from-fuchsia-100 via-gray-100 to-fuchsia-100"
             >
                 <div class="flex-auto text-2xl font-semibold">
                     Author Total
@@ -45,7 +45,7 @@
         <h2 class="text-4xl font-medium my-2">Tools</h2>
         <div class="grid grid-cols-4 gap-4 mb-4 text-slate-700">
             <a href="{{ route('admin.user.create') }}"
-               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 items-center justify-center cursor-pointer bg-gradient-to-r from-blue-200 to-cyan-200 hover:shadow-xl hover:scale-[1.01] transition-all relative"
+               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 items-center justify-center cursor-pointer bg-gradient-to-r from-indigo-100 via-gray-100 to-pink-100 hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
                 <div class="flex flex-col items-center gap-3">
                     <i class="fa-solid fa-address-book text-7xl"></i>
@@ -61,7 +61,7 @@
                 </div>
             </a>
             <a href="{{ route('admin.user.member') }}"
-               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 items-center justify-center cursor-pointer bg-gradient-to-r from-blue-200 to-cyan-200 hover:shadow-xl hover:scale-[1.01] transition-all relative"
+               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 items-center justify-center cursor-pointer bg-gradient-to-r from-indigo-100 via-gray-100 to-pink-100 hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
                 <div class="flex flex-col items-center gap-3">
                     <i class="fa-solid fa-users-gear text-7xl"></i>
@@ -76,7 +76,7 @@
                 </div>
             </a>
             <a href="{{ route('admin.user.author') }}"
-               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-blue-200 to-cyan-200 hover:shadow-xl hover:scale-[1.01] transition-all relative"
+               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-indigo-100 via-gray-100 to-pink-100 hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
                 <div class="flex flex-col items-center gap-3">
                     <i class="fa-solid fa-feather text-7xl"></i>
@@ -91,7 +91,7 @@
                 </div>
             </a>
             <a href="{{ route('admin.application.index') }}"
-               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-blue-200 to-cyan-200 hover:shadow-xl hover:scale-[1.01] transition-all relative"
+               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-indigo-100 via-gray-100 to-pink-100 hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
                 <div class="flex flex-col items-center gap-3">
                     <i class="fa-solid fa-user-check text-7xl"></i>
@@ -107,7 +107,7 @@
                 </div>
             </a>
             <a href="{{ route('admin.application.token') }}"
-               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-blue-200 to-cyan-200 hover:shadow-xl hover:scale-[1.01] transition-all relative"
+               class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-indigo-100 via-gray-100 to-pink-100 hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
                 <div class="flex flex-col items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-20 w-20 fill-slate-700">
