@@ -63,7 +63,7 @@ class AdminUserController extends Controller
 
         if (!$result) return redirect()->back()->withErrors(['error' => 'An error occurred when registering user.'])->withInput();
 
-        return redirect(route('admin.user.index'))
+        return redirect(route('admin.user.create'))
             ->with('success', 'User successfully created.');
     }
 
