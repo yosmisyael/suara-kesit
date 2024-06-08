@@ -22,7 +22,7 @@ class AdminUserController extends Controller
         $members = $this->userService->getByRole('member');
         $authors = $this->userService->getByRole('author');
         return response()->view('pages.admin.user', [
-            'title' => 'User | Overview',
+            'title' => 'User | Console',
             'users' => $users,
             'members' => $members,
             'authors' => $authors,
@@ -50,7 +50,7 @@ class AdminUserController extends Controller
     public function create(): Response
     {
         return response()->view('pages.admin.user-create', [
-            'title' => 'User | Add User',
+            'title' => 'User | Add',
             'roles' => Role::all(),
         ]);
     }

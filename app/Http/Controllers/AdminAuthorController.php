@@ -17,7 +17,7 @@ class AdminAuthorController extends Controller
     public function index(): Response
     {
         return response()->view('pages.admin.user-application', [
-            'title' => 'Applications | List',
+            'title' => 'Applications | Applications List',
             'applications' => $this->authorApplicationService->all()
         ]);
     }
@@ -25,7 +25,7 @@ class AdminAuthorController extends Controller
     public function listTokens(): Response
     {
         return response()->view('pages.admin.user-application-token', [
-            'title' => 'Applications | Token',
+            'title' => 'Applications | Token List',
             'tokens' => $this->tokenService->all()
         ]);
     }
