@@ -4,20 +4,26 @@
     <x-dashboard-shell>
         <div class="mx-auto w-full xl:w-1/2">
             @error('error')
-                <div class="flex rounded-md bg-red-50 p-4 text-sm text-red-500 mb-5" x-cloak x-show="showAlert" x-data="{ showAlert: true }">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mr-3 h-5 w-5 flex-shrink-0">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
-                    </svg>
+            <div class="flex rounded-md bg-red-50 p-4 text-sm text-red-500 mb-5" x-cloak x-show="showAlert"
+                 x-data="{ showAlert: true }">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                     class="mr-3 h-5 w-5 flex-shrink-0">
+                    <path fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+                          clip-rule="evenodd"/>
+                </svg>
 
-                    <div><b>Operation failed.</b> {{ $message }}</div>
-                    <button class="ml-auto" x-on:click="showAlert = false">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-                        </svg>
-                    </button>
-                </div>
+                <div><b>Operation failed.</b> {{ $message }}</div>
+                <button class="ml-auto" x-on:click="showAlert = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                        <path
+                            d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
+                    </svg>
+                </button>
+            </div>
             @enderror
-            <div class="w-full border-[1px] shadow-lg rounded-lg p-5 bg-gradient-to-r from-indigo-50 via-gray-50 to-pink-50">
+            <div
+                class="w-full border-[1px] shadow-lg rounded-lg p-5 bg-gradient-to-r from-indigo-50 via-gray-50 to-pink-50">
                 <h1 class="text-4xl font-medium">Author Application Review</h1>
                 <h4 class="text-xl font-medium mt-5">User Detail</h4>
                 <div class="space-y-5">
@@ -75,7 +81,7 @@
                                         @csrf
                                         @method('PATCH')
                                         <button type="submit"
-                                                class="rounded-lg border border-blue-500 bg-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-blue-700 hover:bg-blue-700 focus:ring focus:ring-blue-200 disabled:cursor-not-allowed disabled:border-blue-300 disabled:bg-blue-300">
+                                                class="rounded-lg border border-slate-600 bg-slate-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-slate-200 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300">
                                             Verify
                                         </button>
                                     </form>
@@ -106,7 +112,8 @@
                 <a href="{{ route('admin.application.index') }}"
                    class="inline-flex items-center gap-1.5 rounded-lg border border-black bg-black px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-200 hover:bg-black focus:ring focus:ring-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
-                        <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                        <path
+                            d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
                     </svg>
                     Back
                 </a>

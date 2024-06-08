@@ -4,15 +4,15 @@
         <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
             <p class="text-3xl font-semibold">Welcome to</p>
             <h1 class="text-5xl font-semibold">User Management Console</h1>
-            <p class="text-xl w-2/3 font-medium">Effortlessly manage your entire user base from a centralized dashboard. Streamline user creation, edit permissions, and track activity – all within a single, intuitive interface.</p>
+            <p class="text-xl md:w-2/3 font-medium">Effortlessly manage your entire user base from a centralized dashboard. Streamline user creation, edit permissions, and track activity – all within a single, intuitive interface.</p>
         </header>
-        <h2 class="text-4xl font-medium my-2">Stats</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4 text-slate-700">
+        <h2 class="text-4xl font-bold my-2 w-fit bg-slate-700 px-4 py-2 rounded-lg"><span class="bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 bg-clip-text text-transparent">Stats</span></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4 text-slate-700">
             <div
                 class="shadow-lg rounded-lg h-32 md:h-32 flex p-5 items-center bg-gradient-to-r from-fuchsia-100 via-gray-100 to-fuchsia-100"
             >
                 <div class="flex-auto text-2xl font-semibold">
-                    All Active Users
+                        Active Users
                 </div>
                 <h1 class="flex-1 text-4xl font-bold text-center">{{ $users->count() }}</h1>
             </div>
@@ -32,17 +32,9 @@
                 </div>
                 <h1 class="text-center flex-1 text-4xl font-bold">{{ $authors->count() }}</h1>
             </div>
-            <div
-                class="shadow-lg rounded-lg h-32 md:h-32 flex p-4 items-center bg-gradient-to-r from-gray-100 via-fuchsia-100 to-stone-100"
-            >
-                <div class="flex-auto text-2xl font-semibold">
-                    Author Request
-                </div>
-                <h1 class="text-center flex-1 text-4xl font-bold">1000</h1>
-            </div>
         </div>
 
-        <h2 class="text-4xl font-medium my-2">Tools</h2>
+        <h2 class="text-4xl font-bold my-2 w-fit bg-slate-700 px-4 py-2 rounded-lg"><span class="bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 bg-clip-text text-transparent">Tools</span></h2>
         <div class="grid grid-cols-4 gap-4 mb-4 text-slate-700">
             <a href="{{ route('admin.user.create') }}"
                class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 items-center justify-center cursor-pointer bg-gradient-to-r from-indigo-100 via-gray-100 to-pink-100 hover:shadow-xl hover:scale-[1.01] transition-all relative"
