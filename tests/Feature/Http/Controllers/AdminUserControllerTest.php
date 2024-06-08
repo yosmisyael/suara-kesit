@@ -49,7 +49,7 @@ describe('AdminUserController', function () {
                 'password' => 'P@assw0rd',
                 'name' => 'beta',
                 'role' => 'member'
-            ])->assertStatus(302)->assertRedirect(route('admin.user.index'))
+            ])->assertStatus(302)->assertRedirect(route('admin.user.create'))
             ->assertSessionHas('success', 'User successfully created.');
     });
 
