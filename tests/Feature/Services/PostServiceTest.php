@@ -51,13 +51,18 @@ describe('PostService', function () {
     it('should be able to get post by title', function () {
         $this->seed(PostSeeder::class);
         expect($this->actingAs($this->user)
-            ->postService->getByTitle('example')->count())->toBe(1);
+            ->postService->getByTitle('example')->count())->toBe(2);
     });
 
     it('should be able to get post by id', function () {
         $this->seed(PostSeeder::class);
         $post = Post::query()->where('title', '=', 'example')->first();
         expect($this->actingAs($this->user)
-            ->postService->getById($post->id)->count())->toBe(1);
+            ->postService->getById($post->id)->count())->toBe(2);
+    });
+
+    it('should be able to get published posts', function () {
+        $this->seed(PostSeeder::class);
+        expect($this->postService->getPublished()->count())->toBe(1);
     });
 });
