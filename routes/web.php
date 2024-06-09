@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\AdminTokenController;
 use App\Http\Controllers\AdminUserConsoleController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Middleware\AllowAuthenticateAdmin;
@@ -35,14 +36,15 @@ Route::prefix('control-panel')->group(function () {
             Route::delete('{id}', 'destroy')->name('admin.user.delete');
         });
 
+        Route::prefix('token')->controller(AdminTokenController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.application.token');
+            Route::get('generate', 'store')->name('admin.application.token-generate');
+        });
+
         Route::prefix('application')->controller(AdminApplicationController::class)->group(function () {
-            Route::prefix('token')->group(function () {
-                Route::get('/', 'listTokens')->name('admin.application.token');
-                Route::get('generate', 'issueToken')->name('admin.application.token-generate');
-            });
             Route::get('/', 'index')->name('admin.application.index');
-            Route::get('{id}', 'show')->name('admin.application.review');
-            Route::patch('{id}/verify', 'handleVerification')->name('admin.application.verification');
+            Route::get('{id}', 'edit')->name('admin.application.edit');
+            Route::patch('{id}/verify', 'verify')->name('admin.application.verify');
         });
     })->middleware(AllowAuthenticateAdmin::class);
 
