@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('title', 255)->unique();
             $table->string('slug', 255)->unique();
             $table->text('content');
+            $table->boolean('is_published');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
