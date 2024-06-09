@@ -21,7 +21,7 @@
                 </div>
             </template>
             <div class="flex gap-3">
-                <a href="{{ route('admin.application.token') }}" class="rounded-full border border-blue-slate bg-slate-600 p-4 text-center text-lg font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-slate-200 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300">
+                <a href="{{ route('admin.token.index') }}" class="rounded-full border border-blue-slate bg-slate-600 p-4 text-center text-lg font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-slate-200 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white" viewBox="0 0 24 24">
                         <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
                     </svg>
