@@ -45,12 +45,12 @@
                         ></path>
                     </svg>
                 </button>
-                <ul id="dropdown-pages" class="hidden py-2 space-y-2">
+                <ul id="dropdown-pages" class="py-2 space-y-2">
                     <li>
                         <a
                             href="{{ route('admin.user.index') }}"
                             class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        >Overview</a
+                        >User Management Console</a
                         >
                     </li>
                     <li>
@@ -115,10 +115,10 @@
                         ></path>
                     </svg>
                 </button>
-                <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                <ul id="dropdown-sales" class="py-2 space-y-2">
                     <li>
                         <a
-                            href="#"
+                            href="{{ route('admin.post.index') }}"
                             class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         >List</a
                         >
