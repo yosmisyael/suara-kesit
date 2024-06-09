@@ -38,7 +38,7 @@ class AdminPostController extends Controller
             return redirect(route('admin.post.update', ['id' => $id]));
 
         return redirect(route('admin.post.index'))
-            ->with('success', 'post has been taken down.');
+            ->with('success', 'Post has been taken down.');
     }
 
     public function destroy(string $id): RedirectResponse
