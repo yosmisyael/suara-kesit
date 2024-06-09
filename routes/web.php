@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminAuthorController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\AdminUserConsoleController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Middleware\AllowAuthenticateAdmin;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
@@ -23,8 +24,8 @@ Route::prefix('control-panel')->group(function () {
     Route::get('/', AdminDashboardController::class)->middleware(AllowAuthenticateAdmin::class)->name('admin.dashboard');
 
     Route::prefix('user')->group(function () {
+        Route::get('/', AdminUserConsoleController::class)->name('admin.user.index');
         Route::controller(AdminUserController::class)->group(function () {
-            Route::get('/', 'index')->name('admin.user.index');
             Route::get('member', 'showMember')->name('admin.user.member');
             Route::get('author', 'showAuthor')->name('admin.user.author');
             Route::get('create', 'create')->name('admin.user.create');
