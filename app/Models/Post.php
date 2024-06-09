@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -34,5 +35,10 @@ class Post extends Model
             $post->slug = Str::slug($post->title, '-');
             $post->user_id = auth()->id();
         });
+    }
+
+    public function user (): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
