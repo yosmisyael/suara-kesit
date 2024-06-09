@@ -2,7 +2,7 @@
 
 
 use App\Http\Controllers\AdminAuthController;
-use App\Http\Controllers\AdminAuthorController;
+use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserConsoleController;
@@ -35,7 +35,7 @@ Route::prefix('control-panel')->group(function () {
             Route::delete('{id}', 'destroy')->name('admin.user.delete');
         });
 
-        Route::prefix('application')->controller(AdminAuthorController::class)->group(function () {
+        Route::prefix('application')->controller(AdminApplicationController::class)->group(function () {
             Route::prefix('token')->group(function () {
                 Route::get('/', 'listTokens')->name('admin.application.token');
                 Route::get('generate', 'issueToken')->name('admin.application.token-generate');

@@ -4,7 +4,7 @@ use App\Models\Admin;
 use App\Models\AuthorApplication;
 use Database\Seeders\DatabaseSeeder;
 
-describe('AdminAuthorController', function () {
+describe('AdminApplicationController', function () {
     beforeEach(function () {
         $this->seed(DatabaseSeeder::class);
         $this->admin = Admin::query()->first();

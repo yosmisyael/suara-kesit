@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
-class AdminAuthorController extends Controller
+class AdminApplicationController extends Controller
 {
     public function __construct(protected TokenService $tokenService, protected AuthorApplicationService $authorApplicationService)
     {
@@ -31,19 +31,24 @@ class AdminAuthorController extends Controller
 
     }
 
-    public function handleVerification(string $id): RedirectResponse
+    public function verify(string $id): RedirectResponse
     {
         try {
+
             $application = $this->authorApplicationService->verify($id);
 
             if (!$application)
                 return redirect(route('admin.application.review', ['id' => $id]))
                     ->withErrors(['error' => 'An error occurred when verifying application.']);
+
             return redirect(route('admin.application.review', ['id' => $id]))
                 ->with('success', 'Application approved, user role changed to author successfully.');
+
         } catch (Exception $e) {
+
             return redirect(route('admin.application.review', ['id' => $id]))
                 ->withErrors(['error' => $e->getMessage()]);
+
         }
     }
 }
