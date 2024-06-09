@@ -15,6 +15,11 @@ class PostServiceImpl implements PostService
         return Post::all();
     }
 
+    public function getPublished(): Collection
+    {
+        return Post::with('user')->where('is_published', '=', true)->get();
+    }
+
     public function getById(string $id): Model
     {
         return Post::query()->find($id);
