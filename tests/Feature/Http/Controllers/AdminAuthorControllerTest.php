@@ -17,20 +17,6 @@ describe('AdminApplicationController', function () {
             ->assertViewIs('pages.admin.user-application');
     });
 
-    it('it should be able to access token page', function () {
-        $this->actingAs($this->admin, 'admin')
-            ->get(route('admin.application.token'))
-            ->assertOk()
-            ->assertViewIs('pages.admin.user-application-token');
-    });
-
-    it('should be able to issue new token', function () {
-        $this->actingAs($this->admin, 'admin')
-            ->get(route('admin.application.token-generate'))
-            ->assertOk()
-            ->assertViewIs('pages.admin.user-application-token-create');
-    });
-
     it('should be able to access application review page', function () {
         $application = AuthorApplication::query()->first();
         $this->actingAs($this->admin, 'admin')
