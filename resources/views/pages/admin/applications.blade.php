@@ -52,7 +52,7 @@
                                 @endswitch
                             </td>
                             <td class="flex justify-start gap-4 px-6 py-4 font-medium">
-                                <a href="{{ route('admin.application.review', ['id' => $application->id]) }}"
+                                <a href="{{ route('admin.application.edit', ['id' => $application->id]) }}"
                                    class="inline-flex items-center gap-1.5 rounded-lg border border-slate-600 bg-slate-600 px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-slate-500 hover:bg-slate-700 focus:ring focus:ring-slate-200">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                          class="fill-white">

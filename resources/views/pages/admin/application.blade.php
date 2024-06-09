@@ -76,7 +76,7 @@
                             <div class="grid grid-cols-3 items-center">
                                 <div class="col-span-2 col-start-2">
                                     <form
-                                        action="{{ route('admin.application.verification', ['id' => $application->id]) }}"
+                                        action="{{ route('admin.application.verify', ['id' => $application->id]) }}"
                                         method="post">
                                         @csrf
                                         @method('PATCH')
