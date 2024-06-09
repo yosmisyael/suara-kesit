@@ -22,28 +22,6 @@ class AdminAuthorController extends Controller
         ]);
     }
 
-    public function listTokens(): Response
-    {
-        return response()->view('pages.admin.user-application-token', [
-            'title' => 'Applications | Token List',
-            'tokens' => $this->tokenService->all()
-        ]);
-    }
-
-    public function issueToken(): Response|RedirectResponse
-    {
-        $token = $this->tokenService->create();
-
-        if (!$token)
-            return redirect(route('admin.application.token'))
-                ->withErrors(['error' => 'An error occurred when generating token.']);
-
-        return response()->view('pages.admin.user-application-token-create', [
-            'title' => 'Applications | Generate Token',
-            'token' => $token
-        ]);
-    }
-
     public function show(string $id): Response
     {
         return response()->view('pages.admin.user-application-review', [
