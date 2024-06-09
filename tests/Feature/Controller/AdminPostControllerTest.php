@@ -21,6 +21,13 @@ describe('AdminPostController', function () {
             ->assertViewIs('pages.admin.post');
     });
 
+    it('should be able to unpublish post', function () {
+        $post = Post::query()->where('is_published', '=', true)->first();
+        $this->actingAs($this->admin, 'admin')->patch(route('admin.post.update', ['id' => $post->id]), [
+            'is_published' => false
+        ])->assertRedirect(route('admin.post.index'));
+    });
+
     it('should be able to delete post', function () {
         $post = Post::query()->where('is_published', '=', true)->first();
         $this->actingAs($this->admin, 'admin')->delete(route('admin.post.delete', ['id' => $post->id]))
