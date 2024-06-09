@@ -13,7 +13,18 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
+        'is_published',
     ];
+    protected $attributes = [
+        'is_published' => false
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_published' => 'boolean'
+        ];
+    }
 
     protected static function booting()
     {
