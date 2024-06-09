@@ -27,17 +27,15 @@ class Post extends Model
         ];
     }
 
-    protected static function booting()
+    protected static function booted(): void
     {
-        parent::booting();
-
         self::creating(function (Post $post) {
-            $post->slug = Str::slug($post->title, '-');
+            $post->slug = Str::slug($post->title);
             $post->user_id = auth()->id();
         });
     }
 
-    public function user (): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
