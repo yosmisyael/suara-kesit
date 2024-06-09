@@ -98,7 +98,7 @@
                     <i class="fa-solid fa-circle-chevron-right text-4xl"></i>
                 </div>
             </a>
-            <a href="{{ route('admin.application.token') }}"
+            <a href="{{ route('admin.token.index') }}"
                class="shadow-lg rounded-lg col-span-4 md:col-span-2 lg:col-span-1 h-60 p-4 flex gap-4 justify-center items-center cursor-pointer bg-gradient-to-r from-indigo-100 via-gray-100 to-pink-100 hover:shadow-xl hover:scale-[1.01] transition-all relative"
             >
                 <div class="flex flex-col items-center gap-3">
