@@ -16,15 +16,15 @@ class AdminApplicationController extends Controller
 
     public function index(): Response
     {
-        return response()->view('pages.admin.user-application', [
+        return response()->view('pages.admin.applications', [
             'title' => 'Applications | Applications List',
             'applications' => $this->authorApplicationService->all()
         ]);
     }
 
-    public function show(string $id): Response
+    public function edit(string $id): Response
     {
-        return response()->view('pages.admin.user-application-review', [
+        return response()->view('pages.admin.application', [
             'title' => 'Applications | Review',
             'application' => $this->authorApplicationService->getById($id)
         ]);
@@ -38,15 +38,15 @@ class AdminApplicationController extends Controller
             $application = $this->authorApplicationService->verify($id);
 
             if (!$application)
-                return redirect(route('admin.application.review', ['id' => $id]))
+                return redirect(route('admin.application.edit', ['id' => $id]))
                     ->withErrors(['error' => 'An error occurred when verifying application.']);
 
-            return redirect(route('admin.application.review', ['id' => $id]))
+            return redirect(route('admin.application.edit', ['id' => $id]))
                 ->with('success', 'Application approved, user role changed to author successfully.');
 
         } catch (Exception $e) {
 
-            return redirect(route('admin.application.review', ['id' => $id]))
+            return redirect(route('admin.application.edit', ['id' => $id]))
                 ->withErrors(['error' => $e->getMessage()]);
 
         }
