@@ -16,7 +16,7 @@
                     <main>{{ $post->content }}</main>
                 </article>
             </div>
-            <div class="md:col-span-1 mx-auto">
+            <div class="col-span-1">
                 <h2 class="text-3xl font-medium">Details</h2>
                 <section
                     class="rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
@@ -70,11 +70,11 @@
                     </div>
                 </section>
             </div>
-            <div class="md:col-span-2 col-span-1 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg p-5 rounded-lg flex flex-col gap-5">
+            <div class="md:col-span-3 col-span-1 flex flex-col">
                 <h2 class="text-3xl font-medium">Actions</h2>
                 <form
                     action="{{ route('admin.post.update', ['id' => $post->id]) }}"
-                    method="post">
+                    method="post" class="bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg p-5 rounded-lg">
                     @csrf
                     @method('PATCH')
                     <button type="submit"
@@ -83,6 +83,16 @@
                     </button>
                 </form>
             </div>
+        </div>
+        <div class="w-full mt-5">
+            <a href="{{ route('admin.post.index') }}"
+               class="inline-flex items-center gap-1.5 rounded-lg border border-black bg-black px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-200 hover:bg-black focus:ring focus:ring-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
+                    <path
+                        d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                </svg>
+                Back
+            </a>
         </div>
     </x-dashboard-shell>
 </x-app>
