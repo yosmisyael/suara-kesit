@@ -37,8 +37,8 @@ Route::prefix('control-panel')->group(function () {
         });
 
         Route::prefix('token')->controller(AdminTokenController::class)->group(function () {
-            Route::get('/', 'index')->name('admin.application.token');
-            Route::get('generate', 'store')->name('admin.application.token-generate');
+            Route::get('/', 'index')->name('admin.token.index');
+            Route::get('generate', 'store')->name('admin.token.store');
         });
 
         Route::prefix('application')->controller(AdminApplicationController::class)->group(function () {
