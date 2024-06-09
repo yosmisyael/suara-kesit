@@ -23,7 +23,7 @@ class UpdatePostRequest extends FormRequest
     {
         if ($this->method() === 'PATCH')
             return [
-                'is_activated' => ['required', 'boolean'],
+                'is_published' => ['required', 'boolean'],
             ];
 
         return [
