@@ -25,6 +25,6 @@ describe('AdminPostController', function () {
         $post = Post::query()->where('is_published', '=', true)->first();
         $this->actingAs($this->admin, 'admin')->delete(route('admin.post.delete', ['id' => $post->id]))
             ->assertRedirect(route('pages.admin.index'))
-            ->assertSessionHas('success', 'post has been taken down.');
+            ->assertSessionHas('success', 'Post has been taken down.');
     });
 });
