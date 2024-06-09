@@ -8,7 +8,7 @@
             <li>
                 <a
                     href="{{ route('admin.dashboard') }}"
-                    class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ request()->getUri() === route('admin.dashboard') ? 'bg-gray-100' : '' }}"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd" d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z" clip-rule="evenodd" />
@@ -45,46 +45,46 @@
                         ></path>
                     </svg>
                 </button>
-                <ul id="dropdown-pages" class="py-2 space-y-2">
+                <ul id="dropdown-pages" class="py-2 space-y-2 {{ request()->is('control-panel/user*') || request()->is('control-panel/application*') ? '' : 'hidden' }}">
                     <li>
                         <a
                             href="{{ route('admin.user.index') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.user.index') ? 'bg-gray-100' : '' }}"
                         >User Management Console</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.user.create') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.user.create') ? 'bg-gray-100' : '' }}"
                         >Register new User</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.user.member') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.user.member') ? 'bg-gray-100' : '' }}"
                         >Member</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.user.author') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.user.author') ? 'bg-gray-100' : '' }}"
                         >Author</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.application.index') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.application.index') ? 'bg-gray-100' : '' }}"
                         >Author Application</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.application.token') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.application.token') ? 'bg-gray-100' : '' }}"
                         >Token Management</a
                         >
                     </li>
@@ -115,7 +115,7 @@
                         ></path>
                     </svg>
                 </button>
-                <ul id="dropdown-sales" class="py-2 space-y-2">
+                <ul id="dropdown-sales" class="py-2 space-y-2 {{ request()->is('control-panel/post*') ? '' : 'hidden' }}">
                     <li>
                         <a
                             href="{{ route('admin.post.index') }}"
