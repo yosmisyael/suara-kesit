@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Services\PostService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -24,7 +23,7 @@ class AdminPostController extends Controller
     public function edit(string $id): Response
     {
         return response()->view('pages.admin.post', [
-            'title' => 'Edit Post',
+            'title' => 'Post | Edit Post',
             'post' => $this->postService->getById($id)
         ]);
     }
