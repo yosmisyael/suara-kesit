@@ -16,8 +16,8 @@ class AdminPostController extends Controller
     public function index(): Response
     {
         return response()->view('pages.admin.posts', [
-            'title' => 'Published Post List',
-            'posts' => $this->postService->all()
+            'title' => 'Post | Published Post List',
+            'posts' => $this->postService->getPublished()
         ]);
     }
 
