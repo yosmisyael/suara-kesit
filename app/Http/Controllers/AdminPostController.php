@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdatePostRequest;
 use App\Services\PostService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -28,14 +29,17 @@ class AdminPostController extends Controller
         ]);
     }
 
-    public function update(string $id): RedirectResponse
+    public function update(UpdatePostRequest $request, string $id): RedirectResponse
     {
+        $validated = $request->validated();
+
         $result = $this->postService->update($id, [
-            'is_published' => request()->input('is_published')
+            'is_published' => $validated['is_published']
         ]);
 
         if (!$result)
-            return redirect(route('admin.post.update', ['id' => $id]));
+            return redirect(route('admin.post.update', ['id' => $id]))
+                ->withErrors(['error' => 'An error occurred when unpublishing post.']);
 
         return redirect(route('admin.post.index'))
             ->with('success', 'Post has been taken down.');
