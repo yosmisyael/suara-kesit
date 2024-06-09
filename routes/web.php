@@ -4,6 +4,7 @@
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminAuthorController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Middleware\AllowAuthenticateAdmin;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
@@ -42,6 +43,14 @@ Route::prefix('control-panel')->group(function () {
             Route::get('/{id}', 'show')->name('admin.application.review');
             Route::patch('/{id}/verify', 'handleVerification')->name('admin.application.verification');
         });
+
+        Route::prefix('/post')->controller(AdminPostController::class)->group(function () {
+            Route::get('/', 'index')->name('admin.post.index');
+            Route::get('/{id}/edit', 'edit')->name('admin.post.edit');
+            Route::patch('/{id}', 'update')->name('admin.post.update');
+            Route::delete('/{id}', 'destroy')->name('admin.post.delete');
+        });
+
     })->middleware(AllowAuthenticateAdmin::class);
 });
 
