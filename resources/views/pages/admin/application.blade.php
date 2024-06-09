@@ -1,4 +1,4 @@
-@php use App\AuthorApplicationStatus;use Carbon\Carbon; @endphp
+@php use App\Enums\AuthorApplicationStatus;use Carbon\Carbon; @endphp
 <x-app>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>

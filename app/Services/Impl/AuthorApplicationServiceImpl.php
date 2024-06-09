@@ -2,7 +2,7 @@
 
 namespace App\Services\Impl;
 
-use App\AuthorApplicationStatus;
+use App\Enums\AuthorApplicationStatus;
 use App\Models\AuthorApplication;
 use App\Models\Token;
 use App\Models\User;

@@ -1,10 +1,11 @@
-@php use App\AuthorApplicationStatus; @endphp
+@php use App\Enums\AuthorApplicationStatus; @endphp
 <x-app>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
 
         <div>
-            <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
+            <header
+                class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
                 <h1 class="text-4xl font-medium">{{ explode('|', $title)[1] }}</h1>
             </header>
             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 shadow-md border-[1px] mt-5">
@@ -25,7 +26,8 @@
                             <td class="px-6 py-4">
                                 @switch($application->status)
                                     @case(AuthorApplicationStatus::Pending)
-                                        <span class="inline-flex items-center gap-1 rounded-md bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-600">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-md bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-600">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-yellow-600"
                                                      viewBox="0 0 24 24"><path
                                                         d="M12 5c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z"></path><path
@@ -34,7 +36,8 @@
                                             </span>
                                         @break
                                     @case(AuthorApplicationStatus::Rejected)
-                                        <span class="inline-flex items-center gap-1 rounded-md bg-red-100 px-3 py-1 text-sm font-semibold text-red-600">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-md bg-red-100 px-3 py-1 text-sm font-semibold text-red-600">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-red-600"
                                                  viewBox="0 0 24 24"><path
                                                     d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path></svg>
@@ -42,7 +45,8 @@
                                         </span>
                                         @break
                                     @case(AuthorApplicationStatus::Approved)
-                                        <span class="inline-flex items-center gap-1 rounded-md bg-green-100 px-3 py-1 text-sm font-semibold text-green-600">
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-md bg-green-100 px-3 py-1 text-sm font-semibold text-green-600">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-green-600"
                                                  viewBox="0 0 24 24"><path
                                                     d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
