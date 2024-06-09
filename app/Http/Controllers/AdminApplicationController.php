@@ -17,7 +17,7 @@ class AdminApplicationController extends Controller
     public function index(): Response
     {
         return response()->view('pages.admin.applications', [
-            'title' => 'Applications | Applications List',
+            'title' => 'Applications | Application List',
             'applications' => $this->authorApplicationService->all()
         ]);
     }
@@ -25,7 +25,7 @@ class AdminApplicationController extends Controller
     public function edit(string $id): Response
     {
         return response()->view('pages.admin.application', [
-            'title' => 'Applications | Review',
+            'title' => 'Applications | Application Review',
             'application' => $this->authorApplicationService->getById($id)
         ]);
 
