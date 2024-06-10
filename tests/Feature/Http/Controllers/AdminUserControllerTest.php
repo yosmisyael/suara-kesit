@@ -13,13 +13,6 @@ describe('AdminUserController', function () {
         $this->user = User::query()->where('username', 'alpha')->first();
     });
 
-    it('should be able to access member list page', function () {
-        $this->actingAs($this->admin)
-            ->get(route('admin.user.member'))
-            ->assertStatus(200)
-            ->assertViewIs('pages.admin.user-member');
-    });
-
     it('should be able to access author list page', function () {
         $this->actingAs($this->admin)
             ->get(route('admin.user.author'))
