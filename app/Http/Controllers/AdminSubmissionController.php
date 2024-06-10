@@ -6,7 +6,6 @@ use App\Enums\Status;
 use App\Http\Requests\UpdateSubmissionRequest;
 use App\Services\SubmissionService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class AdminSubmissionController extends Controller
@@ -37,7 +36,7 @@ class AdminSubmissionController extends Controller
 
         $result = $this->submissionService->update($id, [
             'status' => $validated['status'],
-            'post_id' => $validated['post_id'],
+            'id' => $validated['id'],
         ]);
 
         if (!$result)
