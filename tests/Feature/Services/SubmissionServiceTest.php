@@ -19,19 +19,17 @@ describe('SubmissionService', function () {
     });
 
     it('should be able to create submission', function () {
-        $post = Post::query()->first();
+        $post = Post::query()->where('slug', 'example-draft')->first();
         expect($this->submissionService->create([
             'post_id' => $post->id
         ]))->toBeTrue();
     });
 
     it('should be able to get submissions by status', function () {
-        $this->seed(SubmissionSeeder::class);
         expect($this->submissionService->getByStatus(Status::Pending)->count())->toBe(1);
     });
 
     it('should be able to get submission by id', function () {
-        $this->seed(SubmissionSeeder::class);
         $submission = Submission::query()->first();
         expect($this->submissionService->getById($submission->id)->count())->toBe(1);
     });
