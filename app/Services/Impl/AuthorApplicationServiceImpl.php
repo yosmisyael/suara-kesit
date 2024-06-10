@@ -70,7 +70,7 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
 
             $result = $application->update([
                 'status' => Status::Approved,
-                'token_id' => $token->token
+                'token_id' => $token->id
             ]);
 
             $user->syncRoles('author');
