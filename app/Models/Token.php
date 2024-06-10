@@ -20,7 +20,7 @@ class Token extends Model
 
     public function AuthorApplication(): BelongsTo
     {
-        return $this->belongsTo(AuthorApplication::class);
+        return $this->belongsTo(Application::class);
     }
 
     protected function casts(): array

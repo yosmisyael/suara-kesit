@@ -3,7 +3,7 @@
 namespace App\Services\Impl;
 
 use App\Enums\Status;
-use App\Models\AuthorApplication;
+use App\Models\Application;
 use App\Models\Token;
 use App\Models\User;
 use App\Services\AuthorApplicationService;
@@ -21,7 +21,7 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
 
         if (!$isMember) return false;
 
-        $application = new AuthorApplication($data);
+        $application = new Application($data);
 
         $token = Token::query()->where('token', '=', $application->token)->first();
 
@@ -34,18 +34,18 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
 
     public function all(): Collection
     {
-        return AuthorApplication::with('user')->get();
+        return Application::with('user')->get();
     }
 
     public function getById(string $id): Model|null
     {
-        return AuthorApplication::with('user')->find($id);
+        return Application::with('user')->find($id);
     }
 
     public function verify(string $applicationId): bool
     {
         return DB::transaction(function () use ($applicationId) {
-            $application = AuthorApplication::query()->find($applicationId);
+            $application = Application::query()->find($applicationId);
 
             $user = User::with('roles')->find($application->user_id);
 
@@ -56,7 +56,7 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
             $token = Token::query()->where('token', '=', $application->token)->first();
 
             if (!$token) {
-                AuthorApplication::query()->find($applicationId)->update([
+                Application::query()->find($applicationId)->update([
                     'status' => Status::Rejected
                 ]);
                 throw new Exception('Token is unauthorized.');

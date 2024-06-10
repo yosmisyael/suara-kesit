@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Admin;
-use App\Models\AuthorApplication;
+use App\Models\Application;
 use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\Str;
@@ -20,7 +20,7 @@ describe('AdminApplicationController', function () {
     });
 
     it('should be able to access application review page', function () {
-        $application = AuthorApplication::query()->first();
+        $application = Application::query()->first();
         $this->actingAs($this->admin, 'admin')
             ->get(route('admin.application.edit', ['id' => $application->id]))
             ->assertOk()
@@ -28,7 +28,7 @@ describe('AdminApplicationController', function () {
     });
 
     it('should be able to verify user application', function () {
-        $application = AuthorApplication::query()->first();
+        $application = Application::query()->first();
         $this->actingAs($this->admin, 'admin')
             ->patch(route('admin.application.verify', ['id' => $application->id]))
             ->assertRedirect(route('admin.application.edit', ['id' => $application->id]))
@@ -45,7 +45,7 @@ describe('AdminApplicationController', function () {
         $user->save();
         $user->assignRole('member');
 
-        $application = new AuthorApplication([
+        $application = new Application([
             'user_id' => $user->id,
             'token' => Str::uuid(),
         ]);

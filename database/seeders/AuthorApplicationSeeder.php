@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AuthorApplication;
+use App\Models\Application;
 use App\Models\Token;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,7 +21,7 @@ class AuthorApplicationSeeder extends Seeder
 
         $token = Token::query()->first();
 
-        $application = new AuthorApplication([
+        $application = new Application([
             'user_id' => $user->id,
             'token' => $token->token
         ]);

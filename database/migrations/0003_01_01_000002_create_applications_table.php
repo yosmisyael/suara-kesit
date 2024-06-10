@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('author_applications', function (Blueprint $table) {
+        Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->uuid('token')->unique();
             $table->enum('status', array_column(Status::cases(), 'value'));

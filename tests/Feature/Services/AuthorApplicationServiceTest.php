@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\AuthorApplication;
+use App\Models\Application;
 use App\Models\User;
 use App\Services\AuthorApplicationService;
 use Database\Seeders\AuthorApplicationSeeder;
@@ -34,7 +34,7 @@ describe('AuthorApplicationService', function () {
 
     it('should be able to verify author application', function () {
         $this->seed([TokenSeeder::class, AuthorApplicationSeeder::class]);
-        $application = AuthorApplication::query()->where('user_id', $this->user->id)->first();
+        $application = Application::query()->where('user_id', $this->user->id)->first();
         expect($this->authorApplicationService->verify($application->id))->toBeTrue();
     });
 
@@ -44,7 +44,7 @@ describe('AuthorApplicationService', function () {
             'user_id' => $this->user->id,
             'token' => Str::uuid(),
         ]))->toBeTrue();
-        $application = AuthorApplication::query()->where('user_id', $this->user->id)->first();
+        $application = Application::query()->where('user_id', $this->user->id)->first();
         expect($this->authorApplicationService->verify($application->id))->toThrow(Exception::class, 'Token is unauthorized.');
     });
 
@@ -55,7 +55,7 @@ describe('AuthorApplicationService', function () {
 
     it('should be able to get application by id', function () {
         $this->seed([TokenSeeder::class, AuthorApplicationSeeder::class]);
-        $application = AuthorApplication::query()->where('user_id', $this->user->id)->first();
+        $application = Application::query()->where('user_id', $this->user->id)->first();
         expect($this->authorApplicationService->getById($application->id)->getAttribute('user_id'))->toBe($this->user->id);
     });
 });

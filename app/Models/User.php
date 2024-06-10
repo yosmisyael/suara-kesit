@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function authorApplication(): HasMany
     {
-        return $this->hasMany(AuthorApplication::class);
+        return $this->hasMany(Application::class);
     }
 }
