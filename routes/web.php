@@ -1,9 +1,11 @@
 <?php
 
 
+use App\Http\Controllers\AdminAuhorController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminMemberController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminSubmissionController;
 use App\Http\Controllers\AdminTokenController;
@@ -27,9 +29,9 @@ Route::prefix('control-panel')->group(function () {
 
     Route::prefix('user')->group(function () {
         Route::get('/', AdminUserConsoleController::class)->name('admin.user.index');
+        Route::get('member', AdminMemberController::class)->name('admin.user.member');
+        Route::get('author', AdminAuhorController::class)->name('admin.user.author');
         Route::controller(AdminUserController::class)->group(function () {
-            Route::get('member', 'showMember')->name('admin.user.member');
-            Route::get('author', 'showAuthor')->name('admin.user.author');
             Route::get('create', 'create')->name('admin.user.create');
             Route::post('store', 'store')->name('admin.user.store')->middleware(HandlePrecognitiveRequests::class);
             Route::get('{id}/edit', 'edit')->name('admin.user.edit');
