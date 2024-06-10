@@ -15,7 +15,8 @@ class Application extends Model
     protected $fillable = [
         'status',
         'token',
-        'user_id'
+        'user_id',
+        'token_id'
     ];
     protected $attributes = [
         'status' => Status::Pending
