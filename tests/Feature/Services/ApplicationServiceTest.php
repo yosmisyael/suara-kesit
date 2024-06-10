@@ -3,7 +3,7 @@
 use App\Models\Application;
 use App\Models\User;
 use App\Services\ApplicationService;
-use Database\Seeders\AuthorApplicationSeeder;
+use Database\Seeders\ApplicationSeeder;
 use Database\Seeders\RolesAndPermissionSeeder;
 use Database\Seeders\TokenSeeder;
 use Database\Seeders\UserSeeder;
@@ -33,7 +33,7 @@ describe('ApplicationService', function () {
     });
 
     it('should be able to verify author application', function () {
-        $this->seed([TokenSeeder::class, AuthorApplicationSeeder::class]);
+        $this->seed([TokenSeeder::class, ApplicationSeeder::class]);
         $application = Application::query()->where('user_id', $this->user->id)->first();
         expect($this->authorApplicationService->verify($application->id))->toBeTrue();
     });
@@ -49,12 +49,12 @@ describe('ApplicationService', function () {
     });
 
     it('should be able to list all applications', function () {
-        $this->seed([TokenSeeder::class, AuthorApplicationSeeder::class]);
+        $this->seed([TokenSeeder::class, ApplicationSeeder::class]);
         expect($this->authorApplicationService->all()->count())->toBe(1);
     });
 
     it('should be able to get application by id', function () {
-        $this->seed([TokenSeeder::class, AuthorApplicationSeeder::class]);
+        $this->seed([TokenSeeder::class, ApplicationSeeder::class]);
         $application = Application::query()->where('user_id', $this->user->id)->first();
         expect($this->authorApplicationService->getById($application->id)->getAttribute('user_id'))->toBe($this->user->id);
     });
