@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Application;
+use App\Models\Token;
 use App\Models\User;
 use App\Services\ApplicationService;
 use Database\Seeders\ApplicationSeeder;
@@ -35,7 +36,8 @@ describe('ApplicationService', function () {
     it('should be able to verify author application', function () {
         $this->seed([TokenSeeder::class, ApplicationSeeder::class]);
         $application = Application::query()->where('user_id', $this->user->id)->first();
-        expect($this->authorApplicationService->verify($application->id))->toBeTrue();
+        expect($this->authorApplicationService->verify($application->id))->toBeTrue()
+            ->and(Application::query()->find($application->id)->token_id)->toBe(Token::query()->first()->id);
     });
 
     it('should be able to reject author application if token is invalid', function () {
