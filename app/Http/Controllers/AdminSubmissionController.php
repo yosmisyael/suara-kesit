@@ -41,9 +41,9 @@ class AdminSubmissionController extends Controller
 
         if (!$result)
             return redirect(route('admin.submission.edit', ['id' => $id]))
-                ->withErrors(['error', 'An error occurred when updating submission']);
+                ->withErrors(['error', 'An error occurred when updating submission.']);
 
         return redirect(route('admin.submission.index'))
-            ->with('success', 'Submission updated successfully');
+            ->with('success', 'Submission updated successfully.');
     }
 }
