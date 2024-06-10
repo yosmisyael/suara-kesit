@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\AuthorApplicationService;
+use App\Services\ApplicationService;
 use App\Services\TokenService;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 
 class AdminApplicationController extends Controller
 {
-    public function __construct(protected TokenService $tokenService, protected AuthorApplicationService $authorApplicationService)
+    public function __construct(protected TokenService $tokenService, protected ApplicationService $authorApplicationService)
     {
     }
 

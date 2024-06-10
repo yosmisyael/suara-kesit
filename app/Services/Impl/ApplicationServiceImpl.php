@@ -6,13 +6,13 @@ use App\Enums\Status;
 use App\Models\Application;
 use App\Models\Token;
 use App\Models\User;
-use App\Services\AuthorApplicationService;
+use App\Services\ApplicationService;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class AuthorApplicationServiceImpl implements AuthorApplicationService
+class ApplicationServiceImpl implements ApplicationService
 {
 
     public function create(array $data): bool

@@ -2,7 +2,7 @@
 
 use App\Models\Application;
 use App\Models\User;
-use App\Services\AuthorApplicationService;
+use App\Services\ApplicationService;
 use Database\Seeders\AuthorApplicationSeeder;
 use Database\Seeders\RolesAndPermissionSeeder;
 use Database\Seeders\TokenSeeder;
@@ -10,9 +10,9 @@ use Database\Seeders\UserSeeder;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Str;
 
-describe('AuthorApplicationService', function () {
+describe('ApplicationService', function () {
     beforeEach(function () {
-        $this->authorApplicationService = app()->make(AuthorApplicationService::class);
+        $this->authorApplicationService = app()->make(ApplicationService::class);
         $this->seed([RolesAndPermissionSeeder::class, UserSeeder::class]);
         $this->user = User::query()->where('username', '=', 'alpha')->first();
     });

@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-interface AuthorApplicationService
+interface ApplicationService
 {
     public function create(array $data): bool;
 
