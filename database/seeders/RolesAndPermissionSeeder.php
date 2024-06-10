@@ -16,15 +16,30 @@ class RolesAndPermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // permissions
-        Permission::create(['name' => 'write-article']);
+        Permission::create(['name' => 'create-post']);
+        Permission::create(['name' => 'update-post']);
+        Permission::create(['name' => 'delete-post']);
+        Permission::create(['name' => 'create-submission']);
+        Permission::create(['name' => 'update-submission']);
         Permission::create(['name' => 'post-comment']);
         Permission::create(['name' => 'edit-comment']);
         Permission::create(['name' => 'delete-comment']);
 
         // roles
         Role::create(['name' => 'member'])
-            ->givePermissionTo(['post-comment', 'edit-comment', 'delete-comment']);
+            ->givePermissionTo([
+                'post-comment',
+                'edit-comment',
+                'delete-comment',
+            ]);
+
         Role::create(['name' => 'author'])
-            ->givePermissionTo('write-article');
+            ->givePermissionTo([
+                'creat-post',
+                'update-post',
+                'delete-post',
+                'create-submission',
+                'update-submission',
+            ]);
     }
 }
