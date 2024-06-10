@@ -17,6 +17,10 @@ class Submission extends Model
         'note'
     ];
 
+    protected $attributes = [
+        'status' => Status::Pending,
+    ];
+
     protected function casts(): array
     {
         return [
