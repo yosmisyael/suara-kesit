@@ -13,7 +13,7 @@ class SubmissionServiceImpl implements SubmissionService
 
     public function getByStatus(Status $status): Collection
     {
-        return Submission::query()->where('status', '=', $status)->get();
+        return Submission::with('post')->where('status', '=', $status)->get();
     }
 
     public function getById(string $id): Model
