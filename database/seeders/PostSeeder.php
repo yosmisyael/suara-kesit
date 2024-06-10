@@ -34,6 +34,15 @@ class PostSeeder extends Seeder
                 'is_published' => true,
             ]);
             $post->save();
+
+            $post = new Post([
+                'title' => 'example draft',
+                'slug' => 'example-draft',
+                'content' => 'example draft',
+                'user_id' => $user->id,
+                'is_published' => true,
+            ]);
+            $post->save();
         });
     }
 }
