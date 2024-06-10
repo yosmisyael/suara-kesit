@@ -35,7 +35,7 @@ class RolesAndPermissionSeeder extends Seeder
 
         Role::create(['name' => 'author'])
             ->givePermissionTo([
-                'creat-post',
+                'create-post',
                 'update-post',
                 'delete-post',
                 'create-submission',
