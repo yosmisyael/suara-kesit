@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Http\Controllers\AdminAuhorController;
+use App\Http\Controllers\AdminAuthorController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminDashboardController;
@@ -30,7 +30,7 @@ Route::prefix('control-panel')->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/', AdminUserConsoleController::class)->name('admin.user.index');
         Route::get('member', AdminMemberController::class)->name('admin.user.member');
-        Route::get('author', AdminAuhorController::class)->name('admin.user.author');
+        Route::get('author', AdminAuthorController::class)->name('admin.user.author');
         Route::controller(AdminUserController::class)->group(function () {
             Route::get('create', 'create')->name('admin.user.create');
             Route::post('store', 'store')->name('admin.user.store')->middleware(HandlePrecognitiveRequests::class);

@@ -6,7 +6,7 @@ use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class AdminAuhorController extends Controller
+class AdminAuthorController extends Controller
 {
     public function __construct(protected readonly UserService $userService)
     {
