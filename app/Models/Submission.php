@@ -19,6 +19,7 @@ class Submission extends Model
 
     protected $attributes = [
         'status' => Status::Pending,
+        'note' => '',
     ];
 
     protected function casts(): array
