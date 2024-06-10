@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             TokenSeeder::class,
             ApplicationSeeder::class,
             PostSeeder::class,
+            SubmissionSeeder::class,
         ]);
     }
 }
