@@ -24,7 +24,7 @@ class UpdateSubmissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'post_id' => ['required', 'integer', 'exists:posts,id'],
+            'id' => ['required', 'integer', 'exists:posts,id'],
             'status' => ['required', Rule::enum(Status::class)->except(Status::Pending)],
         ];
     }
