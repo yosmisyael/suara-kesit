@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSubmissionRequest extends FormRequest
 {
@@ -23,6 +25,7 @@ class UpdateSubmissionRequest extends FormRequest
     {
         return [
             'post_id' => ['required', 'integer', 'exists:posts,id'],
+            'status' => ['required', Rule::enum(Status::class)->except(Status::Pending)],
         ];
     }
 }
