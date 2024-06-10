@@ -40,7 +40,7 @@ class PostSeeder extends Seeder
                 'slug' => 'example-draft',
                 'content' => 'example draft',
                 'user_id' => $user->id,
-                'is_published' => true,
+                'is_published' => false,
             ]);
             $post->save();
         });
