@@ -2,7 +2,7 @@
 
 namespace App\Services\Impl;
 
-use App\Enums\AuthorApplicationStatus;
+use App\Enums\Status;
 use App\Models\AuthorApplication;
 use App\Models\Token;
 use App\Models\User;
@@ -57,7 +57,7 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
 
             if (!$token) {
                 AuthorApplication::query()->find($applicationId)->update([
-                    'status' => AuthorApplicationStatus::Rejected
+                    'status' => Status::Rejected
                 ]);
                 throw new Exception('Token is unauthorized.');
             }
@@ -69,7 +69,7 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
             if (!$activateToken) return false;
 
             $result = $application->update([
-                'status' => AuthorApplicationStatus::Approved
+                'status' => Status::Approved
             ]);
 
             $user->syncRoles('author');

@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\AuthorApplicationStatus;
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('author_applications', function (Blueprint $table) {
             $table->id();
             $table->uuid('token')->unique();
-            $table->enum('status', array_column(AuthorApplicationStatus::cases(), 'value'));
+            $table->enum('status', array_column(Status::cases(), 'value'));
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('token_id')->nullable()->constrained('tokens');
             $table->timestamps();
