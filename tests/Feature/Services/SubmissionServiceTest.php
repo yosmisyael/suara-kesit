@@ -9,7 +9,7 @@ use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\SubmissionSeeder;
 use Illuminate\Database\Eloquent\Builder;
 
-describe('SubmissionServiceImpl', function () {
+describe('SubmissionService', function () {
     beforeEach(function () {
         $this->submissionService = app()->make(SubmissionService::class);
         $this->seed(DatabaseSeeder::class);
