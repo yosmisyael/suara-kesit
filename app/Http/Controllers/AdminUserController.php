@@ -16,15 +16,6 @@ class AdminUserController extends Controller
 
     }
 
-    public function showMember(): Response
-    {
-        $users = $this->userService->getByRole('member');
-        return response()->view('pages.admin.user-member', [
-            'title' => 'User | Member List',
-            'users' => $users,
-        ]);
-    }
-
     public function showAuthor(): Response
     {
         $users = $this->userService->getByRole('author');
