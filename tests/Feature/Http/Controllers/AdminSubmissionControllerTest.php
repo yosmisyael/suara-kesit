@@ -34,7 +34,8 @@ describe('AdminSubmissionControllerTest', function() {
             ->put(route('admin.submission.update', ['id' => $submission->id]), [
                 'status' => 'approved',
                 'id' => $submission->id
-            ])->assertRedirect(route('admin.submission.index'));
+            ])->assertRedirect(route('admin.submission.index'))
+            ->assertSessionHas('success', 'Submission updated successfully.');
 
         expect(Submission::query()->find($submission->id)->status)->toBe(Status::Approved);
     });
