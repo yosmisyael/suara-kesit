@@ -69,7 +69,8 @@ class AuthorApplicationServiceImpl implements AuthorApplicationService
             if (!$activateToken) return false;
 
             $result = $application->update([
-                'status' => Status::Approved
+                'status' => Status::Approved,
+                'token_id' => $token->token
             ]);
 
             $user->syncRoles('author');
