@@ -18,7 +18,7 @@ class Token extends Model
         'is_active' => false
     ];
 
-    public function AuthorApplication(): BelongsTo
+    public function application(): BelongsTo
     {
         return $this->belongsTo(Application::class);
     }
