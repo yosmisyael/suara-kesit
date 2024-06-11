@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('token')->unique();
             $table->boolean('is_active');
+            $table->foreignId('application_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
