@@ -74,15 +74,17 @@
                 <div
                     class="bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg p-5 rounded-lg">
                     <h4 class="text-2xl font-medium">Review Form</h4>
-                    <form action="" method="post" class="space-y-3">
+                    <form action="{{ route('admin.review.store') }}" method="post" class="space-y-3">
                         @csrf
+                        <input type="hidden" name="submission_id" value="{{ $submission->id }}">
                         <div class="grid grid-cols-3 items-center gap-1">
-                            <div class="col-span-3 block text-md font-medium text-gray-700">Review Message</div>
+                            <div class="col-span-3 block text-md font-medium text-gray-700">Review Note</div>
                             <div class="col-span-3 w-full rounded-md border-[1px] shadow-sm">
                                 <div>
-                                    <textarea id="review"
+                                    <textarea id="note"
+                                              name="note"
                                               class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
-                                              rows="3" placeholder="Leave a message"></textarea>
+                                              rows="3" placeholder="Leave a note"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +119,7 @@
                         </div>
                         <button type="submit"
                                 class="w-full bg-slate-600 text-white px-5 py-2.5 rounded-lg hover:bg-slate-700">
-                            Submit
+                            Submit Review
                         </button>
                     </form>
                 </div>
