@@ -29,7 +29,7 @@ class AdminReviewController extends Controller
         $result = $this->reviewService->create($validated);
 
         if (!$result)
-            return redirect(route('admin.submission.review', ['id' => $id]))
+            return redirect(route('admin.review.create', ['id' => $id]))
                 ->withErrors(['error', 'An error occurred when creating review.']);
 
         return redirect(route('admin.submission.index'))
