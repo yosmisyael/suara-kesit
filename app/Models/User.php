@@ -38,7 +38,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function authorApplication(): HasMany
+    public function application(): HasMany
     {
         return $this->hasMany(Application::class);
     }
