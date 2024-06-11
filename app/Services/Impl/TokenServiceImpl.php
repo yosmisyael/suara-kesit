@@ -11,7 +11,7 @@ class TokenServiceImpl implements TokenService
 {
     public function all(): Collection
     {
-        return Token::all();
+        return Token::with('application.user')->get();
     }
 
     public function create(): string|null
