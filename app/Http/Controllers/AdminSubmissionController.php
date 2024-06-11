@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Status;
 use App\Services\SubmissionService;
 use Illuminate\Http\Response;
 
