@@ -14,7 +14,7 @@ class AdminReviewController extends Controller
     {
     }
 
-    public function edit(string $id): Response
+    public function create(string $id): Response
     {
         return response()->view('pages.admin.review', [
             'title' => 'Post | Submission Review',
@@ -22,7 +22,7 @@ class AdminReviewController extends Controller
         ]);
     }
 
-    public function update(ReviewStoreRequest $request, string $id): RedirectResponse
+    public function store(ReviewStoreRequest $request, string $id): RedirectResponse
     {
         $validated = $request->validated();
 
