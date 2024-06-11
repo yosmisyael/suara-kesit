@@ -10,6 +10,7 @@
     @vite('resources/js/app.js')
     <script src="https://kit.fontawesome.com/55050161ee.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <x-rich-text::styles theme="richtextlaravel" data-turbo-track="false" />
 </head>
 <body>
     {{ $slot }}
