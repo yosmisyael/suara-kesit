@@ -19,6 +19,8 @@
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">No.</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Token</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Status</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Activated by</th>
+                    <th scope="col" class="px-6 py-4 font-medium text-gray-900">Activation Date</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 border-t border-gray-100">
@@ -40,6 +42,8 @@
                                     </span>
                                 @endif
                             </td>
+                            <td class="px-6 py-4">{{ $token->application->user->username }}</td>
+                            <td class="px-6 py-4">{{ Carbon\Carbon::parse($token->updated_at)->format('d F Y H:i:s') }}</td>
                         </tr>
                     @endforeach
                 @endif
