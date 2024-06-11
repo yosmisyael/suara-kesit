@@ -16,7 +16,6 @@ class Application extends Model
         'status',
         'token',
         'user_id',
-        'token_id'
     ];
     protected $attributes = [
         'status' => Status::Pending
@@ -41,10 +40,8 @@ class Application extends Model
 
     protected static function booted(): void
     {
-        static::deleting(function (Application $application) {
-            foreach ($application->token() as $token) {
-                $token->delete();
-            }
+        self::deleting(function (Application $application) {
+            $application->token()->delete();
         });
     }
 }

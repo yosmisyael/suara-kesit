@@ -12,7 +12,8 @@ class Token extends Model
 
     protected $fillable = [
         'token',
-        'is_active'
+        'is_active',
+        'application_id',
     ];
     protected $attributes = [
         'is_active' => false
