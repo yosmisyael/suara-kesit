@@ -1,12 +1,10 @@
 <?php
 
-use App\Enums\Status;
 use App\Models\Post;
 use App\Models\Submission;
 use App\Models\User;
 use App\Services\SubmissionService;
 use Database\Seeders\DatabaseSeeder;
-use Database\Seeders\SubmissionSeeder;
 use Illuminate\Database\Eloquent\Builder;
 
 describe('SubmissionService', function () {
@@ -25,21 +23,12 @@ describe('SubmissionService', function () {
         ]))->toBeTrue();
     });
 
-    it('should be able to get submissions by status', function () {
-        expect($this->submissionService->getByStatus(Status::Pending)->count())->toBe(1);
+    it('should be able to get unreviewed submissions', function () {
+        expect($this->submissionService->getUnreviewed()->count())->toBe(1);
     });
 
     it('should be able to get submission by id', function () {
         $submission = Submission::query()->first();
         expect($this->submissionService->getById($submission->id)->count())->toBe(1);
-    });
-
-    it('should be able to update submission', function () {
-        $this->seed(SubmissionSeeder::class);
-        $submission = Submission::query()->first();
-        expect($this->submissionService->update($submission->id, [
-            'status' => Status::Approved
-        ]))->toBeTrue()
-            ->and(Submission::query()->find($submission->id)->status)->toBe(Status::Approved);
     });
 });
