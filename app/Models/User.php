@@ -49,6 +49,10 @@ class User extends Authenticatable
             $user->applications()->each(function (Application $application) {
                 $application->delete();
             });
+
+            $user->posts()->each(function (Post $post) {
+                $post->delete();
+            });
         });
     }
 }
