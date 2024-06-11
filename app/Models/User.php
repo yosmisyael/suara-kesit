@@ -33,12 +33,12 @@ class User extends Authenticatable
         ];
     }
 
-    public function post(): HasMany
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
     }
 
-    public function application(): HasMany
+    public function applications(): HasMany
     {
         return $this->hasMany(Application::class);
     }
@@ -46,7 +46,7 @@ class User extends Authenticatable
     protected static function booted(): void
     {
         static::deleting(function (User $user) {
-            $user->application()->each(function (Application $application) {
+            $user->applications()->each(function (Application $application) {
                 $application->delete();
             });
         });
