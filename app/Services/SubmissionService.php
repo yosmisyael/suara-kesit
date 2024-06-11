@@ -12,6 +12,4 @@ interface SubmissionService
     public function getById(string $id): Model;
 
     public function create(array $data): bool;
-
-    public function update(string $id, array $data): bool;
 }

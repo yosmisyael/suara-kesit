@@ -26,9 +26,4 @@ class SubmissionServiceImpl implements SubmissionService
 
         return $submission->save();
     }
-
-    public function update(string $id, array $data): bool
-    {
-        return Submission::query()->find($id)->update($data);
-    }
 }
