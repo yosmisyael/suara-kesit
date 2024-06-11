@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminMemberController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\AdminReviewController;
 use App\Http\Controllers\AdminSubmissionController;
 use App\Http\Controllers\AdminTokenController;
 use App\Http\Controllers\AdminUserConsoleController;
@@ -56,10 +57,12 @@ Route::prefix('control-panel')->group(function () {
         Route::get('{id}/edit', 'edit')->name('admin.post.edit');
         Route::patch('{id}', 'update')->name('admin.post.update');
         Route::delete('{id}', 'destroy')->name('admin.post.delete');
-        Route::prefix('submission')->controller(AdminSubmissionController::class)->group(function () {
-            Route::get('/', 'index')->name('admin.submission.index');
-            Route::get('{id}/edit', 'edit')->name('admin.submission.edit');
-            Route::put('{id}', 'update')->name('admin.submission.update');
+        Route::prefix('submission')->group(function () {
+            Route::get('/', AdminSubmissionController::class)->name('admin.submission.index');
+            Route::prefix('{id}/review')->controller(AdminReviewController::class)->group(function () {
+                Route::get('create', 'create')->name('admin.review.create');
+                Route::post('/', 'store')->name('admin.review.store');
+            });
         });
     });
 });
