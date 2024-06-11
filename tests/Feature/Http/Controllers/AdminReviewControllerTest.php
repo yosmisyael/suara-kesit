@@ -34,5 +34,53 @@ describe('AdminReviewController', function () {
 
         expect(Review::query()->where('submission_id', $submission->id)->first()->status)->toBe(Status::Approved);
     });
+
+    it('should be able to reject submission review request if status is invalid', function () {
+        $submission = Submission::query()->first();
+
+        $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.review.store', ['id' => $submission->id]), [
+                'status' => 'pending',
+                'submission_id' => $submission->id,
+                'note' => 'good work',
+            ])
+            ->assertSessionHasErrors(['status' => 'The selected status is invalid.']);
+    });
+
+    it('should be able to reject submission review request if submission id is not present', function () {
+        $submission = Submission::query()->first();
+
+        $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.review.store', ['id' => $submission->id]), [
+                'status' => 'pending',
+                'submission_id' => '',
+                'note' => 'good work',
+            ])
+            ->assertSessionHasErrors(['submission_id' => 'The submission id field is required.']);
+    });
+
+    it('should be able to reject submission review request if submission id is invalid', function () {
+        $submission = Submission::query()->first();
+
+        $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.review.store', ['id' => $submission->id]), [
+                'status' => 'pending',
+                'submission_id' => 'wrong',
+                'note' => 'good work',
+            ])
+            ->assertSessionHasErrors(['submission_id' => 'The selected submission id is invalid.']);
+    });
+
+    it('should be able to reject submission review request if submission note is not present', function () {
+        $submission = Submission::query()->first();
+
+        $this->actingAs($this->admin, 'admin')
+            ->post(route('admin.review.store', ['id' => $submission->id]), [
+                'status' => 'pending',
+                'submission_id' => $submission->id,
+                'note' => '',
+            ])
+            ->assertSessionHasErrors(['note' => 'The note field is required.']);
+    });
 });
 
