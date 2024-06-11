@@ -12,11 +12,11 @@ class AdminSubmissionController extends Controller
     {
     }
 
-    public function index(): Response
+    public function __invoke(): Response
     {
         return response()->view('pages.admin.submissions', [
             'title' => 'Post | Submission List',
-            'submissions' => $this->submissionService->getByStatus(Status::Pending),
+            'submissions' => $this->submissionService->getUnreviewed(),
         ]);
     }
 }
