@@ -2,13 +2,12 @@
 
 namespace App\Services;
 
-use App\Enums\Status;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 interface SubmissionService
 {
-    public function getByStatus(Status $status): Collection;
+    public function getUnreviewed(): Collection;
 
     public function getById(string $id): Model;
 

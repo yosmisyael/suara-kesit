@@ -2,7 +2,6 @@
 
 namespace App\Services\Impl;
 
-use App\Enums\Status;
 use App\Models\Submission;
 use App\Services\SubmissionService;
 use Illuminate\Database\Eloquent\Model;
@@ -11,9 +10,9 @@ use Illuminate\Support\Collection;
 class SubmissionServiceImpl implements SubmissionService
 {
 
-    public function getByStatus(Status $status): Collection
+    public function getUnreviewed(): Collection
     {
-        return Submission::with('post.user')->where('status', '=', $status)->get();
+        return Submission::with(['post.user', 'review'])->whereDoesntHave('review')->get();
     }
 
     public function getById(string $id): Model
