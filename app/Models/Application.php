@@ -38,4 +38,13 @@ class Application extends Model
             'status' => Status::class
         ];
     }
+
+    protected static function booted(): void
+    {
+        static::deleting(function (Application $application) {
+            foreach ($application->token() as $token) {
+                $token->delete();
+            }
+        });
+    }
 }
