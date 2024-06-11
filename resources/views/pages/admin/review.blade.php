@@ -74,7 +74,7 @@
                 <div
                     class="bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg p-5 rounded-lg">
                     <h4 class="text-2xl font-medium">Review Form</h4>
-                    <form action="{{ route('admin.review.store') }}" method="post" class="space-y-3">
+                    <form action="{{ route('admin.review.store', ['id' => $submission->id]) }}" method="post" class="space-y-3">
                         @csrf
                         <input type="hidden" name="submission_id" value="{{ $submission->id }}">
                         <div class="grid grid-cols-3 items-center gap-1">
