@@ -63,14 +63,14 @@ class ApplicationServiceImpl implements ApplicationService
             }
 
             $activateToken = Token::query()->find($token->id)->update([
-                'is_active' => true
+                'is_active' => true,
+                'application_id' => $applicationId,
             ]);
 
             if (!$activateToken) return false;
 
             $result = $application->update([
                 'status' => Status::Approved,
-                'token_id' => $token->id
             ]);
 
             $user->syncRoles('author');
