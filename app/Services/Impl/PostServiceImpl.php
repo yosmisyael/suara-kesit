@@ -22,7 +22,7 @@ class PostServiceImpl implements PostService
 
     public function getById(string $id): Model
     {
-        return Post::with(['user', 'submission'])->find($id);
+        return Post::with(['user', 'submissions'])->find($id);
     }
 
     public function getByTitle(string $title): Collection
