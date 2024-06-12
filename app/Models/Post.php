@@ -41,7 +41,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function submission(): HasMany
+    public function submissions(): HasMany
     {
         return $this->hasMany(Submission::class);
     }
