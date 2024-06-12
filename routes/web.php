@@ -60,6 +60,7 @@ Route::prefix('control-panel')->group(function () {
         Route::prefix('submission')->group(function () {
             Route::get('/', AdminSubmissionController::class)->name('admin.submission.index');
             Route::prefix('{id}/review')->controller(AdminReviewController::class)->group(function () {
+                Route::get('/', 'show')->name('admin.review.show');
                 Route::get('create', 'create')->name('admin.review.create');
                 Route::post('/', 'store')->name('admin.review.store');
             });
