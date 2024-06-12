@@ -17,7 +17,7 @@ class SubmissionServiceImpl implements SubmissionService
 
     public function getById(string $id): Model
     {
-        return Submission::with('post.user')->find($id);
+        return Submission::with(['post.user', 'review'])->find($id);
     }
 
     public function create(array $data): bool
