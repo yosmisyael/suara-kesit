@@ -42,8 +42,8 @@
                                     </span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4">{{ $token->application->user->username }}</td>
-                            <td class="px-6 py-4">{{ Carbon\Carbon::parse($token->updated_at)->format('d F Y H:i:s') }}</td>
+                            <td class="px-6 py-4">{{ $token->application ? $token->application->user->username : 'No data' }}</td>
+                            <td class="px-6 py-4">{{ $token->application ? Carbon\Carbon::parse($token->updated_at)->format('d F Y H:i:s') : 'No data' }}</td>
                         </tr>
                     @endforeach
                 @endif
