@@ -9,7 +9,7 @@
             </header>
 
             @if(isset($errors))
-                @error()
+                @error('error')
                 <div class="w-max left-1/2 -translate-x-1/2 absolute top-0 z-10">
                     <div class="flex rounded-md bg-green-100 p-4 text-sm text-green-500" x-cloak x-show="showAlert"
                          x-data="{ showAlert: true }">
