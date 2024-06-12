@@ -14,6 +14,14 @@ class AdminReviewController extends Controller
     {
     }
 
+    public function show(string $id): Response
+    {
+        return response()->view('pages.admin.review-show', [
+            'title' => 'Post | Submission Detail',
+            'submission' => $this->submissionService->getById($id),
+        ]);
+    }
+
     public function create(string $id): Response
     {
         return response()->view('pages.admin.review', [
