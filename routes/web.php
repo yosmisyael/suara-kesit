@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminSubmissionController;
 use App\Http\Controllers\AdminTokenController;
 use App\Http\Controllers\AdminUserConsoleController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Middleware\AllowAuthenticateAdmin;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,8 @@ Route::prefix('control-panel')->group(function () {
             });
         });
     });
+
+    Route::post('/attachment', ImageUploadController::class)->middleware(AllowAuthenticateAdmin::class)->name('admin.upload');
 });
 
 Route::get('/', function () {
