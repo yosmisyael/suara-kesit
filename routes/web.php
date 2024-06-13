@@ -65,7 +65,7 @@ Route::prefix('control-panel')->group(function () {
         });
         Route::prefix('attachment')->controller(ImageController::class)->group(function () {
             Route::post('upload', 'store')->name('admin.attachment.store');
-            Route::delete('delete', 'delete')->name('admin.attachment.delete');
+            Route::delete('delete/{name}', 'delete')->name('admin.attachment.delete');
         });
     });
 });
