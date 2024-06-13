@@ -31,6 +31,12 @@
                 });
             });
         },
+        remove(event) {
+            const attachmentUrl = event.attachment.getAttributes().url;
+            const attachment = attachmentUrl.split('/').pop();
+            window.axios.delete(`/control-panel/attachment/delete/${attachment}`).then(({ data }) => data);
+        },
     }"
     x-on:trix-attachment-add="upload(event)"
+    x-on:trix-attachment-remove="remove(event)"
 ></trix-editor>
