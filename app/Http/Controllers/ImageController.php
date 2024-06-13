@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    public function __invoke(Request $request): array
+    public function store(Request $request): array
     {
         $request->validate([
             'attachment' => ['required', 'image'],
@@ -17,6 +17,19 @@ class ImageController extends Controller
 
         return [
             'image_url' => Storage::disk('public')->url($path),
+        ];
+    }
+
+    public function delete(Request $request): array
+    {
+        $request->validate([
+            'attachment' => ['required', 'string'],
+        ]);
+
+        Storage::disk('public')->delete('attachments', $request->input('attachment'));
+
+        return [
+            'success' => true,
         ];
     }
 }
