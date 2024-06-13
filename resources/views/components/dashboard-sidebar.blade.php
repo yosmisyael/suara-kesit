@@ -1,14 +1,14 @@
 <aside
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-primary border-r border-primary md:translate-x-0"
     aria-label="Sidenav"
     id="drawer-navigation"
 >
-    <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
+    <div class="overflow-y-auto py-5 px-3 h-full bg-primary text-white fill-white font-bold">
         <ul class="space-y-2">
             <li>
                 <a
                     href="{{ route('admin.dashboard') }}"
-                    class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group {{ request()->getUri() === route('admin.dashboard') ? 'bg-gray-100' : '' }}"
+                    class="flex items-center p-2 text-base rounded-lg hover:bg-white hover:fill-contrary hover:text-contrary group {{ request()->getUri() === route('admin.dashboard') ? 'bg-white fill-contrary text-contrary' : '' }}"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd"
@@ -24,7 +24,7 @@
             <li>
                 <button
                     type="button"
-                    class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    class="flex items-center p-2 w-full text-base rounded-lg transition duration-75 group hover:bg-white hover:text-contrary {{ request()->is('control-panel/user*') || request()->is('control-panel/application*') ? 'text-contrary bg-white' : '' }}"
                     aria-controls="dropdown-pages"
                     data-collapse-toggle="dropdown-pages"
                 >
@@ -57,42 +57,42 @@
                     <li>
                         <a
                             href="{{ route('admin.user.index') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.user.index') ? 'bg-gray-100' : '' }}"
+                            class="flex items-center p-2 pl-11 w-full text-base hover:fill-contrary hover:text-contrary rounded-lg transition duration-75 group hover:bg-white {{ request()->getUri() === route('admin.user.index') ? 'bg-white fill-contrary text-contrary' : '' }}"
                         >Management Console</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.user.create') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.user.create') ? 'bg-gray-100' : '' }}"
+                            class="flex items-center p-2 pl-11 w-full text-base rounded-lg transition duration-75 group hover:bg-white hover:fill-contrary hover:text-contrary {{ request()->getUri() === route('admin.user.create') ? 'bg-white fill-contrary text-contrary' : '' }}"
                         >Register new User</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.user.member') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.user.member') ? 'bg-gray-100' : '' }}"
+                            class="flex items-center p-2 pl-11 w-full text-base   rounded-lg transition duration-75 group hover:bg-white hover:fill-contrary hover:text-contrary {{ request()->getUri() === route('admin.user.member') ? 'bg-white fill-contrary text-contrary' : '' }}"
                         >Member</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.user.author') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.user.author') ? 'bg-gray-100' : '' }}"
+                            class="flex items-center p-2 pl-11 w-full text-base   rounded-lg transition duration-75 group hover:bg-white hover:fill-contrary hover:text-contrary {{ request()->getUri() === route('admin.user.author') ? 'bg-white fill-contrary text-contrary' : '' }}"
                         >Author</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.application.index') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.application.index') ? 'bg-gray-100' : '' }}"
+                            class="flex items-center p-2 pl-11 w-full text-base   rounded-lg transition duration-75 group hover:bg-white hover:fill-contrary hover:text-contrary {{ request()->getUri() === route('admin.application.index') ? 'bg-white fill-contrary text-contrary' : '' }}"
                         >Author Application</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.token.index') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.token.index') ? 'bg-gray-100' : '' }}"
+                            class="flex items-center p-2 pl-11 w-full text-base   rounded-lg transition duration-75 group hover:bg-white hover:fill-contrary hover:text-contrary {{ request()->getUri() === route('admin.token.index') ? 'bg-white fill-contrary text-contrary' : '' }}"
                         >Token Management</a
                         >
                     </li>
@@ -101,7 +101,7 @@
             <li>
                 <button
                     type="button"
-                    class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    class="flex items-center p-2 w-full text-base rounded-lg transition duration-75 group hover:bg-white hover:fill-contrary hover:text-contrary {{ request()->is('control-panel/user*') || request()->is('control-panel/post*') ? 'fill-contrary text-contrary bg-white' : '' }}"
                     aria-controls="dropdown-sales"
                     data-collapse-toggle="dropdown-sales"
                 >
@@ -132,14 +132,14 @@
                     <li>
                         <a
                             href="{{ route('admin.post.index') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.post.index') ? 'bg-gray-100' : '' }}"
+                            class="flex items-center p-2 pl-11 w-full text-base   rounded-lg transition duration-75 group hover:bg-white hover:fill-contrary hover:text-contrary {{ request()->getUri() === route('admin.post.index') ? 'bg-white fill-contrary text-contrary' : '' }}"
                         >List</a
                         >
                     </li>
                     <li>
                         <a
                             href="{{ route('admin.submission.index') }}"
-                            class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->getUri() === route('admin.submission.index') ? 'bg-gray-100' : '' }}"
+                            class="flex items-center p-2 pl-11 w-full text-base   rounded-lg transition duration-75 group hover:bg-white hover:fill-contrary hover:text-contrary {{ request()->getUri() === route('admin.submission.index') ? 'bg-white fill-contrary text-contrary' : '' }}"
                         >Submission</a
                         >
                     </li>
