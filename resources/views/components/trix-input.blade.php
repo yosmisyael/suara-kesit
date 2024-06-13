@@ -33,4 +33,5 @@
         }
     }"
     x-on:trix-attachment-add="upload(event)"
+    x-on:trix-attachment-remove=""
 ></trix-editor>

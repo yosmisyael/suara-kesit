@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ImageUploadController extends Controller
+class ImageController extends Controller
 {
     public function __invoke(Request $request): array
     {
