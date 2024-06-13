@@ -16,6 +16,12 @@ export default {
             'sans': [
                 'Inter var',
             ]
+        },
+        colors: {
+            primary: '#3226AE',
+            contrary: '#FF392C',
+            secondary: '#01C5F9',
+            complementary: '#FFC006',
         }
     },
     plugins: [
