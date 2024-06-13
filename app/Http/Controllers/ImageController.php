@@ -20,13 +20,13 @@ class ImageController extends Controller
         ];
     }
 
-    public function delete(Request $request): array
+    public function delete(string $name): array
     {
-        $request->validate([
-            'attachment' => ['required', 'string'],
-        ]);
+        $result = Storage::disk('public')->delete('attachments/' . $name);
 
-        Storage::disk('public')->delete('attachments', $request->input('attachment'));
+        if (!$result) {
+            return ['success' => false];
+        }
 
         return [
             'success' => true,
