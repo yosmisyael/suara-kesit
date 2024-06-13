@@ -29,4 +29,11 @@ class Submission extends Model
     {
         return $this->hasOne(Review::class);
     }
+
+    protected static function booted(): void
+    {
+        self::deleting(function (Submission $submission) {
+            $submission->review()->delete();
+        });
+    }
 }
