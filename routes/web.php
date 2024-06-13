@@ -68,7 +68,10 @@ Route::prefix('control-panel')->group(function () {
         });
     });
 
-    Route::post('/attachment', ImageController::class)->middleware(AllowAuthenticateAdmin::class)->name('admin.upload');
+    Route::prefix('attachment')->controller(ImageController::class)->group(function () {
+        Route::post('upload', 'store')->name('admin.attachment.store');
+        Route::delete('delete', 'delete')->name('admin.attachment.delete');
+    })->middleware(AllowAuthenticateAdmin::class);
 });
 
 Route::get('/', function () {
