@@ -71,16 +71,18 @@
                                 <div
                                     class="col-span-2 w-full rounded-md bg-white p-3 border-[1px] shadow-sm flex justify-between">
                                     {{ $post->submissions->count() > 0 ? $post->submissions->last()->id : 'Direct Published'}}
-                                    <a href="{{ route('admin.review.show', ['id' => $post->submissions->last()->id]) }}"
-                                       class="hover:bg-slate-200 cursor-pointer flex items-center rounded-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-slate-700"
-                                             viewBox="0 0 24 24">
-                                            <path
-                                                d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z"></path>
-                                            <path
-                                                d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"></path>
-                                        </svg>
-                                    </a>
+                                    @if($post->submissions->count() > 0)
+                                        <a href="{{ route('admin.review.show', ['id' => $post->submissions->last()->id]) }}"
+                                           class="hover:bg-slate-200 cursor-pointer flex items-center rounded-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-slate-700"
+                                                 viewBox="0 0 24 24">
+                                                <path
+                                                    d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z"></path>
+                                                <path
+                                                    d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"></path>
+                                            </svg>
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="grid grid-cols-3 items-center">
