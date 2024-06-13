@@ -49,6 +49,12 @@ class Post extends Model
             $post->slug = Str::slug($post->title);
             $post->user_id = auth()->id();
         });
+
+        self::deleting(function (Post $post) {
+            $post->submissions()->each(function (Submission $submission) {
+                $submission->delete();
+            });
+        });
     }
 
     public function user(): BelongsTo
