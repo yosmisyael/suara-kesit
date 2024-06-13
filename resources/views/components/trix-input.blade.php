@@ -21,7 +21,7 @@
         upload(event) {
             const data = new FormData();
             data.append('attachment', event.attachment.file);
-            window.axios.post('{{ route('admin.upload') }}', data, {
+            window.axios.post('{{ route('admin.attachment.store') }}', data, {
                 onUploadProgress(progressEvent) {
                     event.attachment.setUploadProgress(progressEvent.loaded / progressEvent.total * 100);
                 }
@@ -30,8 +30,7 @@
                     url: data.image_url,
                 });
             });
-        }
+        },
     }"
     x-on:trix-attachment-add="upload(event)"
-    x-on:trix-attachment-remove=""
 ></trix-editor>
