@@ -26,7 +26,7 @@
             @endif
 
             <div class="mx-auto max-w-xl mt-12">
-                <div class="bg-gradient-to-r from-indigo-50 via-gray-50 to-pink-50 shadow-lg p-5 rounded-lg">
+                <div class="bg-white shadow-lg p-5 rounded-lg">
                     <h1 class="text-4xl font-medium text-center mb-10">User Registration</h1>
                     <form action="{{ route('admin.user.store') }}" method="POST" class="space-y-5" x-data="{
                         form: $form('post', '/control-panel/user/store', {
@@ -42,7 +42,7 @@
                             <label for="name" class="col-span-1 block text-sm font-medium text-gray-700">Name</label>
                             <div class="col-span-2">
                                 <input name="name" type="text" id="name"
-                                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
                                        placeholder="enter name here" required
                                        x-model="form.name"
                                        @change="form.validate('name')"/>
@@ -56,7 +56,7 @@
                                    class="col-span-1 block text-sm font-medium text-gray-700">Username</label>
                             <div class="col-span-2">
                                 <input name="username" type="text" id="username"
-                                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
                                        placeholder="enter username here" required
                                        x-model="form.username"
                                        @change="form.validate('username')"/>
@@ -69,7 +69,7 @@
                             <label for="email" class="col-span-1 block text-sm font-medium text-gray-700">Email</label>
                             <div class="col-span-2">
                                 <input name="email" type="email" id="email"
-                                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
                                        placeholder="enter email here" required
                                        x-model="form.email"
                                        @change="form.validate('email')"/>
@@ -83,7 +83,7 @@
                                    class="col-span-1 block text-sm font-medium text-gray-700">Password</label>
                             <div class="col-span-2">
                                 <input name="password" type="password" id="password"
-                                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+                                       class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
                                        placeholder="enter password here" required
                                        x-model="form.password"
                                        @change="form.validate('password')"/>
@@ -96,7 +96,7 @@
                             <label for="role" class="col-span-1 block text-sm font-medium text-gray-700">Role</label>
                             <div class="max-w-xs w-full col-span-2">
                                 <select name="role" id="role"
-                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50"
+                                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
                                         required
                                         x-model="form.role"
                                         @change="form.validate('role')">
@@ -112,7 +112,7 @@
                         <div class="grid grid-cols-3 items-center">
                             <div class="col-span-2 col-start-2 justify-end">
                                 <button type="submit"
-                                        class="rounded-lg border border-slate-600 bg-slate-600 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all hover:border-slate-600 hover:bg-slate-700 focus:ring focus:ring-slate-200 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300"
+                                        class="rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all hover:border-primary hover:bg-slate-700 focus:ring focus:ring-slate-200"
                                         :disabled="form.processing">
                                     Register
                                 </button>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="w-full mt-5">
                     <a href="{{ route('admin.user.index') }}"
-                       class="inline-flex items-center gap-1.5 rounded-lg border border-black bg-black px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-200 hover:bg-black focus:ring focus:ring-gray-200">
+                       class="inline-flex items-center gap-1.5 rounded-lg border border-black bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
                             <path
                                 d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
