@@ -2,11 +2,13 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
         <div class="">
-            <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
-                <h1 class="text-4xl font-medium">{{ explode('|', $title)[1] }}</h1>
+            <header class="text-black">
+                <h2 class="text-2xl font-medium text-gray-600">Welcome to</h2>
+                <h1 class="text-5xl font-black md:text-7xl">{{ explode('|', $title)[1] }}</h1>
+                <p class="text-lg">List of author token.</p>
             </header>
             <div class="my-4 flex">
-                <a href="{{ route('admin.token.store') }}" class="inline-flex items-center gap-1 rounded-lg border border-slate-500 bg-slate-600 px-5 py-2.5 text-center text-md font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-slate-200">
+                <a href="{{ route('admin.token.store') }}" class="inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all focus:ring focus:ring-complementary">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 fill-white">
                         <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
                     </svg>
@@ -14,7 +16,7 @@
                 </a>
             </div>
             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 shadow-md border-[1px]">
-                <thead class="bg-gradient-to-l from-indigo-100 to-fuchsia-100 via-stone-100">
+                <thead class="bg-white">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">No.</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Token</th>

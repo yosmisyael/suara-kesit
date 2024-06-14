@@ -4,15 +4,13 @@
     <x-dashboard-shell>
         <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-5">
             <header
-                class="md:col-span-3 mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
-                <h1 class="text-4xl font-medium">{{ explode('|', $title)[1] }}</h1>
+                class="md:col-span-3 mb-5">
+                <h1 class="text-5xl font-black md:text-7xl">{{ explode('|', $title)[1] }}</h1>
             </header>
-
             <div
                 class="md:col-span-2 w-full space-y-2">
-                <h2 class="text-3xl font-medium bg-slate-600 py-2 px-4 rounded-lg w-fit">
-                    <span
-                        class="bg-gradient-to-l from-indigo-200 to-fuchsia-200 via-stone-200 bg-clip-text text-transparent">Post</span>
+                <h2 class="text-3xl font-bold text-primary rounded-lg w-fit">
+                    Post
                 </h2>
                 <article
                     class="shadow-lg rounded-lg p-5 bg-white to-pink-50 p-5 mx-auto">
@@ -23,9 +21,7 @@
 
             <div class="col-span-1 space-y-5" style="height: fit-content">
                 <div class="space-y-2">
-                    <h2 class="text-3xl font-medium bg-slate-600 py-2 px-4 rounded-lg w-fit">
-                        <span
-                            class="bg-gradient-to-l from-indigo-200 to-fuchsia-200 via-stone-200 bg-clip-text text-transparent">Detail</span>
+                    <h2 class="text-3xl font-bold text-primary rounded-lg w-fit">Detail
                     </h2>
                     <div
                         class="rounded-lg p-5 bg-white shadow-lg text-slate-700">
@@ -96,9 +92,8 @@
                 </div>
 
                 <div class="md:col-span-3 col-span-1 flex flex-col space-y-2">
-                    <h2 class="text-3xl font-medium bg-slate-600 py-2 px-4 rounded-lg w-fit">
-                    <span
-                        class="bg-gradient-to-l from-indigo-200 to-fuchsia-200 via-stone-200 bg-clip-text text-transparent">Actions</span>
+                    <h2 class="text-3xl font-bold text-primary rounded-lg w-fit">
+                    Actions
                     </h2>
                     <form
                         action="{{ route('admin.post.update', ['id' => $post->id]) }}"
@@ -106,7 +101,7 @@
                         @csrf
                         @method('PATCH')
                         <button type="submit"
-                                class="rounded-lg border border-slate-600 bg-slate-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-slate-200 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300">
+                                class="inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all focus:ring focus:ring-secondary">
                             Unpublish
                         </button>
                     </form>
@@ -115,7 +110,7 @@
 
             <div class="w-full mt-5">
                 <a href="{{ route('admin.post.index') }}"
-                   class="inline-flex items-center gap-1.5 rounded-lg border border-black bg-black px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-200 hover:bg-black focus:ring focus:ring-gray-200">
+                   class="mt-10 inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all focus:ring focus:ring-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
                         <path
                             d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>

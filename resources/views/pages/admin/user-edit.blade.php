@@ -2,8 +2,8 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
         <div x-data="{ showModal: false }" class="relative">
-            <header class="mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
-                <h1 class="text-5xl font-black">Edit User Role</h1>
+            <header class="text-black">
+                <h1 class="text-5xl font-black md:text-7xl">User Role Edit</h1>
             </header>
             <div class="w-fit left-1/2 -translate-x-1/2 absolute z-10">
                 @if(session('success'))

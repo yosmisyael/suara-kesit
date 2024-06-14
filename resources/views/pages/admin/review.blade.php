@@ -4,8 +4,8 @@
     <x-dashboard-shell>
         <div class="w-full grid grid-cols-1 lg:grid-cols-3 gap-5 relative">
             <header
-                class="lg:col-span-3 mb-5 flex flex-col gap-1 text-black rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-200 via-stone-100 shadow-lg text-slate-700">
-                <h1 class="text-4xl font-medium">{{ explode('|', $title)[1] }}</h1>
+                class="lg:col-span-3 mb-5">
+                <h1 class="text-5xl font-black">{{ explode('|', $title)[1] }}</h1>
             </header>
 
             @if(isset($errors))
@@ -34,9 +34,7 @@
 
             <div
                 class="lg:col-span-2 w-full space-y-2">
-                <h2 class="text-3xl font-medium bg-slate-600 py-2 px-4 rounded-lg w-fit">
-                    <span
-                        class="bg-gradient-to-l from-indigo-200 to-fuchsia-200 via-stone-200 bg-clip-text text-transparent">Post</span>
+                <h2 class="text-3xl font-bold text-primary rounded-lg w-fit font-bold">Post
                 </h2>
                 <article
                     class="shadow-lg rounded-lg p-5 bg-white p-5 mx-auto">
@@ -46,12 +44,10 @@
             </div>
 
             <div class="col-span-1 space-y-2" style="height: fit-content">
-                <h2 class="text-3xl font-medium bg-slate-600 py-2 px-4 rounded-lg w-fit">
-                    <span
-                        class="bg-gradient-to-l from-indigo-200 to-fuchsia-200 via-stone-200 bg-clip-text text-transparent">Submission Detail</span>
+                <h2 class="text-3xl font-bold text-primary rounded-lg w-fit font-bold">Submission Detail
                 </h2>
                 <section
-                    class="rounded-lg p-5 bg-gradient-to-l from-indigo-100 to-fuchsia-100 via-stone-100 shadow-lg text-slate-700">
+                    class="rounded-lg p-5 bg-white shadow-lg text-slate-700">
                     <h4 class="text-xl font-medium mt-5">Author Detail</h4>
                     <div class="space-y-5">
                         <div class="grid grid-cols-3 items-center">
@@ -104,13 +100,12 @@
 
             <form action="{{ route('admin.review.store', ['id' => $submission->id]) }}" method="post"
                   class="col-span-3 space-y-2">
-                <h2 class="lg:col-span-3 col-span-1 text-3xl font-medium bg-slate-600 py-2 px-4 rounded-lg w-fit">
-                    <span class="bg-gradient-to-l from-indigo-200 to-fuchsia-200 via-stone-200 bg-clip-text text-transparent">Review Form</span>
+                <h2 class="lg:col-span-3 col-span-1 text-3xl font-bold text-primary rounded-lg w-fit">Review Form
                 </h2>
                 <div class="grid lg:grid-cols-3 grid-cols-1 gap-5">
                     <div class="col-span-1 lg:col-span-2 flex flex-col">
                         <div
-                            class="bg-gradient-to-l from-indigo-100 to-fuchsia-100 via-stone-100 shadow-lg p-5 rounded-lg">
+                            class="bg-white shadow-lg p-5 rounded-lg">
                             @csrf
                             <input type="hidden" name="submission_id" value="{{ $submission->id }}">
                             <div class="grid grid-cols-3 items-center gap-1">
@@ -123,50 +118,52 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-1 bg-gradient-to-l from-indigo-100 to-fuchsia-100 via-stone-100 shadow-lg p-5 rounded-lg flex flex-col justify-between gap-5" style="height: fit-content">
-                            <div class="flex flex-col gap-2">
-                                <h5 class="text-md font-medium">Status</h5>
-                                <div class="flex items-center gap-3">
-                                    <div>
-                                        <input type="radio" id="rejected" name="status" value="rejected"
-                                               class="hidden peer" required/>
-                                        <label for="rejected"
-                                               class="cursor-pointer rounded-lg border border-slate-600 bg-slate-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 flex gap-1 peer-[:checked]:bg-slate-700 peer-[:checked]:ring peer-[:checked]:ring-offset-1 peer-[:checked]:ring-slate-700 peer-[:checked]:ring-slate-700">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                 class="w-5 h-5 fill-white">
-                                                <path
-                                                    d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path>
-                                            </svg>
-                                            Reject
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="approved" name="status" value="approved"
-                                               class="hidden peer" required/>
-                                        <label for="approved"
-                                               class="cursor-pointer rounded-lg border border-slate-600 bg-slate-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 flex gap-1 peer-[:checked]:bg-slate-700 peer-[:checked]:ring peer-[:checked]:ring-offset-1 peer-[:checked]:ring-slate-700 peer-[:checked]:ring-slate-700">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                 class="w-5 h-5 fill-white">
-                                                <path
-                                                    d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                                            </svg>
-                                            Approve
-                                        </label>
-                                    </div>
+                    <div
+                        class="col-span-1 bg-white shadow-lg p-5 rounded-lg flex flex-col justify-between gap-5"
+                        style="height: fit-content">
+                        <div class="flex flex-col gap-2">
+                            <h5 class="text-md font-medium">Status</h5>
+                            <div class="flex items-center gap-3">
+                                <div>
+                                    <input type="radio" id="rejected" name="status" value="rejected"
+                                           class="hidden peer" required/>
+                                    <label for="rejected"
+                                           class="cursor-pointer rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-complementary hover:bg-complementary flex gap-1 peer-[:checked]:bg-slate-700 peer-[:checked]:ring peer-[:checked]:ring-offset-1 peer-[:checked]:ring-secondary peer-[:checked]:ring-secondary peer-[:checked]:bg-complementary peer-[:checked]:border-complementary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                             class="w-5 h-5 fill-white">
+                                            <path
+                                                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.207 12.793-1.414 1.414L12 13.414l-2.793 2.793-1.414-1.414L10.586 12 7.793 9.207l1.414-1.414L12 10.586l2.793-2.793 1.414 1.414L13.414 12l2.793 2.793z"></path>
+                                        </svg>
+                                        Reject
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="approved" name="status" value="approved"
+                                           class="hidden peer" required/>
+                                    <label for="approved"
+                                           class="cursor-pointer rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-complementary hover:bg-complementary flex gap-1 peer-[:checked]:bg-slate-700 peer-[:checked]:ring peer-[:checked]:ring-offset-1 peer-[:checked]:ring-secondary peer-[:checked]:ring-secondary peer-[:checked]:bg-complementary peer-[:checked]:border-complementary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                             class="w-5 h-5 fill-white">
+                                            <path
+                                                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
+                                        </svg>
+                                        Approve
+                                    </label>
                                 </div>
                             </div>
-                            <button type="submit"
-                                    class="w-full bg-slate-600 text-white px-5 py-2.5 rounded-lg hover:bg-slate-700">
-                                Submit Review
-                            </button>
                         </div>
+                        <button type="submit"
+                                class="w-full bg-primary text-white px-5 py-2.5 rounded-lg cursor-pointer hover:bg-complementary">
+                            Submit Review
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
 
         <div class="w-full mt-5">
             <a href="{{ route('admin.submission.index') }}"
-               class="inline-flex items-center gap-1.5 rounded-lg border border-black bg-black px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-200 hover:bg-black focus:ring focus:ring-gray-200">
+               class="mt-10 inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all focus:ring focus:ring-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
                     <path
                         d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>

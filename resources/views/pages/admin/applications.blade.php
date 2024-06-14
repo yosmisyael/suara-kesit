@@ -7,7 +7,7 @@
             <header class="text-black">
                 <h2 class="text-2xl font-medium text-gray-600">Welcome to</h2>
                 <h1 class="text-5xl font-black md:text-7xl">{{ explode('|', $title)[1] }}</h1>
-                <p class="text-lg">List all user with role member.</p>
+                <p class="text-lg">List of user applications for author role.</p>
             </header>
             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 rounded-xl">
                 <thead class="bg-white">
