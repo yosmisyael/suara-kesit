@@ -10,9 +10,9 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-4 w-fit text-white">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-4 lg:w-fit w-full text-white">
             <div
-                class="shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-contrary"
+                class="col-span-1 md:col-span-2 xl:col-span-1 shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-contrary"
             >
                 <div>
                     <h4 class="text-2xl font-semibold">Users</h4>
@@ -25,7 +25,7 @@
                 </svg>
             </div>
             <div
-                class="shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-complementary"
+                class="col-span-1 md:col-span-2 xl:col-span-1 shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-complementary"
             >
                 <div>
                     <h4 class="text-2xl font-semibold">Member</h4>
@@ -37,7 +37,7 @@
                 </svg>
             </div>
             <div
-                class="shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-primary"
+                class="col-span-1 md:col-span-2 xl:col-span-1 shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-primary"
             >
                 <div>
                     <h4 class="text-2xl font-semibold">Author</h4>
@@ -49,7 +49,7 @@
                 </svg>
             </div>
             <div
-                class="shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-secondary"
+                class="col-span-1 md:col-span-2 xl:col-span-1 shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-secondary"
             >
                 <div>
                     <h4 class="text-2xl font-semibold">Posts</h4>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 rounded-lg mb-4">
-            <div class="col-span-1 lg:col-span-2 bg-indigo-50 rounded-lg p-5 shadow-lg">
+            <div class="col-span-1 lg:col-span-2 bg-indigo-50 rounded-lg p-5 shadow-lg h-fit">
                 <h4 class="text-2xl font-semibold flex gap-2 items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                          class="h-7">
@@ -78,8 +78,8 @@
             </div>
 
             <div class="col-span-1 h-fit flex flex-col gap-10">
-                <div class="bg-pink-50 shadow-lg p-5 rounded-lg flex flex-col gap-5">
-                    <h4 class="text-2xl font-semibold flex gap-2 items-center">
+                <div class="bg-primary fill-white shadow-xl p-5 rounded-xl flex flex-col gap-5 text-black">
+                    <h4 class="text-2xl font-semibold flex gap-2 items-center text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="h-7">
                             <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                             <path
@@ -87,18 +87,18 @@
                         </svg>
                         Insights
                     </h4>
-                    <div class="text-2xl font-semibold flex gap-2 items-center bg-pink-100 p-2 rounded-lg">
-                        <span class="h-16 w-16 flex items-center justify-center p-3 bg-pink-200 rounded-md">
+                    <div class="text-2xl font-semibold flex gap-2 items-center bg-white p-2 rounded-lg">
+                        <span class="h-16 w-16 flex items-center justify-center p-3 bg-primary rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-contrary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
                                     d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
                         </span>
                         <div class="flex flex-col">
-                            <h4 class="text-xl font-semibold">Average Visitor Each Day</h4>
+                            <h4 class="text-xl font-semibold">Average Daily Visitor</h4>
                             <h4 class="text-2xl font-bold text-contrary">30</h4>
                         </div>
                     </div>
-                    <div class="text-2xl font-semibold flex gap-2 items-center bg-pink-100 p-2 rounded-lg">
-                        <span class="h-16 w-16 flex items-center justify-center p-3 bg-pink-200 rounded-md">
+                    <div class="text-2xl font-semibold flex gap-2 items-center bg-white p-2 rounded-lg">
+                        <span class="h-16 w-16 flex items-center justify-center p-3 bg-primary rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-contrary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
                                     d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
                         </span>
@@ -107,13 +107,13 @@
                             <h4 class="text-2xl font-bold text-contrary">30</h4>
                         </div>
                     </div>
-                    <div class="text-2xl font-semibold flex gap-2 items-center bg-pink-100 p-2 rounded-lg">
-                        <span class="h-16 w-16 flex items-center justify-center p-3 bg-pink-200 rounded-md">
+                    <div class="text-2xl font-semibold flex gap-2 items-center bg-white p-2 rounded-lg">
+                        <span class="h-16 w-16 flex items-center justify-center p-3 bg-primary rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-contrary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
                                     d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
                         </span>
                         <div class="flex flex-col">
-                            <h4 class="text-xl font-semibold"></h4>
+                            <h4 class="text-xl font-semibold">New Signups June</h4>
                             <h4 class="text-2xl font-bold text-contrary">30</h4>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                         </svg>
                         Trends
                     </h4>
-                    <div class="text-2xl font-semibold flex gap-2 items-center bg-pink-100 p-2 rounded-lg">
+                    <div class="text-2xl font-semibold flex gap-2 items-center bg-white p-2 rounded-lg">
                         <span class="h-16 w-16 flex items-center justify-center p-3 bg-pink-200 rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-contrary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
                                     d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
@@ -137,17 +137,17 @@
                             <h4 class="text-2xl font-bold text-contrary">Machine Learning</h4>
                         </div>
                     </div>
-                    <div class="text-2xl font-semibold flex gap-2 items-center bg-pink-100 p-2 rounded-lg">
+                    <div class="text-2xl font-semibold flex gap-2 items-center bg-white p-2 rounded-lg">
                         <span class="h-16 w-16 flex items-center justify-center p-3 bg-pink-200 rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-contrary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
                                     d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
                         </span>
                         <div class="flex flex-col">
-                            <h4 class="text-xl font-semibold">Published Article in a Month</h4>
+                            <h4 class="text-xl font-semibold">New Posts June</h4>
                             <h4 class="text-2xl font-bold text-contrary">13</h4>
                         </div>
                     </div>
-                    <div class="text-2xl font-semibold flex gap-2 items-center bg-pink-100 p-2 rounded-lg">
+                    <div class="text-2xl font-semibold flex gap-2 items-center bg-white p-2 rounded-lg">
                         <span class="h-16 w-16 flex items-center justify-center p-3 bg-pink-200 rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-contrary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
                                     d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
