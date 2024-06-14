@@ -112,7 +112,7 @@
                         <div class="grid grid-cols-3 items-center">
                             <div class="col-span-2 col-start-2 justify-end">
                                 <button type="submit"
-                                        class="rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all hover:border-primary hover:bg-slate-700 focus:ring focus:ring-slate-200"
+                                        class="rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all hover:border-primary focus:ring focus:ring-secondary"
                                         :disabled="form.processing">
                                     Register
                                 </button>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="w-full mt-5">
                     <a href="{{ route('admin.user.index') }}"
-                       class="inline-flex items-center gap-1.5 rounded-lg border border-black bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all">
+                       class="inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
                             <path
                                 d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
