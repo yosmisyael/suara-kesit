@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
         <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
-            <header class="col-span-1 text-black text-slate-700">
+            <header class="col-span-1 text-black">
                 <h2 class="text-2xl font-medium text-gray-600">Welcome to</h2>
                 <h1 class="text-5xl font-black md:text-7xl">User Console</h1>
                 <p class="text-lg">
