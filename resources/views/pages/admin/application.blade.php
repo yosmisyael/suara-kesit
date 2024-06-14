@@ -17,13 +17,14 @@
                 <button class="ml-auto" x-on:click="showAlert = false">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
                         <path
-                                d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
+                            d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
                     </svg>
                 </button>
             </div>
             @enderror
+
             <div
-                    class="w-full border-[1px] shadow-lg rounded-lg p-5 bg-gradient-to-r from-indigo-50 via-gray-50 to-pink-50">
+                class="w-full border-[1px] shadow-lg rounded-lg p-5 bg-white">
                 <h1 class="text-4xl font-medium">Author Application Review</h1>
                 <h4 class="text-xl font-medium mt-5">User Detail</h4>
                 <div class="space-y-5">
@@ -76,12 +77,12 @@
                             <div class="grid grid-cols-3 items-center">
                                 <div class="col-span-2 col-start-2">
                                     <form
-                                            action="{{ route('admin.application.verify', ['id' => $application->id]) }}"
-                                            method="post">
+                                        action="{{ route('admin.application.verify', ['id' => $application->id]) }}"
+                                        method="post">
                                         @csrf
                                         @method('PATCH')
                                         <button type="submit"
-                                                class="rounded-lg border border-slate-600 bg-slate-600 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-slate-700 hover:bg-slate-700 focus:ring focus:ring-slate-200 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300">
+                                                class="rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all hover:border-primary focus:ring focus:ring-secondary cursor-pointer">
                                             Verify
                                         </button>
                                     </form>
@@ -91,7 +92,7 @@
                         @case(Status::Approved)
                             <div class="w-full p-5 rounded-lg shadow-sm bg-green-200 text-green-500">
                                 <p class="text-md"><span
-                                            class="font-semibold uppercase">{{ $application->status }}.</span> This
+                                        class="font-semibold uppercase">{{ $application->status }}.</span> This
                                     application has been verified and approved
                                     on {{ Carbon::parse($application->updated_at)->format('d F Y H:i:s') }} </p>
                             </div>
@@ -99,7 +100,7 @@
                         @case(Status::Rejected)
                             <div class="w-full p-5 rounded-lg shadow-sm bg-red-200 text-red-500">
                                 <p class="text-md"><span
-                                            class="font-semibold uppercase">{{ $application->status }}.</span> This
+                                        class="font-semibold uppercase">{{ $application->status }}.</span> This
                                     application has been verified and approved
                                     on {{ Carbon::parse($application->updated_at)->format('d F Y H:i:s') }} </p>
                             </div>
@@ -108,12 +109,13 @@
 
                 </div>
             </div>
+
             <div class="w-full mt-5">
                 <a href="{{ route('admin.application.index') }}"
-                   class="inline-flex items-center gap-1.5 rounded-lg border border-black bg-black px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-200 hover:bg-black focus:ring focus:ring-gray-200">
+                   class="mt-10 inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all focus:ring focus:ring-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
                         <path
-                                d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
+                            d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"></path>
                     </svg>
                     Back
                 </a>
