@@ -19,7 +19,6 @@ class AdminReviewController extends Controller
         return response()->view('pages.admin.review-show', [
             'title' => 'Post | Submission Detail',
             'submission' => $this->submissionService->getById($id),
-            'postId' => $id,
         ]);
     }
 
