@@ -1,4 +1,4 @@
-<div class="antialiased bg-gray-50 dark:bg-gray-900 min-h-screen">
+<div class="antialiased bg-white min-h-screen">
     <x-dashboard-navbar></x-dashboard-navbar>
     <x-dashboard-sidebar></x-dashboard-sidebar>
     <main class="p-4 md:ml-64 h-auto pt-20">
