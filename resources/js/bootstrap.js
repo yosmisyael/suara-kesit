@@ -14,4 +14,3 @@ Alpine.store('ApexCharts', {
 Alpine.start();
 
 window.Alpine = Alpine;
-window.ApexCharts = ApexCharts;
