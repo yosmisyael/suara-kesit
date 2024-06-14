@@ -3,9 +3,9 @@
     <x-dashboard-shell>
         <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
             <header class="col-span-1 text-black text-slate-700">
-                <p class="text-3xl font-semibold mb-6">Welcome to</p>
-                <h1 class="text-5xl font-semibold">User Management Console</h1>
-                <p class="text-xl font-medium">Effortlessly manage your entire user base from a centralized dashboard.
+                <h2 class="text-2xl font-medium text-gray-600">Welcome to</h2>
+                <h1 class="text-5xl font-black md:text-7xl">User Console</h1>
+                <p class="text-lg">
                     Streamline user creation, edit permissions, and track activity – all within a single, intuitive
                     interface.</p>
             </header>
