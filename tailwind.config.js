@@ -18,10 +18,11 @@ export default {
             ]
         },
         colors: {
-            primary: '#3226AE',
-            contrary: '#FF392C',
-            secondary: '#01C5F9',
-            complementary: '#FFC006',
+            primary: '#636D79',
+            contrary: '#4D4E8E',
+            secondary: '#8BB6A2',
+            complementary: '#636D79',
+            base: '#F2F2F2',
         }
     },
     plugins: [
