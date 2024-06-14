@@ -21,7 +21,7 @@ export default {
             primary: '#636D79',
             contrary: '#4D4E8E',
             secondary: '#8BB6A2',
-            complementary: '#636D79',
+            complementary: '#E8D4A2',
             base: '#F2F2F2',
         }
     },
