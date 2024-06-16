@@ -43,6 +43,6 @@ class PostServiceImpl implements PostService
 
     public function delete(string $id): bool|null
     {
-        return Post::query()->where('id', $id)->delete();
+        return Post::query()->find($id)->delete();
     }
 }
