@@ -8,15 +8,19 @@
                 <p class="text-lg">List of author token.</p>
             </header>
             <div class="my-4 flex">
-                <a href="{{ route('admin.token.store') }}" class="inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all focus:ring focus:ring-complementary">
+                <a href="{{ route('admin.token.store') }}"
+                   class="inline-flex items-center gap-1.5 rounded-lg border border-primary bg-primary px-4 py-2 text-center text-sm font-medium text-white shadow-sm transition-all focus:ring focus:ring-complementary">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 fill-white">
-                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4z"></path>
+                        <path
+                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
                     </svg>
                     Generate Token
                 </a>
             </div>
-            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 shadow-md border-[1px]">
-                <thead class="bg-white">
+
+            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500 shadow-md rounded-xl">
+                <thead class="hover:bg-white/50">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">No.</th>
                     <th scope="col" class="px-6 py-4 font-medium text-gray-900">Token</th>
@@ -33,13 +37,20 @@
                             <td class="px-6 py-4">{{ $token->token }}</td>
                             <td class="px-6 py-4">
                                 @if($token->is_active)
-                                    <span class="inline-flex items-center gap-1 rounded-md bg-green-100 px-3 py-1 text-sm font-semibold text-green-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-green-600" viewBox="0 0 24 24"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-md bg-green-100 px-3 py-1 text-sm font-semibold text-green-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-green-600"
+                                             viewBox="0 0 24 24"><path
+                                                d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
                                         Activated
                                     </span>
                                 @else
-                                    <span class="inline-flex items-center gap-1 rounded-md bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-yellow-600" viewBox="0 0 24 24"><path d="M12 5c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z"></path><path d="M11 9h2v5h-2zM9 2h6v2H9zm10.293 5.707-2-2 1.414-1.414 2 2z"></path></svg>
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-md bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-yellow-600"
+                                             viewBox="0 0 24 24"><path
+                                                d="M12 5c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z"></path><path
+                                                d="M11 9h2v5h-2zM9 2h6v2H9zm10.293 5.707-2-2 1.414-1.414 2 2z"></path></svg>
                                         Non-active
                                     </span>
                                 @endif
