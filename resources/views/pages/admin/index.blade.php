@@ -25,7 +25,7 @@
                     </svg>
                 </div>
                 <div
-                    class="col-span-2 xl:col-span-1 shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-complementary"
+                    class="col-span-2 xl:col-span-1 shadow-xl p-5 rounded-lg flex justify-between gap-[8rem] bg-primary"
                 >
                     <div>
                         <h4 class="text-2xl font-semibold">Member</h4>
@@ -65,7 +65,7 @@
             </div>
 
             <div class="col-span-4 grid grid-cols-4 gap-10 rounded-lg mb-4">
-                <div class="col-span-4 lg:col-span-2 bg-white rounded-lg p-5 shadow-lg h-fit text-complementary fill-complementary">
+                <div class="col-span-4 lg:col-span-2 bg-white rounded-lg p-5 shadow-lg h-fit text-primary fill-primary">
                     <h4 class="text-2xl font-semibold flex gap-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                              class="h-7">
@@ -97,8 +97,8 @@
 
                 <div class="col-span-4 lg:col-span-2 h-fit flex flex-col gap-10">
                     <div class="bg-white shadow-xl p-5 rounded-xl flex flex-col gap-5 text-black">
-                        <h4 class="text-2xl font-semibold flex gap-2 items-center text-complementary">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="h-7 fill-complementary">
+                        <h4 class="text-2xl font-semibold flex gap-2 items-center text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="h-7 fill-primary">
                                 <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                 <path
                                     d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2l0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4l0 0c19.8 27.1 39.7 54.4 49.2 86.2H272zM192 512c44.2 0 80-35.8 80-80V416H112v16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/>
@@ -107,22 +107,22 @@
                         </h4>
                         <div class="text-2xl font-semibold flex gap-2 items-center bg-base p-2 rounded-lg">
                             <span class="h-16 w-16 flex items-center justify-center p-3 bg-white rounded-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-complementary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-primary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
                                         d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
                             </span>
                             <div class="flex flex-col">
                                 <h4 class="text-xl font-semibold">Average Daily Visitor</h4>
-                                <h4 class="text-2xl font-bold text-complementary">30</h4>
+                                <h4 class="text-2xl font-bold text-primary">30</h4>
                             </div>
                         </div>
                         <div class="text-2xl font-semibold flex gap-2 items-center bg-base p-2 rounded-lg">
                             <span class="h-16 w-16 flex items-center justify-center p-3 bg-white rounded-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-complementary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-7 fill-primary"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path
                                         d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
                             </span>
                             <div class="flex flex-col">
                                 <h4 class="text-xl font-semibold">Visitor Peak</h4>
-                                <h4 class="text-2xl font-bold text-complementary">30</h4>
+                                <h4 class="text-2xl font-bold text-primary">30</h4>
                             </div>
                         </div>
                         <div class="text-2xl font-semibold flex gap-2 items-center bg-base p-2 rounded-lg">
@@ -132,12 +132,12 @@
                             </span>
                             <div class="flex flex-col">
                                 <h4 class="text-xl font-semibold">New Signups June</h4>
-                                <h4 class="text-2xl font-bold text-complementary">30</h4>
+                                <h4 class="text-2xl font-bold text-primary">30</h4>
                             </div>
                         </div>
                     </div>
                     <div class="bg-white shadow-xl p-5 rounded-lg flex flex-col gap-5">
-                        <h4 class="text-2xl font-semibold flex gap-2 items-center text-complementary fill-complementary">
+                        <h4 class="text-2xl font-semibold flex gap-2 items-center text-primary fill-primary">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="h-7">
                                 <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                 <path
@@ -152,7 +152,7 @@
                             </span>
                             <div class="flex flex-col">
                                 <h4 class="text-xl font-semibold">Popular Keywords</h4>
-                                <h4 class="text-2xl font-bold text-complementary">Machine Learning</h4>
+                                <h4 class="text-2xl font-bold text-primary">Machine Learning</h4>
                             </div>
                         </div>
                         <div class="text-2xl font-semibold flex gap-2 items-center bg-base p-2 rounded-lg">
@@ -162,7 +162,7 @@
                             </span>
                             <div class="flex flex-col">
                                 <h4 class="text-xl font-semibold">New Posts June</h4>
-                                <h4 class="text-2xl font-bold text-complementary">13</h4>
+                                <h4 class="text-2xl font-bold text-primary">13</h4>
                             </div>
                         </div>
                         <div class="text-2xl font-semibold flex gap-2 items-center bg-base p-2 rounded-lg">
@@ -172,7 +172,7 @@
                             </span>
                             <div class="flex flex-col">
                                 <h4 class="text-xl font-semibold">Most Visited Article</h4>
-                                <h4 class="text-2xl font-bold text-complementary flex gap-3">
+                                <h4 class="text-2xl font-bold text-primary flex gap-3">
                                     <span class="block">How to train a ...</span>
                                     <a href=""
                                        class="cursor-pointer flex items-center rounded-sm w-7 h-7 rounded-lg">
