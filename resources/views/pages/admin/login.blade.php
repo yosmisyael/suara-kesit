@@ -9,12 +9,11 @@
             </a>
         </p>
             <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
-                <div class="max-md:text-center">
-                    <h2 class="lg:text-5xl text-4xl font-extrabold lg:leading-[55px]">
-                        Seamless Login for Exclusive Access
+                <div class="text-left flex items-center justify-center gap-3">
+                    <img src="{{ asset('kesit.png') }}" alt="kesit-logo" class="h-24 w-24 md:h-36 md:w-36 xl:h-64 xl:w-64">
+                    <h2 class="lg:text-5xl text-4xl !font-black lg:leading-[55px]">
+                        {{ $title }}
                     </h2>
-                    <p class="text-sm mt-6">Immerse yourself in a hassle-free login journey with our intuitively
-                        designed login form. Effortlessly access your account.</p>
                 </div>
                 <form class="space-y-6 max-w-md md:ml-auto max-md:mx-auto w-full" method="post" action="{{ route('admin.auth.authenticate') }}">
                     @csrf

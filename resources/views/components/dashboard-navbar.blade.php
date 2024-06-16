@@ -37,9 +37,9 @@
             </button>
             <a href="{{ route('admin.dashboard') }}" class="flex items-center justify-between mr-4">
                 <img
-                    src="https://flowbite.s3.amazonaws.com/logo.svg"
+                    src="{{ asset('kesit.png') }}"
                     class="mr-3 h-8"
-                    alt="Flowbite Logo"
+                    alt="Kesit Logo"
                 />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Administrator Dashboard</span>
             </a>
