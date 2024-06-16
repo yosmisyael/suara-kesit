@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Storage;
 
 class Submission extends Model
 {
@@ -33,6 +34,12 @@ class Submission extends Model
     protected static function booted(): void
     {
         self::deleting(function (Submission $submission) {
+            foreach ($submission->review()->first()->note->attachments() as $attachment) {
+                $url = explode('/', $attachment->attachable->url);
+                $file = end($url);
+                Storage::disk('public')->delete('attachments/' . $file);
+            }
+
             $submission->review()->delete();
         });
     }
