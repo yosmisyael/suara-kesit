@@ -110,10 +110,8 @@
                             <input type="hidden" name="submission_id" value="{{ $submission->id }}">
                             <div class="grid grid-cols-3 items-center gap-1">
                                 <div class="col-span-3 block text-md font-medium text-gray-700">Review Note</div>
-                                <div class="col-span-3 w-full rounded-md border-[1px] shadow-sm">
-                                    <div>
-                                        <x-trix-input id="note" name="note"></x-trix-input>
-                                    </div>
+                                <div class="col-span-3 w-full rounded-md shadow-sm">
+                                    <x-trix-input id="note" name="note"></x-trix-input>
                                 </div>
                             </div>
                         </div>
