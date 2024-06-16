@@ -41,7 +41,7 @@
                     class="mr-3 h-8"
                     alt="Kesit Logo"
                 />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Administrator Dashboard</span>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap hidden sm:block">Administrator Dashboard</span>
             </a>
         </div>
         <div class="flex items-center lg:order-2">
@@ -69,10 +69,6 @@
                   class="block text-sm font-semibold text-gray-900 dark:text-white"
               >Administrator</span
               >
-                    <span
-                        class="block text-sm text-gray-900 truncate dark:text-white"
-                    >name@flowbite.com</span
-                    >
                 </div>
                 <ul
                     class="py-1 text-gray-700 dark:text-gray-300"
