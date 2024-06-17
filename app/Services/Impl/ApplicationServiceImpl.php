@@ -17,13 +17,15 @@ class ApplicationServiceImpl implements ApplicationService
 
     public function create(array $data): bool
     {
-        $isMember = User::with('roles')->find($data['user_id'])->roles->first()->getAttribute('name') === 'member';
+        $user = User::with('roles')->find($data['user_id']);
+
+        $isMember = $user->getRelation('roles')->first()->getAttribute('name') === 'member';
 
         if (!$isMember) return false;
 
         $application = new Application($data);
 
-        $token = Token::query()->where('token', '=', $application->token)->first();
+        $token = Token::query()->where('token', '=', $application->getAttribute('token'))->first();
 
         $token?->update([
             'is_active' => true
@@ -44,38 +46,39 @@ class ApplicationServiceImpl implements ApplicationService
 
     public function verify(string $applicationId): bool
     {
-        return DB::transaction(function () use ($applicationId) {
-            $application = Application::query()->find($applicationId);
+        $application = Application::query()->find($applicationId);
 
-            $user = User::with('roles')->find($application->user_id);
+        $user = User::with('roles')->find($application->getAttribute('user_id'));
 
-            $isMember = $user->roles->first()->getAttribute('name') === 'member';
+        $isMember = $user->getRelation('roles')->first()->getAttribute('name') === 'member';
 
-            if (!$isMember) return false;
+        if (!$isMember) return false;
 
-            $token = Token::query()->where('token', '=', $application->token)->first();
+        return DB::transaction(function () use ($application, $user) {
+
+            $token = Token::query()->where('token', '=', $application->getAttribute('token'))->first();
 
             if (!$token) {
-                Application::query()->find($applicationId)->update([
+                Application::query()->find($application->getAttribute('id'))->update([
                     'status' => Status::Rejected
                 ]);
                 throw new Exception('Token is unauthorized.');
             }
 
-            $activateToken = Token::query()->find($token->id)->update([
+            $tokenActivation = Token::query()->find($token->getAttribute('id'))->update([
                 'is_active' => true,
-                'application_id' => $applicationId,
+                'application_id' => $application->getAttribute('id'),
             ]);
 
-            if (!$activateToken) return false;
+            if (!$tokenActivation) return false;
 
             $result = $application->update([
                 'status' => Status::Approved,
             ]);
 
-            $user->syncRoles('author');
-
             if (!$result) return false;
+
+            User::query()->where('id', $user->getAttribute('id'))->first()->syncRoles('author');
 
             return true;
         });
