@@ -8,7 +8,6 @@ use Database\Seeders\ApplicationSeeder;
 use Database\Seeders\RolesAndPermissionSeeder;
 use Database\Seeders\TokenSeeder;
 use Database\Seeders\UserSeeder;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Str;
 
 describe('ApplicationService', function () {
@@ -28,7 +27,7 @@ describe('ApplicationService', function () {
     it('should be able to reject author application request when user role is already author', function () {
         $user = User::query()->where('username', '=', 'zeta')->first();
         expect($this->authorApplicationService->create([
-            'user_id' => $user->id,
+            'user_id' => $user->getAttribute('id'),
             'token' => Str::uuid(),
         ]))->toBeFalse();
     });
@@ -36,8 +35,8 @@ describe('ApplicationService', function () {
     it('should be able to verify author application', function () {
         $this->seed([TokenSeeder::class, ApplicationSeeder::class]);
         $application = Application::query()->where('user_id', $this->user->id)->first();
-        expect($this->authorApplicationService->verify($application->id))->toBeTrue()
-            ->and(Token::query()->first()->application_id)->toBe($application->id);
+        expect($this->authorApplicationService->verify($application->getAttribute('id')))->toBeTrue()
+            ->and(Token::query()->first()->application_id)->toBe($application->getAttribute('id'));
     });
 
     it('should be able to reject author application if token is invalid', function () {
@@ -47,7 +46,7 @@ describe('ApplicationService', function () {
             'token' => Str::uuid(),
         ]))->toBeTrue();
         $application = Application::query()->where('user_id', $this->user->id)->first();
-        expect($this->authorApplicationService->verify($application->id))->toThrow(Exception::class, 'Token is unauthorized.');
+        expect($this->authorApplicationService->verify($application->getAttribute('id')))->toThrow(Exception::class, 'Token is unauthorized.');
     });
 
     it('should be able to list all applications', function () {
@@ -58,6 +57,6 @@ describe('ApplicationService', function () {
     it('should be able to get application by id', function () {
         $this->seed([TokenSeeder::class, ApplicationSeeder::class]);
         $application = Application::query()->where('user_id', $this->user->id)->first();
-        expect($this->authorApplicationService->getById($application->id)->getAttribute('user_id'))->toBe($this->user->id);
+        expect($this->authorApplicationService->getById($application->getAttribute('id'))->getAttribute('user_id'))->toBe($this->user->id);
     });
 });
