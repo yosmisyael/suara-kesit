@@ -10,7 +10,7 @@ describe('AdminDashboardController', function () {
     });
 
     it('should be able to access user overview page', function () {
-        $this->actingAs($this->admin)
+        $this->actingAs($this->admin, 'admin')
             ->get(route('admin.user.index'))
             ->assertStatus(200)
             ->assertViewIs('pages.admin.user-console');

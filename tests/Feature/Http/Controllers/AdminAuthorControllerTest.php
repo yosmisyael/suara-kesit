@@ -10,7 +10,7 @@ describe('AdminUserController', function () {
     });
 
     it('should be able to access author list page', function () {
-        $this->actingAs($this->admin)
+        $this->actingAs($this->admin, 'admin')
             ->get(route('admin.user.author'))
             ->assertStatus(200)
             ->assertViewIs('pages.admin.user-author');
