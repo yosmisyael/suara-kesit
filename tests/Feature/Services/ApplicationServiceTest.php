@@ -37,7 +37,7 @@ describe('ApplicationService', function () {
         $this->seed([TokenSeeder::class, ApplicationSeeder::class]);
         $application = Application::query()->where('user_id', $this->user->id)->first();
         expect($this->authorApplicationService->verify($application->id))->toBeTrue()
-            ->and(Application::query()->find($application->id)->token_id)->toBe(Token::query()->first()->id);
+            ->and(Token::query()->first()->application_id)->toBe($application->id);
     });
 
     it('should be able to reject author application if token is invalid', function () {
