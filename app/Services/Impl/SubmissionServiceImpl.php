@@ -12,12 +12,12 @@ class SubmissionServiceImpl implements SubmissionService
 
     public function getUnreviewed(): Collection
     {
-        return Submission::with(['post.user', 'review'])->whereDoesntHave('review')->get();
+        return Submission::with(['post.user', 'reviews'])->whereDoesntHave('reviews')->get();
     }
 
     public function getById(string $id): Model
     {
-        return Submission::with(['post.user', 'review'])->find($id);
+        return Submission::with(['post.user', 'reviews'])->find($id);
     }
 
     public function create(array $data): bool

@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @property string $post_id
+ * @property string $note
+ * @property DateTimeInterface $created_at
+ * @property DateTimeInterface $updated_at
+ */
 class Submission extends Model
 {
     use HasFactory;
