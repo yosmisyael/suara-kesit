@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
 class Submission extends Model
@@ -26,21 +26,23 @@ class Submission extends Model
         return $this->belongsTo(Post::class);
     }
 
-    public function review(): HasOne
+    public function reviews(): HasMany
     {
-        return $this->hasOne(Review::class);
+        return $this->hasMany(Review::class);
     }
 
     protected static function booted(): void
     {
         self::deleting(function (Submission $submission) {
-            foreach ($submission->review()->first()->note->attachments() as $attachment) {
-                $url = explode('/', $attachment->attachable->url);
-                $file = end($url);
-                Storage::disk('public')->delete('attachments/' . $file);
-            }
+            $submission->reviews()->each(function (Review $review) {
+                foreach ($review->note->attachments() as $attachment) {
+                    $url = explode('/', $attachment->attachable->url);
+                    $file = end($url);
+                    Storage::disk('public')->delete('attachments/' . $file);
+                }
+            });
 
-            $submission->review()->delete();
+            $submission->reviews()->delete();
         });
     }
 }
