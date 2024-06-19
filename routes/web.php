@@ -29,6 +29,15 @@ Route::prefix('control-panel')->group(function () {
     Route::middleware(AllowAuthenticateAdmin::class)->group(function () {
         Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
         Route::prefix('user')->group(function () {
+            Route::prefix('application')->controller(AdminApplicationController::class)->group(function () {
+                Route::get('/', 'index')->name('admin.application.index');
+                Route::get('{id}', 'edit')->name('admin.application.edit');
+                Route::patch('{id}/verify', 'verify')->name('admin.application.verify');
+            });
+            Route::prefix('token')->controller(AdminTokenController::class)->group(function () {
+                Route::get('/', 'index')->name('admin.token.index');
+                Route::get('generate', 'store')->name('admin.token.store');
+            });
             Route::get('/', AdminUserConsoleController::class)->name('admin.user.index');
             Route::get('member', AdminMemberController::class)->name('admin.user.member');
             Route::get('author', AdminAuthorController::class)->name('admin.user.author');
@@ -37,15 +46,6 @@ Route::prefix('control-panel')->group(function () {
                 Route::post('store', 'store')->name('admin.user.store')->middleware(HandlePrecognitiveRequests::class);
                 Route::get('{id}', 'show')->name('admin.user.show');
                 Route::delete('{id}', 'destroy')->name('admin.user.delete');
-            });
-            Route::prefix('token')->controller(AdminTokenController::class)->group(function () {
-                Route::get('/', 'index')->name('admin.token.index');
-                Route::get('generate', 'store')->name('admin.token.store');
-            });
-            Route::prefix('application')->controller(AdminApplicationController::class)->group(function () {
-                Route::get('/', 'index')->name('admin.application.index');
-                Route::get('{id}', 'edit')->name('admin.application.edit');
-                Route::patch('{id}/verify', 'verify')->name('admin.application.verify');
             });
         });
         Route::prefix('post')->controller(AdminPostController::class)->group(function () {
