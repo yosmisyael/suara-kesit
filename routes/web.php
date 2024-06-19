@@ -35,8 +35,7 @@ Route::prefix('control-panel')->group(function () {
             Route::controller(AdminUserController::class)->group(function () {
                 Route::get('create', 'create')->name('admin.user.create');
                 Route::post('store', 'store')->name('admin.user.store')->middleware(HandlePrecognitiveRequests::class);
-                Route::get('{id}/edit', 'edit')->name('admin.user.edit');
-                Route::put('{id}', 'update')->name('admin.user.update');
+                Route::get('{id}', 'show')->name('admin.user.show');
                 Route::delete('{id}', 'destroy')->name('admin.user.delete');
             });
             Route::prefix('token')->controller(AdminTokenController::class)->group(function () {
