@@ -7,4 +7,5 @@ enum Status: string
     case Pending = 'pending';
     case Approved = 'approved';
     case Rejected = 'rejected';
+    case Suspension = 'suspended';
 }
