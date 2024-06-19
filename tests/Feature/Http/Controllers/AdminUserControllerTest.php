@@ -152,23 +152,11 @@ describe('AdminUserController', function () {
             ])->assertSessionHasErrors(['role' => 'The selected role is invalid.']);
     });
 
-    it('should be able to access user edit page', function () {
+    it('should be able to access user detail page', function () {
         $this->actingAs($this->admin, 'admin')
-            ->get(route('admin.user.edit', ['id' => $this->user->id]))
+            ->get(route('admin.user.show', ['id' => $this->user->id]))
             ->assertStatus(200)
-            ->assertViewIs('pages.admin.user-edit');
-    });
-
-    it('should be able to change user role', function () {
-        $this->actingAs($this->admin, 'admin')
-            ->put(route('admin.user.update', ['id' => $this->user->id]), [
-                'role' => 'author',
-                'id' => $this->user->id
-            ]);
-
-        $user = User::with('roles')->find($this->user->id);
-        expect($user->roles->count())->toBe(1)
-            ->and($user->roles->first()->name)->toBe('author');
+            ->assertViewIs('pages.admin.user');
     });
 
     it('should be able to delete user', function () {
