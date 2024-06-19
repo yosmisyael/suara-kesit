@@ -27,7 +27,6 @@ Route::prefix('control-panel')->group(function () {
         Route::delete('/', 'logout')->middleware(AllowAuthenticateAdmin::class)->name('admin.auth.logout');
     });
     Route::middleware(AllowAuthenticateAdmin::class)->group(function () {
-        Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
         Route::prefix('user')->group(function () {
             Route::prefix('application')->controller(AdminApplicationController::class)->group(function () {
                 Route::get('/', 'index')->name('admin.application.index');
@@ -66,6 +65,7 @@ Route::prefix('control-panel')->group(function () {
             Route::post('upload', 'store')->name('admin.attachment.store');
             Route::delete('delete/{name}', 'delete')->name('admin.attachment.delete');
         });
+        Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
     });
 });
 
