@@ -84,12 +84,10 @@
                             <td class="px-6 py-4">{{ Carbon::parse($user->created_at)->format('d M Y') }}</td>
                             <td class="px-6 py-4">{{ Carbon::parse($user->roles->first()->updated_at)->format('d M Y') }}</td>
                             <td class="px-6 py-4">
-                                <div class="flex justify-start gap-4">
-                                    <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5" class="h-6 w-6 hover:fill-complementary stroke-primary">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"/>
+                                <div class="flex justify-start gap-3">
+                                    <a href="{{ route('admin.user.show', ['id' => $user->id]) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" class="h-7 w-7 hover:fill-complementary stroke-primary fill-none">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                                         </svg>
                                     </a>
                                     <form action="{{ route('admin.user.delete', ['id' => $user->id]) }}" method="post"
