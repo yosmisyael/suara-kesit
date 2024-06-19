@@ -34,7 +34,7 @@ class UserServiceImpl implements UserService
 
     public function findById(string $id): ?Model
     {
-        return User::with('roles')->find($id);
+        return User::with(['roles', 'posts'])->find($id);
     }
 
     public function findByUsername(string $username): ?User
