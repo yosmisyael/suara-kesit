@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-dashboard-shell>
         <header class="text-black">
-            <h1 class="text-5xl font-black md:text-7xl">User Role Edit</h1>
+            <h1 class="text-5xl font-black md:text-7xl">{{ explode('|', $title)[1] }}</h1>
         </header>
         <div class="w-fit left-1/2 -translate-x-1/2 absolute z-10">
             @if(session('success'))
