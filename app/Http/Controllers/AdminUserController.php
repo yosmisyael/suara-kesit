@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRegisterRequest;
-use App\Http\Requests\UserUpdateRequest;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -36,27 +35,14 @@ class AdminUserController extends Controller
             ->with('success', 'User successfully created.');
     }
 
-    public function edit(string $id): Response
+    public function show(string $id): Response
     {
         $user = $this->userService->findById($id);
 
-        return response()->view('pages.admin.user-edit', [
-            'title' => 'User | Edit',
+        return response()->view('pages.admin.user', [
+            'title' => 'User | User Detail',
             'user' => $user,
         ]);
-    }
-
-    public function update(UserUpdateRequest $request, string $id): RedirectResponse
-    {
-        $validated = $request->validated();
-
-        $result = $this->userService->update($id, $validated);
-
-        if (!$result) return redirect()->back()
-            ->withErrors(['error' => 'An error occurred when updating user.'])->withInput();
-
-        return redirect()->back()
-            ->with('success', 'User role successfully updated.');
     }
 
     public function destroy(string $id): RedirectResponse
