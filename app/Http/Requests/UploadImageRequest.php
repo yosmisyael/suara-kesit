@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\ImageType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\ImageFile;
 
 class UploadImageRequest extends FormRequest
@@ -26,7 +26,7 @@ class UploadImageRequest extends FormRequest
     {
         return [
             'image' => ['required', ImageFile::image()->max('1mb')],
-            'type' => ['required', Rule::in(['profile', 'attachment'])]
+            'type' => ['required', Rule::enum(ImageType::class)],
         ];
     }
 }
