@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Enums\ImageType;
+use App\Http\Requests\UploadImageRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    public function store(Request $request): array
+    public function store(UploadImageRequest $request): array
     {
-        $request->validate([
-            'attachment' => ['required', 'image'],
-        ]);
+        $validated = $request->validated();
 
-        $path = request()->file('attachment')->storePublicly('attachments', 'public');
+        $path = '';
+
+        switch (ImageType::from($validated['type'])) {
+            case ImageType::Attachment:
+                $path = $validated['image']->storePublicly('attachments', 'public');
+                break;
+
+            case ImageType::Profile:
+                $path = $validated['image']->storePublicly('profiles', 'public');
+                break;
+        }
 
         return [
             'image_url' => Storage::disk('public')->url($path),
