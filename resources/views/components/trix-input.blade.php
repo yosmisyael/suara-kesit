@@ -24,10 +24,17 @@
                 alert('The attachment type must be an image.');
                 return;
             }
+            const fileSize = event.file.size / 1000000;
+            if (fileSize > 1) {
+                event.preventDefault();
+                alert('The attachment size should not exceed 1mb.');
+                return;
+            }
         },
         upload(event) {
             const data = new FormData();
-            data.append('attachment', event.attachment.file);
+            data.append('image', event.attachment.file);
+            data.append('type', 'attachment');
             window.axios.post('{{ route('admin.attachment.store') }}', data, {
                 onUploadProgress(progressEvent) {
                     event.attachment.setUploadProgress(progressEvent.loaded / progressEvent.total * 100);
@@ -40,6 +47,7 @@
         },
         remove(event) {
             const attachmentUrl = event.attachment.getAttributes().url;
+            if (!attachmentUrl) return;
             const attachment = attachmentUrl.split('/').pop();
             window.axios.delete(`/control-panel/attachment/delete/${attachment}`).then(({ data }) => data);
         },
