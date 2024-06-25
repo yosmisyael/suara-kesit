@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\ImageFile;
 
@@ -24,7 +25,8 @@ class UploadImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => [ImageFile::image()->max('1mb')]
+            'image' => ['required', ImageFile::image()->max('1mb')],
+            'type' => ['required', Rule::in(['profile', 'attachment'])]
         ];
     }
 }
