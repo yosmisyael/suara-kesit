@@ -19,10 +19,10 @@ class ImageController extends Controller
 
         switch (ImageType::from($validated['type'])) {
             case ImageType::Attachment:
-                $path = storage_path('app/public/attachments') . "/$file";
+                $path = Storage::disk('public')->path('attachments/' . $file);
                 break;
             case ImageType::Profile:
-                $path = storage_path('app/public/profiles') . "/$file";
+                $path = Storage::disk('public')->path('profiles/' . $file);
                 break;
         }
 
@@ -33,7 +33,10 @@ class ImageController extends Controller
             ->save($path, progressive: true);
 
         return [
-            'image_url' => ImageType::from($validated['type']) === ImageType::Attachment ? Storage::disk('public')->url("attachments/$file") : Storage::disk('public')->url("profiles/$file"),
+            'image_url' => ImageType::from($validated['type']) === ImageType::Attachment ?
+                Storage::disk('public')->url("attachments/$file")
+                :
+                Storage::disk('public')->url("profiles/$file"),
         ];
     }
 
