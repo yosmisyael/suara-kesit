@@ -35,7 +35,7 @@
             const data = new FormData();
             data.append('image', event.attachment.file);
             data.append('type', 'attachment');
-            window.axios.post('{{ route('admin.attachment.store') }}', data, {
+            window.axios.post('{{ route('image.store') }}', data, {
                 onUploadProgress(progressEvent) {
                     event.attachment.setUploadProgress(progressEvent.loaded / progressEvent.total * 100);
                 }
@@ -49,7 +49,7 @@
             const attachmentUrl = event.attachment.getAttributes().url;
             if (!attachmentUrl) return;
             const attachment = attachmentUrl.split('/').pop();
-            window.axios.delete(`/control-panel/attachment/delete/${attachment}`).then(({ data }) => data);
+            window.axios.delete(`/control-panel/image/delete/${attachment}`).then(({ data }) => data);
         },
     }"
     x-on:trix-file-accept="add(event)"
