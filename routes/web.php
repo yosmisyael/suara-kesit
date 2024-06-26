@@ -13,7 +13,7 @@ use App\Http\Controllers\AdminTokenController;
 use App\Http\Controllers\AdminUserConsoleController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ImageController;
-use App\Http\Middleware\AllowAuthenticateAdmin;
+use App\Http\Middleware\AllowAuthenticatedAdmin;
 use App\Http\Middleware\AllowAuthenticatedAdminOrUser;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +25,9 @@ Route::prefix('control-panel')->group(function () {
             Route::get('/', 'login')->name('admin.auth.login');
             Route::post('/', 'authenticate')->name('admin.auth.authenticate');
         });
-        Route::delete('/', 'logout')->middleware(AllowAuthenticateAdmin::class)->name('admin.auth.logout');
+        Route::delete('/', 'logout')->middleware(AllowAuthenticatedAdmin::class)->name('admin.auth.logout');
     });
-    Route::middleware(AllowAuthenticateAdmin::class)->group(function () {
+    Route::middleware(AllowAuthenticatedAdmin::class)->group(function () {
         Route::prefix('user')->group(function () {
             Route::prefix('application')->controller(AdminApplicationController::class)->group(function () {
                 Route::get('/', 'index')->name('admin.application.index');
