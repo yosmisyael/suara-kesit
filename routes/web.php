@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminUserConsoleController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Middleware\AllowAuthenticateAdmin;
+use App\Http\Middleware\AllowAuthenticatedAdminOrUser;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
@@ -61,13 +62,14 @@ Route::prefix('control-panel')->group(function () {
                 });
             });
         });
-        Route::prefix('attachment')->controller(ImageController::class)->group(function () {
-            Route::post('upload', 'store')->name('admin.attachment.store');
-            Route::delete('delete/{name}', 'delete')->name('admin.attachment.delete');
-        });
         Route::get('/', AdminDashboardController::class)->name('admin.dashboard');
     });
 });
+
+Route::prefix('image')->controller(ImageController::class)->group(function () {
+    Route::post('upload', 'store')->name('image.store');
+    Route::delete('delete/{name}', 'delete')->name('image.delete');
+})->middleware(AllowAuthenticatedAdminOrUser::class);
 
 Route::get('/', function () {
     return view('welcome');
