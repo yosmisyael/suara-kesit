@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 right-0 pt-3 pb-3 md:pb-0 xl:px-60 px-5 md:px-10 shadow-md flex md:block justify-between" x-data="{ sidebar: false }">
+<nav class="fixed top-0 left-0 right-0 pt-3 pb-3 md:pb-0 xl:px-60 px-5 md:px-10 shadow-md flex md:block justify-between bg-white z-10" x-data="{ sidebar: false }">
     <div class="flex justify-between">
         <a href="/" class="flex items-center gap-3">
             <img class="md:h-16 h-10" src="{{ asset('kesit.png') }}" alt="logo">
