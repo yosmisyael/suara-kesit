@@ -1,4 +1,4 @@
-<footer class="absolute bottom-0 w-full bg-black text-white pt-20">
+<footer class="w-full bg-black text-white pt-16 mt-20">
     <div class="grid grid-cols-3 px-20 md:px-60 gap-10 mb-10">
         <div class="col-span-3 md:col-span-1 flex flex-col md:flex-row items-center">
             <img src="{{ asset('kesit.png') }}" alt="logo" class="w-40 md:w-20">
