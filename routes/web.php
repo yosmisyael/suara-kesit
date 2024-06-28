@@ -72,5 +72,5 @@ Route::prefix('image')->controller(ImageController::class)->group(function () {
 })->middleware(AllowAuthenticatedAdminOrUser::class);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.public.home', ['title' => 'Home']);
 });

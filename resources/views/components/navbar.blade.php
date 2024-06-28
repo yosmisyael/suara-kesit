@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 right-0 pt-3 pb-3 md:pb-0 xl:px-60 px-5 md:px-10 shadow-md flex md:block justify-between bg-white z-10" x-data="{ sidebar: false }">
+<nav class="fixed top-0 left-0 right-0 pt-3 pb-3 md:pb-0 xl:px-36 px-5 md:px-10 shadow-md flex md:block justify-between bg-white z-10" x-data="{ sidebar: false }">
     <div class="flex justify-between">
         <a href="/" class="flex items-center gap-3">
             <img class="md:h-16 h-10" src="{{ asset('kesit.png') }}" alt="logo">
@@ -55,7 +55,7 @@
         </svg>
     </button>
     <div x-show="sidebar" :class="sidebar && 'opacity-20'" class="top-0 left-0 transition-all h-screen w-screen bg-black absolute md:hidden"></div>
-    <aside class="w-1/2 h-screen bg-white absolute right-[-50%] z-10 top-0 transition-all" :class="sidebar && '-translate-x-full'">
+    <aside class="w-3/4 h-screen bg-white absolute right-[-75%] z-10 top-0 transition-all" :class="sidebar && '-translate-x-full'">
         <button class="absolute right-2.5 top-2.5" @click="sidebar = false">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-10 cursor-pointer">
                 <path
