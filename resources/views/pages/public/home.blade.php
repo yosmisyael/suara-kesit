@@ -9,12 +9,12 @@
                     sapiente suscipit!</p>
             </div>
             <section class="grid grid-cols-8 h-screen md:h-[600px] gap-3">
-                <a href="" class="col-span-8 md:col-span-4 row-span-2 relative">
+                <a href="" class="col-span-8 md:col-span-4 row-span-2 relative group">
                     <div class="w-full h-full bg-auto"
                          style="background-image: url('https://picsum.photos/1920/1080')"></div>
-                    <div class="text-white absolute bottom-0 p-2 md:p-5 flex flex-col gap-1">
+                    <div class="text-white absolute bottom-0 p-2 md:p-5 flex flex-col gap-1 bg-gradient-to-b from-transparent to-black">
                         <span class="bg-red-700 p-1 w-fit text-xs font-bold md:text-base">Category</span>
-                        <h1 class="text-base md:text-2xl font-bold" style="text-shadow: 1px 1px black">Lorem ipsum dolor
+                        <h1 class="text-base md:text-2xl font-bold">Lorem ipsum dolor
                             sit amet,
                             consectetur adipisicing elit. Autem, consequuntur.</h1>
                         <p style="text-shadow: 1px 1px black" class="text-xs md:text-base">Yosev | 12 August 2024</p>
@@ -22,30 +22,30 @@
                 </a>
                 <a href="" class="col-span-8 md:col-span-4 row-span-1 relative border-2">
                     <div class="h-full bg-auto" style="background-image: url('https://picsum.photos/1920/1080')"></div>
-                    <div class="text-white absolute bottom-0 p-2 md:p-5 flex flex-col gap-1">
+                    <div class="text-white absolute bottom-0 p-2 md:p-5 flex flex-col gap-1 bg-gradient-to-b from-transparent to-black">
                         <span class="bg-red-700 p-1 w-fit text-xs font-bold md:text-base">Category</span>
-                        <h1 class="text-base md:text-2xl font-bold" style="text-shadow: 1px 1px black">Lorem ipsum dolor
+                        <h1 class="text-base md:text-2xl font-bold">Lorem ipsum dolor
                             sit
                             amet, consectetur adipisicing elit. Autem, consequuntur.</h1>
                         <p style="text-shadow: 1px 1px black" class="text-xs md:text-base">Yosev | 12 August 2024</p>
                     </div>
                 </a>
-                <a href="" class="col-span-8 md:col-span-2 row-span-1 relative border-2">
+                <a href="" class="col-span-8 md:col-span-2 row-span-1 relative border-2 hover:text-red-600">
                     <div class="h-full bg-auto" style="background-image: url('https://picsum.photos/1920/1080')"></div>
 
-                    <div class="text-white absolute bottom-0 p-2 md:p-5 flex flex-col gap-1">
+                    <div class="text-white absolute bottom-0 p-2 md:p-5 flex flex-col gap-1 bg-gradient-to-b from-transparent to-black">
                         <span class="bg-red-700 p-1 w-fit text-xs font-bold md:text-base">Category</span>
-                        <h1 class="text-base md:text-2xl font-bold" style="text-shadow: 1px 1px black">Lorem ipsum dolor
+                        <h1 class="text-base md:text-2xl font-bold">Lorem ipsum dolor
                             sit amet,
                             consectetur adipisicing elit. Autem, consequuntur.</h1>
                         <p style="text-shadow: 1px 1px black" class="text-xs md:text-base">Yosev | 12 August 2024</p>
                     </div>
                 </a>
-                <a href="" class="col-span-8 md:col-span-2 row-span-1 relative border-2">
+                <a href="" class="col-span-8 md:col-span-2 row-span-1 relative border-2 hover:text-red-600">
                     <div class="h-full bg-auto" style="background-image: url('https://picsum.photos/1920/1080')"></div>
-                    <div class="text-white absolute bottom-0 p-2 md:p-5 flex flex-col gap-1">
+                    <div class="text-white absolute bottom-0 p-2 md:p-5 flex flex-col gap-1 bg-gradient-to-b from-transparent to-black">
                         <span class="bg-red-700 p-1 w-fit text-xs font-bold md:text-base">Category</span>
-                        <h1 class="text-base md:text-2xl font-bold" style="text-shadow: 1px 1px black">Lorem ipsum dolor
+                        <h1 class="text-base md:text-2xl font-bold">Lorem ipsum dolor
                             sit amet,
                             consectetur adipisicing elit. Autem, consequuntur.</h1>
                         <p style="text-shadow: 1px 1px black" class="text-xs md:text-base">Yosev | 12 August 2024</p>
@@ -57,7 +57,7 @@
                     <div class="col-span-2 w-5/6 border-b-2 border-yellow-300 inline-flex">
                         <span class="bg-yellow-300 p-2 md:p-3 uppercase font-semibold text-sm md:text-base">Jangan Lewatkan</span>
                     </div>
-                    <a href="" class="col-span-2 md:col-span-1 py-5 flex flex-col gap-3">
+                    <a href="" class="col-span-2 md:col-span-1 py-5 flex flex-col gap-3 hover:text-red-600">
                         <img src="https://picsum.photos/1920/1080" alt="thumbnail">
                         <h1 class="text-xl font-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo,
                             perferendis!</h1>
@@ -67,25 +67,25 @@
                             libero odio porro voluptatum.</p>
                     </a>
                     <div class="col-span-2 md:col-span-1">
-                        <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3">
+                        <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3 group">
                             <img src="https://picsum.photos/1920/1080" alt="thumbnail" class="h-20">
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 group-hover:text-red-600">
                                 <p class="font-semibold text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing
                                     elit. Assumenda, dolorum eligendi est eveniet modi quibusdam?</p>
                                 <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
                             </div>
                         </a>
-                        <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3">
+                        <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3 group">
                             <img src="https://picsum.photos/1920/1080" alt="thumbnail" class="h-20">
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 group-hover:text-red-600">
                                 <p class="font-semibold text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing
                                     elit. Assumenda, dolorum eligendi est eveniet modi quibusdam?</p>
                                 <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
                             </div>
                         </a>
-                        <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3">
+                        <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3 group">
                             <img src="https://picsum.photos/1920/1080" alt="thumbnail" class="h-20">
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 group-hover:text-red-600">
                                 <p class="font-semibold text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing
                                     elit. Assumenda, dolorum eligendi est eveniet modi quibusdam?</p>
                                 <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
@@ -101,34 +101,32 @@
                         <img src="https://picsum.photos/1920/1080" alt="billboard picture">
                     </div>
                 </div>
-
             </section>
-
             <section class="grid grid-cols-3 gap-10">
                 <div class="col-span-3 md:col-span-2 grid grid-cols-2">
                     <div class="col-span-2 w-5/6 border-b-2 border-blue-600 inline-flex">
                         <span class="bg-blue-600 p-2 md:p-3 uppercase font-semibold text-sm md:text-base text-white">Semua Berita</span>
                     </div>
                     <div class="col-span-2 py-5 grid grid-cols-2 gap-5">
-                        <a href="" class="col-span-2 md:col-span-1 flex flex-col gap-1">
+                        <a href="" class="col-span-2 md:col-span-1 flex flex-col gap-1 hover:text-red-600">
                             <img src="https://picsum.photos/1920/1080" alt="article">
                             <h1 class="font-semibold text-lg md:text-xl">Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Eius, facere.</h1>
                             <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
                         </a>
-                        <a href="" class="col-span-2 md:col-span-1 flex flex-col gap-1">
+                        <a href="" class="col-span-2 md:col-span-1 flex flex-col gap-1 hover:text-red-600">
                             <img src="https://picsum.photos/1920/1080" alt="article">
                             <h1 class="font-semibold text-lg md:text-xl">Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Eius, facere.</h1>
                             <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
                         </a>
-                        <a href="" class="col-span-2 md:col-span-1 flex flex-col gap-1">
+                        <a href="" class="col-span-2 md:col-span-1 flex flex-col gap-1 hover:text-red-600">
                             <img src="https://picsum.photos/1920/1080" alt="article">
                             <h1 class="font-semibold text-lg md:text-xl">Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Eius, facere.</h1>
                             <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
                         </a>
-                        <a href="" class="col-span-2 md:col-span-1 flex flex-col gap-1">
+                        <a href="" class="col-span-2 md:col-span-1 flex flex-col gap-1 hover:text-red-600">
                             <img src="https://picsum.photos/1920/1080" alt="article">
                             <h1 class="font-semibold text-lg md:text-xl">Lorem ipsum dolor sit amet, consectetur
                                 adipisicing elit. Eius, facere.</h1>
