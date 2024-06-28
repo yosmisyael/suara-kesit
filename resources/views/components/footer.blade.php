@@ -11,7 +11,7 @@
         </div>
         <div class="col-span-3 md:col-span-1 text-center md:text-left">
             <h2 class="font-bold text-xl uppercase">Follow Us</h2>
-            <div class="flex flex-col gap-2 mt-5 items-center">
+            <div class="flex flex-col gap-2 mt-5 items-center md:items-start">
                 <a href="" class="flex gap-3 group items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 fill-white group-hover:fill-red-600" viewBox="0 0 24 24">
                         <path
