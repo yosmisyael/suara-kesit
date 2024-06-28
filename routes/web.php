@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminUserConsoleController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\UserAuthController;
 use App\Http\Middleware\AllowAuthenticatedAdmin;
 use App\Http\Middleware\AllowAuthenticatedAdminOrUser;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
@@ -77,5 +78,12 @@ Route::controller(PublicController::class)->group(function () {
     Route::prefix('post')->group(function () {
         Route::get('/', 'list')->name('public.posts');
         Route::get('{id}', 'show')->name('public.post');
+    });
+    Route::prefix('auth')->controller(UserAuthController::class)->group(function () {
+        Route::get('register', 'register')->name('user.auth.register');
+        Route::post('register', 'store')->name('user.auth.store');
+        Route::get('login', 'login')->name('user.auth.login');
+        Route::post('login', 'authenticate')->name('user.auth.authenticate');
+        Route::get('logout', 'logout')->name('user.auth.logout');
     });
 });
