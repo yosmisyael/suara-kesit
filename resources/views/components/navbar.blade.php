@@ -45,8 +45,7 @@
                     </button>
                 </div>
             </form>
-            <a href="" class="text-white bg-black px-2 py-1.5 font-black uppercase rounded-xl flex items-center">Join
-                Us</a>
+            <a href="{{ route('user.auth.login') }}" class="text-white bg-black px-2 py-1.5 font-black uppercase rounded-xl flex items-center">Join Us</a>
         </div>
     </div>
     <button @click="sidebar = true" class="block md:hidden">
@@ -66,7 +65,7 @@
             <a href="" class="text-xl uppercase font-bold hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative">News</a>
             <a href="" class="text-xl uppercase font-bold hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative">About Us</a>
             <a href="" class="text-xl uppercase font-bold hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative">Contact</a>
-            <a href="" class="cursor-pointer bg-black text-white py-2 w-full rounded-lg font-black uppercase rounded-lg text-center">Join Us</a>
+            <a href="{{ route('user.auth.login') }}" class="cursor-pointer bg-black text-white py-2 w-full rounded-lg font-black uppercase rounded-lg text-center">Join Us</a>
         </div>
 
     </aside>
