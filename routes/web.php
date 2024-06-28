@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminTokenController;
 use App\Http\Controllers\AdminUserConsoleController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\PublicController;
 use App\Http\Middleware\AllowAuthenticatedAdmin;
 use App\Http\Middleware\AllowAuthenticatedAdminOrUser;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
@@ -71,6 +72,6 @@ Route::prefix('image')->controller(ImageController::class)->group(function () {
     Route::delete('delete/{name}', 'delete')->name('image.delete');
 })->middleware(AllowAuthenticatedAdminOrUser::class);
 
-Route::get('/', function () {
-    return view('pages.public.home', ['title' => 'Home']);
+Route::controller(PublicController::class)->group(function () {
+    Route::get('/', 'index')->name('public.home');
 });
