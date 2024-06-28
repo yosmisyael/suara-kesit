@@ -18,7 +18,7 @@ class UserAuthController extends Controller
     public function register(): Response
     {
         return response()
-            ->view('pages.user.registration', [
+            ->view('pages.user.register', [
                 'title' => 'User Registration'
             ]);
     }
