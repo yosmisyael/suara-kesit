@@ -49,7 +49,7 @@ class UserAuthController extends Controller
 
         if (!$result)
             return redirect(route('user.auth.login'))
-                ->withErrors(['error' => 'Username or password is wrong.'])
+                ->withErrors(['error' => 'Email or password is wrong.'])
                 ->withInput();
 
         return redirect(route('user.dashboard'));
