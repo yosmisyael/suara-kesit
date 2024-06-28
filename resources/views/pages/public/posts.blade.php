@@ -1,7 +1,7 @@
 <x-app>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-shell>
-        <section class="grid grid-cols-3 gap-10">
+        <section class="grid grid-cols-3 gap-10 pt-5">
             <div class="col-span-3 md:col-span-2 grid grid-cols-2">
                 <div class="col-span-2 w-5/6 border-b-2 border-blue-600 inline-flex">
                     <span class="bg-blue-600 p-2 md:p-3 uppercase font-semibold text-sm md:text-base text-white">Semua Berita</span>
@@ -71,25 +71,32 @@
             </div>
             <div class="md:col-span-1 col-span-3 gap-5">
                 <div class="w-5/6 border-b-2 border-red-600 h-min inline-flex">
-                    <span class="bg-red-600 p-2 md:p-3 uppercase font-semibold text-sm md:text-base text-white">Ikuti Kami</span>
+                    <span class="bg-red-600 p-2 md:p-3 uppercase font-semibold text-sm md:text-base text-white">Anda mungkin suka</span>
                 </div>
-                <div class="flex flex-col gap-5 py-5">
-                    <a href="" class="flex justify-between items-center font-bold">
-                        <div class="flex gap-3">
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/800px-Instagram_icon.png"
-                                alt="instagram icon" class="h-8">
-                            <p>2k+ followers</p>
+                <div class="flex flex-col">
+                    <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3 group">
+                        <img src="https://picsum.photos/1920/1080" alt="thumbnail" class="h-20">
+                        <div class="flex flex-col gap-1 group-hover:text-red-600">
+                            <p class="font-semibold text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Assumenda, dolorum eligendi est eveniet modi quibusdam?</p>
+                            <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
                         </div>
-                        <p class="uppercase bg-black text-white p-2">Follow</p>
                     </a>
-                    <a href="" class="flex justify-between items-center font-bold">
-                        <div class="flex gap-3">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png"
-                                 alt="instagram icon" class="h-6">
-                            <p>2k+ followers</p>
+                    <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3 group">
+                        <img src="https://picsum.photos/1920/1080" alt="thumbnail" class="h-20">
+                        <div class="flex flex-col gap-1 group-hover:text-red-600">
+                            <p class="font-semibold text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Assumenda, dolorum eligendi est eveniet modi quibusdam?</p>
+                            <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
                         </div>
-                        <p class="uppercase bg-black text-white p-2">Subscribe</p>
+                    </a>
+                    <a href="" class="py-5 md:p-5 flex md:flex-col lg:flex-row gap-3 group">
+                        <img src="https://picsum.photos/1920/1080" alt="thumbnail" class="h-20">
+                        <div class="flex flex-col gap-1 group-hover:text-red-600">
+                            <p class="font-semibold text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Assumenda, dolorum eligendi est eveniet modi quibusdam?</p>
+                            <p class="text-xs"><b>Yosev</b> | 20 Aug 2024</p>
+                        </div>
                     </a>
                 </div>
             </div>
