@@ -4,7 +4,14 @@ namespace App\Traits;
 
 trait DataTransferObject
 {
-    public function __construct(array $data)
+    /**
+     * Populates the current DTO object's properties from a given associative array.
+     *
+     * @param array $data
+     *
+     * @return void
+     */
+    public function fill(array $data): void
     {
         foreach ($data as $key => $value) {
             if (property_exists($this, $key)) {
