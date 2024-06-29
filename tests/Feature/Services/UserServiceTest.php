@@ -1,5 +1,6 @@
 <?php
 
+use App\DTO\UserDTO;
 use App\Models\User;
 use App\Services\UserService;
 use Database\Seeders\RolesAndPermissionSeeder;
@@ -13,13 +14,26 @@ describe('UserService', function() {
     });
 
     it('should be able to create user', function () {
-        expect($this->userService->create([
+        expect($this->userService->create(new UserDTO([
             'username' => 'beta',
             'name' =>'beta',
             'email' => 'beta@test.com',
             'password' => 'password',
             'role' => 'member'
-        ]))->toBeTrue();
+        ])))->toBeTrue();
+    });
+
+    it('should be able to create user without specify role', function () {
+        expect($this->userService->create(new UserDTO([
+            'username' => 'beta',
+            'name' => 'beta',
+            'email' => 'beta@test.com',
+            'password' => 'password',
+        ])))->toBeTrue()
+            ->and(User::with('roles')->where('username', '=', 'beta')
+                ->getRelation('roles')->first()->name)
+            ->toBe('member');
+
     });
 
     it('should be able to find user by username', function () {
