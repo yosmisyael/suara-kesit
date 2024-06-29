@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\UserDTO;
 use App\Http\Requests\UserAuthRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Services\UserAuthService;
@@ -27,7 +28,9 @@ class UserAuthController extends Controller
     {
         $validated = $request->validated();
 
-        $result = $this->userService->create($validated);
+        $userDTO = new UserDTO($validated);
+
+        $result = $this->userService->create($userDTO);
 
         if (!$result) return redirect()->back()->withErrors(['error' => 'An error occurred when registering user.'])->withInput();
 
