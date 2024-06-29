@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -9,11 +10,12 @@ use Illuminate\Validation\Rules\Password;
 
 class UserRegisterRequest extends FormRequest
 {
-    protected function prepareForValidation(): void {
+    protected function prepareForValidation(): void
+    {
         $this->merge([
-            'username' => Str::lower($this->username),
-            'email' => Str::lower($this->email),
-            'name' => Str::title($this->name),
+            'username' => Str::trim($this->request->get('username')),
+            'email' => Str::lower($this->request->get('email')),
+            'name' => Str::title($this->request->get('name')),
         ]);
     }
     /**
@@ -27,16 +29,27 @@ class UserRegisterRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
-        return [
+        $route = $this->route()->getName();
+
+        $rules = [
             'username' => ['required', 'string', 'alpha_dash:ascii', 'max:100', 'unique:users,username'],
             'name' => ['required', 'string', 'max:100'],
-            'email' =>  ['required', 'string', 'max:100', 'email', 'unique:users,email'],
-            'password' =>  ['required', 'string', 'max:100', Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
-            'role' => ['required', 'string', 'max:100', Rule::in(['member', 'author'])],
+            'email' => ['required', 'string', 'max:100', 'email', 'unique:users,email'],
+            'password' => ['required', 'string', 'max:100', Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
         ];
+
+        if ($route === 'admin.user.store') {
+            $rules['role'] = ['required', 'string', 'max:100', Rule::in(['member', 'author'])];
+        }
+
+        if ($route === 'user.auth.store') {
+            $rules['password_confirmation'] = ['required', 'same:password'];
+        }
+
+        return $rules;
     }
 }
