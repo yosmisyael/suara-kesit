@@ -2,6 +2,7 @@
 
 namespace App\Services\Impl;
 
+use App\DTO\UserDTO;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Database\Eloquent\Model;
@@ -9,11 +10,11 @@ use Illuminate\Support\Collection;
 
 class UserServiceImpl implements UserService
 {
-    public function create(array $data): bool
+    public function create(UserDTO $userDTO): bool
     {
-        $user = new User($data);
+        $user = new User($userDTO->toArray());
 
-        $data['role'] === 'member' ? $user->assignRole('member') : $user->assignRole('author');
+        $userDTO->role === 'member' ? $user->assignRole('member') : $user->assignRole('author');
 
         return $user->save();
     }
