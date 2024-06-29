@@ -81,7 +81,7 @@ Route::controller(PublicController::class)->group(function () {
     });
     Route::prefix('auth')->controller(UserAuthController::class)->group(function () {
         Route::get('register', 'register')->name('user.auth.register');
-        Route::post('register', 'store')->name('user.auth.store');
+        Route::post('register', 'store')->name('user.auth.store')->middleware(HandlePrecognitiveRequests::class);
         Route::get('login', 'login')->name('user.auth.login');
         Route::post('login', 'authenticate')->name('user.auth.authenticate');
         Route::get('logout', 'logout')->name('user.auth.logout');
