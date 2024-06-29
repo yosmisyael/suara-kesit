@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\UserDTO;
 use App\Http\Requests\UserRegisterRequest;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
@@ -25,9 +26,9 @@ class AdminUserController extends Controller
 
     public function store(UserRegisterRequest $request): RedirectResponse
     {
-        $validated = $request->validated();
+        $userDTO = new UserDTO($request->validated());
 
-        $result = $this->userService->create($validated);
+        $result = $this->userService->create($userDTO);
 
         if (!$result) return redirect()->back()->withErrors(['error' => 'An error occurred when registering user.'])->withInput();
 
