@@ -7,14 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Tonysm\RichTextLaravel\Casts\AsRichTextContent;
-use Tonysm\RichTextLaravel\Content;
 
-
-/**
- * @property Status $status
- * @property Content note
- * @property string $submission_id
- */
 class Review extends Model
 {
     use HasFactory;

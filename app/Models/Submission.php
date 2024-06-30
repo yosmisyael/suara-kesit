@@ -2,19 +2,12 @@
 
 namespace App\Models;
 
-use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Storage;
 
-/**
- * @property string $post_id
- * @property string $note
- * @property DateTimeInterface $created_at
- * @property DateTimeInterface $updated_at
- */
 class Submission extends Model
 {
     use HasFactory;
@@ -41,7 +34,7 @@ class Submission extends Model
     protected static function booted(): void
     {
         self::deleting(function (Submission $submission) {
-            $submission->reviews()->each(function (Review $review) {
+            $submission->review()->each(function (Review $review) {
                 foreach ($review->note->attachments() as $attachment) {
                     $url = explode('/', $attachment->attachable->url);
                     $file = end($url);
@@ -49,7 +42,7 @@ class Submission extends Model
                 }
             });
 
-            $submission->reviews()->delete();
+            $submission->review()->delete();
         });
     }
 }
