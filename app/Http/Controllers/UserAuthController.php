@@ -35,7 +35,7 @@ class UserAuthController extends Controller
         if (!$result) return redirect()->back()->withErrors(['error' => 'An error occurred when registering user.'])->withInput();
 
         return redirect(route('user.auth.login'))
-            ->with('success', 'You have successfully registered. Now please login with your new account');
+            ->with('success', 'You have successfully registered. Now please login with your new account.');
     }
 
     public function login(): Response
