@@ -15,6 +15,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\UserDashboardController;
 use App\Http\Middleware\AllowAuthenticatedAdmin;
 use App\Http\Middleware\AllowAuthenticatedAdminOrUser;
 use App\Http\Middleware\DenyAuthenticatedAdmin;
@@ -86,4 +87,8 @@ Route::controller(PublicController::class)->group(function () {
         Route::post('login', 'authenticate')->name('user.auth.authenticate');
         Route::get('logout', 'logout')->name('user.auth.logout');
     });
+});
+
+Route::prefix('{user}')->group(function () {
+    Route::get('/', UserDashboardController::class)->name('user.profile');
 });
