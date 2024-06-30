@@ -44,4 +44,20 @@ class PublicController extends Controller
 //                'post' => $post
             ]);
     }
+
+    public function about(): Response
+    {
+        return response()
+            ->view('pages.public.about', [
+                'title' => 'About Us',
+            ]);
+    }
+
+    public function contact(): Response
+    {
+        return response()
+            ->view('pages.public.contact', [
+                'title' => 'Contact Us',
+            ]);
+    }
 }
