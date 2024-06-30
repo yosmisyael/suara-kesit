@@ -76,6 +76,8 @@ Route::prefix('image')->controller(ImageController::class)->group(function () {
 
 Route::controller(PublicController::class)->group(function () {
     Route::get('/', 'index')->name('public.home');
+    Route::get('about', 'about')->name('public.about');
+    Route::get('contact', 'contact')->name('public.contact');
     Route::prefix('post')->group(function () {
         Route::get('/', 'list')->name('public.posts');
         Route::get('{id}', 'show')->name('public.post');
