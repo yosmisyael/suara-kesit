@@ -10,14 +10,14 @@
     </div>
     <div class="justify-between pt-2 hidden md:flex">
         <ul class="flex gap-8 font-semibold">
-            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer">
-                NEWS
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.posts') ? 'before:block before:absolute before:w-full' : ''}}">
+                <a href="{{ route('public.posts') }}">NEWS</a>
             </li>
-            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer">
-                ABOUT US
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.about') ? 'before:block before:absolute before:w-full' : ''}}" >
+                <a href="{{ route('public.about') }}">ABOUT US</a>
             </li>
-            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer">
-                CONTACT
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.contact') ? 'before:block before:absolute before:w-full' : ''}}">
+                <a href="{{ route('public.contact') }}">CONTACT</a>
             </li>
         </ul>
         <div class="flex gap-3 items-center" x-data="{ isActive: false }">
