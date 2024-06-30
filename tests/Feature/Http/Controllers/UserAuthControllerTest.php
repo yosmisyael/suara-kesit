@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use Database\Seeders\RolesAndPermissionSeeder;
 use Database\Seeders\UserSeeder;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 describe('UserAuthController', function () {
     beforeEach(function () {
@@ -176,6 +178,39 @@ describe('UserAuthController', function () {
             'name' => 'beta',
         ])
             ->assertSessionHasErrors(['password_confirmation' => 'The password confirmation field must match password.']);
+    });
+
+    it('should be able to access login page', function () {
+        $this->get(route('user.auth.login'))
+            ->assertOk()
+            ->assertViewIs('pages.user.login');
+    });
+
+    it('should be able to login', function () {
+        $this->seed(UserSeeder::class);
+        $this->post(route('user.auth.authenticate'), [
+            'email' => 'alpha@test.com',
+            'password' => 'password',
+        ])
+            ->assertRedirect(route('user.profile', ['user' => '@alpha']));
+    });
+
+    it('should not be able to login if email or password is not match', function () {
+        $this->post(route('user.auth.authenticate'), [
+            'email' => 'alpha@test.com',
+            'password' => 'wrong',
+        ])
+            ->assertSessionHasErrors(['error' => 'Email or password is wrong.']);
+    });
+
+    it('should be able to logout', function () {
+        $this->seed(UserSeeder::class);
+
+        /** @var Authenticatable $user */
+        $user = User::query()->where('username', 'alpha')->first();
+
+        $this->actingAs($user)->delete(route('user.auth.logout'))
+            ->assertRedirect(route('user.auth.login'));
     });
 });
 
