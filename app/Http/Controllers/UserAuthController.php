@@ -55,7 +55,7 @@ class UserAuthController extends Controller
                 ->withErrors(['error' => 'Email or password is wrong.'])
                 ->withInput();
 
-        return redirect(route('user.dashboard'));
+        return redirect(route('user.profile'));
     }
 
     public function logout(): RedirectResponse
