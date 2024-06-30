@@ -59,7 +59,7 @@ class UserAuthController extends Controller
         /** @var User $user */
         $user = auth()->user();
 
-        return redirect(route('user.profile', ['user' => '@' . $user->username]));
+        return redirect(route('user.profile', ['user' => '@' . $user->getAttribute('username')]));
     }
 
     public function logout(): RedirectResponse
