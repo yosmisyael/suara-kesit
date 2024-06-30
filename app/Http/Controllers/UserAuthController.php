@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DTO\UserDTO;
 use App\Http\Requests\UserAuthRequest;
 use App\Http\Requests\UserRegisterRequest;
+use App\Models\User;
 use App\Services\UserAuthService;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
@@ -55,7 +56,12 @@ class UserAuthController extends Controller
                 ->withErrors(['error' => 'Email or password is wrong.'])
                 ->withInput();
 
-        return redirect(route('user.profile'));
+        /**
+         * @var User $user
+         */
+        $user = auth()->user();
+
+        return redirect(route('user.profile', ['user' => '@' . $user->username]));
     }
 
     public function logout(): RedirectResponse

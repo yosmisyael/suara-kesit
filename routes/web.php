@@ -85,7 +85,7 @@ Route::controller(PublicController::class)->group(function () {
         Route::post('register', 'store')->name('user.auth.store')->middleware(HandlePrecognitiveRequests::class);
         Route::get('login', 'login')->name('user.auth.login');
         Route::post('login', 'authenticate')->name('user.auth.authenticate');
-        Route::get('logout', 'logout')->name('user.auth.logout');
+        Route::delete('logout', 'logout')->name('user.auth.logout');
     });
 });
 
