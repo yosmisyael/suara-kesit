@@ -56,9 +56,7 @@ class UserAuthController extends Controller
                 ->withErrors(['error' => 'Email or password is wrong.'])
                 ->withInput();
 
-        /**
-         * @var User $user
-         */
+        /** @var User $user */
         $user = auth()->user();
 
         return redirect(route('user.profile', ['user' => '@' . $user->username]));
