@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.btn-primary {
+    @apply bg-black text-white px-6 py-2;
+}
+
+.btn-secondary {
+    @apply text-black px-6 py-2 font-medium;
+}

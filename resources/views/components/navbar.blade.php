@@ -1,51 +1,33 @@
-<nav class="fixed top-0 left-0 right-0 pt-3 pb-3 md:pb-0 xl:px-36 px-5 md:px-10 shadow-md flex md:block justify-between bg-white z-10" x-data="{ sidebar: false }">
+<nav class="fixed top-0 left-0 right-0 py-3 pb-3 xl:px-36 px-5 md:px-10 border-b border-black flex md:block justify-between bg-white z-10" x-data="{ sidebar: false }">
     <div class="flex justify-between">
+        {{-- brand --}}
         <a href="/" class="flex items-center gap-3">
-            <img class="md:h-16 h-10" src="{{ asset('kesit.png') }}" alt="logo">
-            <h1 class="font-black md:text-3xl text-2xl uppercase">Suara Kesit</h1>
+            <img class="md:h-12 h-10" src="{{ asset('kesit.png') }}" alt="logo">
+            <h1 class="font-bold text-2xl">Suara Kesit</h1>
         </a>
-        <img
-            src="https://demo.tagdiv.com/newspaper_pro/wp-content/uploads/2019/08/newspaper-rec728.jpg.webp"
-            alt="banner" class="lg:h-20 md:h-[60px] hidden md:block">
-    </div>
-    <div class="justify-between pt-2 hidden md:flex">
-        <ul class="flex gap-8 font-semibold">
+
+        {{-- navlinks --}}
+        <ul class="flex gap-8 font-semibold items-center">
             <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.posts') ? 'before:block before:absolute before:w-full' : ''}}">
-                <a href="{{ route('public.posts') }}">NEWS</a>
+                <a href="{{ route('public.posts') }}">Politics</a>
             </li>
             <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.about') ? 'before:block before:absolute before:w-full' : ''}}" >
-                <a href="{{ route('public.about') }}">ABOUT US</a>
+                <a href="{{ route('public.about') }}">Bussiness</a>
             </li>
             <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.contact') ? 'before:block before:absolute before:w-full' : ''}}">
-                <a href="{{ route('public.contact') }}">CONTACT</a>
+                <a href="{{ route('public.contact') }}">Technology</a>
+            </li>
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.contact') ? 'before:block before:absolute before:w-full' : ''}}">
+                <a href="{{ route('public.contact') }}">Culture</a>
+            </li>
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.contact') ? 'before:block before:absolute before:w-full' : ''}}">
+                <a href="{{ route('public.contact') }}">Sports</a>
             </li>
         </ul>
-        <div class="flex gap-3 items-center" x-data="{ isActive: false }">
-            <button class="cursor-pointer" @click="isActive = !isActive" x-show="!isActive">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path
-                        d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
-                </svg>
-            </button>
-            <form x-show="isActive" class="max-w-md mx-auto">
-                <div class="flex">
-                    <input type="search" class="border-0 focus:border-b-2 focus:border-black focus:ring-0"
-                           placeholder="type keyword here" required/>
-                    <button type="submit" class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path
-                                d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
-                        </svg>
-                    </button>
-                    <button @click="isActive = !isActive">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8">
-                            <path
-                                d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-            <a href="{{ route('user.auth.login') }}" class="text-white bg-black px-2 py-1.5 font-black uppercase rounded-xl flex items-center">Join Us</a>
+        {{-- cta --}}
+        <div class="flex gap-3 items-center">
+            <a href="#" class="btn-secondary">Search</a>
+            <a href="{{ route('user.auth.login') }}" class="btn-primary">Subscribe</a>
         </div>
     </div>
     <button @click="sidebar = true" class="block md:hidden">
