@@ -1,17 +1,24 @@
 <footer class="w-full bg-black text-white pt-16 mt-20">
     <div class="grid grid-cols-3 px-10 lg:px-20 xl:px-60 gap-10 mb-10">
-        <div class="col-span-3 md:col-span-1 flex flex-col lg:flex-row gap-5 items-center">
-            <img src="{{ asset('kesit.png') }}" alt="logo" class="w-40 md:w-20">
-            <h1 class="flex flex-col font-black md:text-3xl text-4xl">
-                <span class="text-xl text-gray-300">News Portal</span>
-                Suara Kesit
-            </h1>
-        </div>
-        <div class="col-span-3 md:col-span-1 text-center md:text-left">
-            <h2 class="font-bold text-xl">About Us</h2>
-            <p class="mt-5">
+        <div class="col-span-3 md:col-span-1 flex flex-col gap-5 items-center">
+            <div class="flex justify-start w-full">
+                <img src="{{ asset('kesit.png') }}" alt="logo" class="w-40 md:w-20">
+                <h1 class="flex flex-col font-black md:text-3xl text-4xl">
+                    <span class="text-xl text-gray-300">News Portal</span>
+                    Suara Kesit
+                </h1>
+            </div>
+            <p>
                 KESIT - Kritis, Ekspresif, Solidaritas, Inovatif, Tanggung Jawab
             </p>
+        </div>
+        <div class="col-span-3 md:col-span-1 text-center md:text-left">
+            <h2 class="font-bold text-xl">Links</h2>
+            <ul class="flex flex-col gap-3 mt-5">
+                <li><a href="{{ route('public.posts') }}">Posts</a></li>
+                <li><a href="{{ route('public.about') }}">About</a></li>
+                <li><a href="{{ route('public.contact') }}">Contact</a></li>
+            </ul>
         </div>
         <div class="col-span-3 md:col-span-1 text-center md:text-left">
             <h2 class="font-bold text-xl">Follow Us</h2>
