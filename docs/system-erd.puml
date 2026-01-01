@@ -1,0 +1,99 @@
+@startuml
+entity users {
+    * id: number <<PK>>
+    --
+    * name: text
+    email: text
+    * password: text
+    * birth_date: text
+    * role_id: number <<FK>>
+}
+
+entity roles {
+    * id: number <<PK>>
+    --
+    * name: text
+}
+
+entity permissions {
+    * id: number <<PK>>
+    --
+    * description: text
+    * role_id: number <<FK>>
+}
+
+entity permission_grant {
+    * permission_id: number <<PK>> <<FK>>
+    * role_id: number <<PK>> <<FK>>
+}
+
+entity posts {
+    * id: number <<PK>>
+    --
+    * title: text
+    * slug: text
+    * status: text
+    * category_id: number <<FK>>
+    * writer: number <<FK>>
+}
+
+entity editorial_history {
+    * id: number <<PK>>
+    --
+    * action: text
+    * review: text
+    * post_id: number <<FK>>
+    * user_id: number <<FK>>
+}
+
+entity post_stat {
+    * id: number <<PK>>
+    --
+    * visitor: number
+    * post_id: number <<FK>>
+}
+
+entity post_likes {
+    * user_id: number <<PK>> <<FK>>
+    * post_id: number <<PK>> <<FK>>
+}
+
+entity comments {
+    * id: number <<PK>>
+    --
+    * content: text
+    parent_id: number
+    * user_id: number <<FK>>
+    * post_id: number <<FK>>
+}
+
+entity categories {
+    * id: number <<PK>>
+    --
+    * name: text
+    * slug: text
+}
+
+entity keywords {
+    * id: number <<PK>>
+    --
+    * name: text
+    * slug: text
+}
+
+entity taggables {
+    * keyword_id: number <<PK>> <<FK>>
+    * post_id: number <<PK>> <<FK>>
+}
+
+users }|--|| roles
+roles ||--|{ permission_grant
+permissions ||--|{ permission_grant
+posts ||--o{ comments
+posts ||--|| post_stat
+posts ||--o{ post_likes
+users ||--o| post_likes
+posts }o--|| categories
+posts }|--o{ taggables
+keywords }|--|{ taggables
+@enduml
