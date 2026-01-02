@@ -96,4 +96,6 @@ users ||--o| post_likes
 posts }o--|| categories
 posts }|--o{ taggables
 keywords }|--|{ taggables
+users ||--o{ editorial_history
+posts ||--o{ editorial_history
 @enduml
