@@ -27,7 +27,7 @@
         {{-- cta --}}
         <div class="flex gap-3 items-center">
             <a href="{{ route('public.news') }}" class="btn-secondary">Search</a>
-            <a href="#" class="btn-primary">Subscribe</a>
+            <a href="{{ route('public.signup') }}" class="btn-primary">Join Us</a>
         </div>
     </div>
     <button @click="sidebar = true" class="block md:hidden">
