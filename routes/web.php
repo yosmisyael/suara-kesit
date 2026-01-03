@@ -11,5 +11,9 @@ Route::get('/', [HomeController::class, 'index'])->name('public.home');
 Route::get('/contact', [ContactController::class, 'index'])->name('public.contact');
 Route::get('/about', [AboutController::class, 'index'])->name('public.about');
 Route::get('/news', [PostController::class, 'index'])->name('public.news');
-Route::get('/signup', [UserAuthController::class, 'register'] )->name('public.signup');
-Route::get('/login', [UserAuthController::class, 'login'] )->name('public.login');
+
+Route::controller(UserAuthController::class)->group(function () {
+    Route::get('/signup', 'register')->name('public.signup');
+    Route::post('/signup', 'handleRegister')->name('public.signup.handle');
+    Route::get('/login', 'login')->name('public.login');
+});

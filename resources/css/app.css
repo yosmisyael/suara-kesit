@@ -34,6 +34,10 @@
     .btn-secondary {
         @apply text-black px-6 py-2 bg-white cursor-pointer border-2 border-black font-semibold;
     }
+
+    .form-error {
+        @apply text-sm text-red-600 font-medium mt-1;
+    }
 }
 
 @layer base {
