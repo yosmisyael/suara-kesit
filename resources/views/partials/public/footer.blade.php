@@ -15,7 +15,7 @@
         <div class="col-span-3 md:col-span-1 text-center md:text-left">
             <h2 class="font-bold text-xl">Links</h2>
             <ul class="flex flex-col gap-3 mt-5">
-                <li><a href="{{ route('public.news') }}">News</a></li>
+                <li><a href="{{ route('public.news.search') }}">News</a></li>
                 <li><a href="{{ route('public.about') }}">About</a></li>
                 <li><a href="{{ route('public.contact') }}">Contact</a></li>
             </ul>

@@ -8,25 +8,25 @@
 
         {{-- navlinks --}}
         <ul class="flex gap-8 font-semibold items-center">
-            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.news') ? 'before:block before:absolute before:w-full' : ''}}">
-                <a href="{{ route('public.news') }}">Politics</a>
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.news.category', [ 'slug' => 'politics' ]) ? 'before:block before:absolute before:w-full' : ''}}">
+                <a href="{{ route('public.news.category', [ 'slug' => 'politics' ]) }}">Politics</a>
             </li>
-            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.about') ? 'before:block before:absolute before:w-full' : ''}}" >
-                <a href="{{ route('public.news') }}">Bussiness</a>
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.news.category', [ 'slug' => 'business' ]) ? 'before:block before:absolute before:w-full' : ''}}" >
+                <a href="{{ route('public.news.category', [ 'slug' => 'business' ]) }}">Business</a>
             </li>
-            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.contact') ? 'before:block before:absolute before:w-full' : ''}}">
-                <a href="{{ route('public.news') }}">Technology</a>
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.news.category', [ 'slug' => 'technology' ]) ? 'before:block before:absolute before:w-full' : ''}}">
+                <a href="{{ route('public.news.category', [ 'slug' => 'technology' ]) }}">Technology</a>
             </li>
-            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.contact') ? 'before:block before:absolute before:w-full' : ''}}">
-                <a href="{{ route('public.news') }}">Culture</a>
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.news.category', [ 'slug' => 'culture' ]) ? 'before:block before:absolute before:w-full' : ''}}">
+                <a href="{{ route('public.news.category', [ 'slug' => 'culture' ]) }}">Culture</a>
             </li>
-            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.contact') ? 'before:block before:absolute before:w-full' : ''}}">
-                <a href="{{ route('public.news') }}">Sports</a>
+            <li class="py-3 hover:before:block hover:before:absolute hover:before:w-full before:bottom-0 before:border-b-2 before:border-black relative cursor-pointer {{ request()->getUri() === route('public.news.category', [ 'slug' => 'sports' ]) ? 'before:block before:absolute before:w-full' : ''}}">
+                <a href="{{ route('public.news.category', [ 'slug' => 'sports' ]) }}">Sports</a>
             </li>
         </ul>
         {{-- cta --}}
         <div class="flex gap-3 items-center">
-            <a href="{{ route('public.news') }}" class="btn-secondary">Search</a>
+            <a href="{{ route('public.news.category', [ 'slug' => 'politics' ]) }}" class="btn-secondary">Search</a>
             <a href="{{ route('public.signup') }}" class="btn-primary">Join Us</a>
         </div>
     </div>

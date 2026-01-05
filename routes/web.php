@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('public.home');
 Route::get('/contact', [ContactController::class, 'index'])->name('public.contact');
 Route::get('/about', [AboutController::class, 'index'])->name('public.about');
-Route::get('/news', [PostController::class, 'index'])->name('public.news');
+
+Route::controller(PostController::class)->group(function () {
+    Route::get('/news', 'index')->name('public.news.search');
+    Route::get('/news/{slug}', 'show')->name('public.news.show');
+    Route::get('/news/{slug}', 'getByCategory')->name('public.news.category');
+});
 
 Route::controller(UserAuthController::class)->group(function () {
     Route::get('/signup', 'register')->name('public.signup');
