@@ -1,69 +1,55 @@
 <?php
 
 use App\Models\User;
-use Laravel\Fortify\Features;
 
-test('login screen can be rendered', function () {
-    $response = $this->get(route('login'));
-
-    $response->assertStatus(200);
+test('login page can be rendered', function () {
+    $response = $this->get(route('public.login'));
+    $response->assertStatus(200)
+        ->assertViewIs('pages.auth.login');
 });
 
-test('users can authenticate using the login screen', function () {
+test('users can authenticate using the login page', function () {
     $user = User::factory()->withoutTwoFactor()->create();
 
-    $response = $this->post(route('login.store'), [
+    $response = $this->post(route('public.login'), [
         'email' => $user->email,
         'password' => 'password',
     ]);
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect(route('dashboard', absolute: false));
+        ->assertRedirect(route('public.home', absolute: false));
 
     $this->assertAuthenticated();
 });
 
-test('users can not authenticate with invalid password', function () {
+test('users can not authenticate with invalid credentials', function ($badData, $expectedErrorField) {
     $user = User::factory()->create();
 
-    $response = $this->post(route('login.store'), [
-        'email' => $user->email,
-        'password' => 'wrong-password',
-    ]);
-
-    $response->assertSessionHasErrorsIn('email');
-
-    $this->assertGuest();
-});
-
-test('users with two factor enabled are redirected to two factor challenge', function () {
-    if (! Features::canManageTwoFactorAuthentication()) {
-        $this->markTestSkipped('Two-factor authentication is not enabled.');
-    }
-
-    Features::twoFactorAuthentication([
-        'confirm' => true,
-        'confirmPassword' => true,
-    ]);
-
-    $user = User::factory()->create();
-
-    $response = $this->post(route('login.store'), [
+    $data = array_merge([
         'email' => $user->email,
         'password' => 'password',
-    ]);
+    ], $badData);
 
-    $response->assertRedirect(route('two-factor.login'));
+    $response = $this->post(route('public.login.handle'), $data);
+
+    $response->assertSessionHasErrors($expectedErrorField);
+
     $this->assertGuest();
-});
+})->with([
+    'empty email' => [[ 'email' => '' ], 'email'],
+    'invalid email' => [[ 'email' => 'invalid' ], 'email'],
+    'empty password' => [[ 'password' => '' ], 'password'],
+    'false email' => [[ 'email' => 'test@test.com' ], 'auth'],
+    'invalid password' => [[ 'password' => 'invalid' ], 'auth'],
+]);
 
 test('users can logout', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->post(route('logout'));
+    $response = $this->actingAs($user)->delete(route('public.logout'));
 
-    $response->assertRedirect(route('home'));
+    $response->assertRedirect(route('public.login'));
 
     $this->assertGuest();
 });

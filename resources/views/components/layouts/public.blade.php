@@ -22,7 +22,7 @@
     @include('partials.public.header')
 
     {{-- Main Content Slot --}}
-    <main>
+    <main class="mt-20">
         {{ $slot }}
     </main>
 

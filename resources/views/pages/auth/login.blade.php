@@ -1,14 +1,32 @@
 <x-layouts.public :title="$title">
     <section class="px-5 md:px-10 xl:px-36 py-12 mb-12 mt-18.75">
-        <form action="" method="post" class="mx-auto flex flex-col gap-8 items-center md:max-w-md border-2 border-black p-6">
-            <h1 class="text-3xl font-black mb-5 w-full">Welcome Back</h1>
+        <form action="{{ route('public.login.handle') }}" method="post" class="mx-auto flex flex-col gap-8 items-center md:max-w-md border-2 border-black p-6">
+            @csrf
+            <h1 class="text-3xl font-black w-full">Welcome Back</h1>
+            @error('auth')
+            <div class="w-full bg-red-50 p-4">
+                <p class="form-error">
+                    <span class="font-bold">Authentication Error.</span>{{ $message }}
+                </p>
+            </div>
+            @enderror
             <div class="w-full">
                 <label for="name" class="font-semibold">Email Address</label>
-                <input id="name" type="text" placeholder="email@example.com" class="focus:outline-none p-4 border-2 border-black w-full mt-2">
+                <input name="email" id="name" type="email" placeholder="email@example.com" class="focus:outline-none p-4 border-2 border-black w-full mt-2">
+                @error('email')
+                <p class="form-error">
+                    {{ $message }}
+                </p>
+                @enderror
             </div>
             <div class="w-full">
                 <label for="password" class="font-semibold">Password</label>
-                <input id="password" type="text" placeholder="Enter your password" class="focus:outline-none p-4 border-2 border-black w-full mt-2">
+                <input name="password" id="password" type="password" placeholder="Enter your password" class="focus:outline-none p-4 border-2 border-black w-full mt-2">
+                @error('password')
+                <p class="form-error">
+                    {{ $message }}
+                </p>
+                @enderror
             </div>
             <div class="w-full">
                 <button type="submit" class="btn-primary py-4 w-full">Login</button>

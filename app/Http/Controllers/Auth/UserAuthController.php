@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -37,8 +39,26 @@ class UserAuthController extends Controller
             ->with('success', 'You have been registered. Please login.');
     }
 
-    public function handleLogin()
+    public function handleLogin(UserLoginRequest $request): RedirectResponse
     {
+        $validated = $request->validated();
 
+        $result = Auth::attempt([
+            'email' => $validated['email'],
+            'password' => $validated['password']
+        ]);
+
+        if (!$result) {
+            return redirect(route('public.login'))
+                ->withErrors(['auth' => 'Credentials doesn\'t match our records.']);
+        }
+
+        return redirect(route('public.home'));
+    }
+
+    public function handleLogout(): RedirectResponse
+    {
+        Auth::logout();
+        return redirect(route('public.login'));
     }
 }

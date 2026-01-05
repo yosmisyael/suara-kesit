@@ -16,4 +16,6 @@ Route::controller(UserAuthController::class)->group(function () {
     Route::get('/signup', 'register')->name('public.signup');
     Route::post('/signup', 'handleRegister')->name('public.signup.handle');
     Route::get('/login', 'login')->name('public.login');
+    Route::post('/login', 'handleLogin')->name('public.login.handle');
+    Route::delete('/logout', 'handleLogout')->name('public.logout');
 });
