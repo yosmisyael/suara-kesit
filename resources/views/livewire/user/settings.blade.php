@@ -1,26 +1,49 @@
 <section class="grid grid-cols-1 md:grid-cols-2 gap-20">
-    <form action="">
+    <form wire:submit="save">
         <h1 class="text-2xl font-semibold ">Personal Information</h1>
+
         {{-- name field --}}
         <div class="mt-6 text-lg">
             <label for="name" class="font-semibold">Full Name</label>
-            <input type="text" name="name" id="name" class="border-b-2 focus:outline-none p-4 block w-full">
+            <input type="text" wire:model.blur="form.name" id="name" class="border-b-2 focus:outline-none p-4 block w-full">
+            @error('form.name')
+                <p class="form-error">{{ $message }}</p>
+            @enderror
         </div>
+
         {{-- email field --}}
         <div class="mt-6 text-lg">
             <label for="email" class="font-semibold">Email</label>
-            <input type="email" name="email" id="email" placeholder="example@example.com" class="border-b-2 focus:outline-none p-4 block w-full">
+            <input type="email" wire:model.blur="form.email" id="email" placeholder="example@example.com" class="border-b-2 focus:outline-none p-4 block w-full">
+            @error('form.email')
+            <p class="form-error">{{ $message }}</p>
+            @enderror
         </div>
+
         {{-- password field --}}
         <div class="mt-6 text-lg">
-            <label for="password" class="font-semibold">Passowrd</label>
-            <input type="password" namel e="password" id="password" class="border-b-2 focus:outline-none p-4 block w-full">
+            <label for="password" class="font-semibold">Password</label>
+            <input type="password" wire:model.blur="form.password" id="password" placeholder="Create a strong password" class="border-b-2 focus:outline-none p-4 block w-full">
+            @error('form.password')
+            <p class="form-error">{{ $message }}</p>
+            @enderror
         </div>
+
         {{-- country field --}}
         <div class="mt-6 text-lg">
             <label for="country" class="font-semibold">Country</label>
-            <input type="text" name="country" id="country" class="border-b-2 focus:outline-none p-4 block w-full">
+            <input type="text" wire:model.blur="country" id="country" value="Indonesia" class="border-b-2 focus:outline-none p-4 block w-full">
+            @error('form.country')
+            <p class="form-error">{{ $message }}</p>
+            @enderror
         </div>
+
+        {{-- submit button --}}
+        <button type="submit" class="btn-primary mt-6">
+            <span wire:loading.remove wire:target="save">Save Changes</span>
+            <span wire:loading wire:target="save">Saving...</span>
+        </button>
+
         {{-- account deletion --}}
         <div class="mt-6 text-lg">
             <h5 class="font-semibold">Account Deletion</h5>
@@ -30,6 +53,8 @@
             <a href="" class="btn-primary bg-red-500 border-red-500 block mt-4 w-fit">Delete my accont</a>
         </div>
     </form>
+
+    {{-- Preferences --}}
     <form action="">
         <h1 class="text-2xl font-semibold ">Personalization</h1>
         {{-- subscription field --}}

@@ -9,7 +9,7 @@
         {{-- profile --}}
         <div class="inline-flex items-center gap-4">
             <img src="https://placehold.co/1080x1080" alt="" class="h-10 w-10 rounded-full">
-            <h3 class="font-medium">User Name</h3>
+            <h3 class="font-medium">{{ $user->name }}</h3>
         </div>
     </div>
     <div class="border-b border-b-gray-400 px-5 xl:px-36 md:px-10">
@@ -28,6 +28,17 @@
                     Settings
                 </a>
             </li>
+            <li class="ml-auto">
+                <form action="{{ route('user.logout') }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="inline-flex gap-3 items-center py-5 px-5 text-red-500 cursor-pointer">
+                        <span class="material-symbols-outlined">logout</span>
+                        Logout
+                    </button>
+                </form>
+            </li>
+
         </ul>
     </div>
 </nav>

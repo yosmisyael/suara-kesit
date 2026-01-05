@@ -8,6 +8,7 @@ use App\Http\Requests\UserRegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class UserAuthController extends Controller
@@ -53,12 +54,14 @@ class UserAuthController extends Controller
                 ->withErrors(['auth' => 'Credentials doesn\'t match our records.']);
         }
 
-        return redirect(route('public.home'));
+        return redirect(route('user.dashboard'));
     }
 
     public function handleLogout(): RedirectResponse
     {
         Auth::logout();
+        Session::invalidate();
+        Session::regenerateToken();
         return redirect(route('public.login'));
     }
 }
