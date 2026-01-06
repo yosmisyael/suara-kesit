@@ -8,7 +8,7 @@
 
         {{-- profile --}}
         <div class="inline-flex items-center gap-4">
-            <img src="https://placehold.co/1080x1080" alt="" class="h-10 w-10 rounded-full">
+            <img src="https://ui-avatars.com/api/?name={{ $user->name }}" alt="" class="h-10 w-10 rounded-full">
             <h3 class="font-medium">{{ $user->name }}</h3>
         </div>
     </div>

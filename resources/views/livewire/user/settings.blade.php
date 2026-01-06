@@ -32,7 +32,16 @@
         {{-- country field --}}
         <div class="mt-6 text-lg">
             <label for="country" class="font-semibold">Country</label>
-            <input type="text" wire:model.blur="country" id="country" value="Indonesia" class="border-b-2 focus:outline-none p-4 block w-full">
+            <select id="country"
+                    wire:model.blur="form.country"
+                    class="block w-full p-4 border-b-2 bg-transparent text-gray-900
+               focus:border-black focus:ring-0 focus:outline-none"
+            >
+                <option value="" disabled>Select your country</option>
+                @foreach($countries as $code => $name)
+                    <option value="{{ $code }}">{{ $name }}</option>
+                @endforeach
+            </select>
             @error('form.country')
             <p class="form-error">{{ $message }}</p>
             @enderror
@@ -64,12 +73,12 @@
                 Subscribe to our newsletter to get the latest industry news, product updates, and insights delivered straight to your inbox.
             </p>
             <label for="subscription" class="relative inline-flex items-center cursor-pointer mt-6">
-                <input type="checkbox" name="subscription" id="subscription" class="sr-only peer">
+                <input type="checkbox" name="subscription" id="subscription" class="sr-only peer" wire:click="toggleSubscription" @checked($subscription)>
                 <div class="w-14 h-8 bg-white border-2 border-black rounded-full peer peer-focus:ring-0 peer-checked:bg-black transition-colors duration-300 ease-in-out"></div>
 
-                <div class="absolute left-1 top-1 w-6 h-6 bg-black rounded-full transition-all duration-300 ease-in-out peer-checked:translate-x-6 peer-checked:bg-white"></div>
+                <div class="absolute left-1.25 top-1.2 w-5.5 h-5.5 bg-black rounded-full transition-all duration-300 ease-in-out peer-checked:translate-x-6 peer-checked:bg-white"></div>
 
-                <span class="ml-3 text-sm font-medium text-black">Send me updates</span>
+                <span class="ml-3 font-medium text-black">{{ $subscription ? 'Subscribed' : 'Send me updates' }}</span>
             </label>
         </div>
     </form>

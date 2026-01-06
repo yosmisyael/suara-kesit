@@ -12,7 +12,13 @@
             @enderror
             <div class="w-full">
                 <label for="name" class="font-semibold">Email Address</label>
-                <input name="email" id="name" type="email" placeholder="email@example.com" class="focus:outline-none p-4 border-2 border-black w-full mt-2">
+                <input name="email"
+                       value="{{ old('email', '') }}"
+                       id="name"
+                       type="email"
+                       placeholder="email@example.com"
+                       class="focus:outline-none p-4 border-2 border-black w-full mt-2"
+                >
                 @error('email')
                 <p class="form-error">
                     {{ $message }}

@@ -23,7 +23,7 @@
 <main class="px-5 md:px-10 xl:px-36 py-12 mb-12">
     {{ $slot }}
 </main>
-
+<x-toast />
 {{ $scripts ?? '' }}
 </body>
 </html>

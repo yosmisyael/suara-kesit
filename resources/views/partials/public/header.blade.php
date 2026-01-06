@@ -26,7 +26,7 @@
         </ul>
         {{-- cta --}}
         <div class="flex gap-3 items-center">
-            <a href="{{ route('public.news.category', [ 'slug' => 'politics' ]) }}" class="btn-secondary">Search</a>
+            <a href="{{ route('public.news.search') }}" class="btn-secondary">Search</a>
             <a href="{{ route('public.signup') }}" class="btn-primary">Join Us</a>
         </div>
     </div>

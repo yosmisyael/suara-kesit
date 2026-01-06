@@ -24,6 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'country',
+        'newsletter_subscribed_at',
     ];
 
     /**

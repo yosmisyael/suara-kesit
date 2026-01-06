@@ -51,7 +51,8 @@ class UserAuthController extends Controller
 
         if (!$result) {
             return redirect(route('public.login'))
-                ->withErrors(['auth' => 'Credentials doesn\'t match our records.']);
+                ->withErrors(['auth' => 'Credentials doesn\'t match our records.'])
+                ->withInput();
         }
 
         return redirect(route('user.dashboard'));
