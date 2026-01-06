@@ -18,7 +18,7 @@ test('users can authenticate using the login page', function () {
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect(route('public.home', absolute: false));
+        ->assertRedirect(route('user.dashboard', absolute: false));
 
     $this->assertAuthenticated();
 });
@@ -47,7 +47,7 @@ test('users can not authenticate with invalid credentials', function ($badData, 
 test('users can logout', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->delete(route('public.logout'));
+    $response = $this->actingAs($user)->delete(route('user.logout'));
 
     $response->assertRedirect(route('public.login'));
 
