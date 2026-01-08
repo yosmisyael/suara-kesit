@@ -13,21 +13,22 @@
         </div>
     </div>
     <div class="border-b border-b-gray-400 px-5 xl:px-36 md:px-10">
-        <ul class="flex gap-6 items-center text-lg font-medium text-gray-600">
-            <li>
-                <a href="{{ route('user.dashboard') }}"
-                   class="block py-5 px-5 {{ request()->getUri() === route('user.dashboard') ? 'border-b-[3px] text-black' : '' }}"
-                >
+        <ul class="flex gap-6 items-center text-lg font-semibold text-gray-600">
+            @role('member')
+                <x-user-nav-link route="user.dashboard">
                     Profile
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('user.settings') }}"
-                   class="block py-5 px-5 {{ request()->getUri() === route('user.settings') ? 'border-b-[3px] text-black' : '' }}"
-                >
+                </x-user-nav-link>
+                @role('writer')
+                    <x-user-nav-link route="user.post">
+                        Posts
+                    </x-user-nav-link>
+                @endrole
+                <x-user-nav-link route="user.settings">
                     Settings
-                </a>
-            </li>
+                </x-user-nav-link>
+            @endrole
+
+
             <li class="ml-auto">
                 <form action="{{ route('user.logout') }}" method="post">
                     @csrf

@@ -14,7 +14,7 @@
         // Clear existing timeout if multiple toasts fire quickly
         if (timeout) clearTimeout(timeout);
 
-        timeout = setTimeout(() => { show = false }, 3000);
+        timeout = setTimeout(() => { show = false }, 4000);
     "
 
     {{-- Handle simple Session Flashing --}}
@@ -45,7 +45,7 @@
         </svg>
     </div>
 
-    {{-- The Message --}}
+    {{-- Message --}}
     <div class="ml-3 text-base font-semibold" x-text="message"></div>
 
     {{-- Close Button --}}

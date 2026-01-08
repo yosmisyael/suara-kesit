@@ -1,4 +1,4 @@
-@props(['title' => 'News Portal'])
+@props(['title' => 'News Portal', 'user'])
 
 <!DOCTYPE html>
 <html lang="id">
@@ -16,14 +16,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
 <body>
-{{-- Header (Public Partial) --}}
-@include('partials.user.header')
+    {{-- Header (Public Partial) --}}
+    @include('partials.user.header')
 
-{{-- Main Content Slot --}}
-<main class="px-5 md:px-10 xl:px-36 py-12 mb-12">
-    {{ $slot }}
-</main>
-<x-toast />
-{{ $scripts ?? '' }}
+    {{-- Main Content Slot --}}
+    <main class="w-full min-h-screen">
+        {{ $slot }}
+    </main>
+    <x-toast />
+    <x-rich-text-laravel::styles theme="richtextlaravel" />
+    @stack('scripts')
 </body>
 </html>

@@ -1,4 +1,4 @@
-<section class="grid grid-cols-1 md:grid-cols-2 gap-20">
+<section class="px-5 md:px-10 xl:px-36 py-12 grid grid-cols-1 md:grid-cols-2 gap-20">
     <form wire:submit="save">
         <h1 class="text-2xl font-semibold ">Personal Information</h1>
 
