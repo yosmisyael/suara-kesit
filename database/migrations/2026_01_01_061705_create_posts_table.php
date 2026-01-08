@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->text('content');
+            $table->text('excerpt');
             $table->string('status')->default('draft')->index();
             $table->foreignId('author_id')->constrained('users');
             $table->foreignId('category_id')->constrained();
