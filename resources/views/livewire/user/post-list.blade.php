@@ -1,29 +1,48 @@
+@php use App\PostStatus; @endphp
 <div>
     {{-- Searchbar --}}
-    <form action="" method="get" class="w-full flex">
+    <form class="w-full flex">
         <input
+            wire:model.live.debounce.300ms="searchKeyword"
             type="text"
-            name="keyword"
             class="border-2 border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 p-3 w-full"
             placeholder="Search from your draft"
         >
         <button class="btn-primary px-3 py-0">
-            <span class="material-symbols-outlined mt-2">search</span>
+            <span wire:loading class="material-symbols-outlined mt-2">refresh</span>
+            <span wire:loading.remove class="material-symbols-outlined mt-2">search</span>
         </button>
     </form>
 
     {{-- Post List --}}
     <section class="flex flex-col gap-8 mt-12">
-        {{-- Card Item --}}
-        <a href="" class="px-8 py-4 hover:shadow-lg border-l-2 block">
-            <p class="badge bg-green-100 text-green-700">Published</p>
-            <h1 class="text-2xl font-bold mt-2">Title of the Post</h1>
-            <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </a>
-        <a href="" class="px-8 py-4 hover:shadow-lg border-l-2 block">
-            <p class="badge bg-gray-100 text-gray-700">Draft</p>
-            <h1 class="text-2xl font-bold mt-2">Title of the Post</h1>
-            <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        </a>
+        @forelse($posts as $post)
+            {{-- Card Item --}}
+            <a href="" class="px-8 py-4 hover:shadow-lg border-l-2 block">
+                <div class="flex gap-2 items-center">
+                    <span
+                        @class([
+                            'badge',
+                            'success' => $post->status === PostStatus::PUBLISHED,
+                            'warning' => $post->status === PostStatus::PENDING,
+                            'default' => $post->status === PostStatus::DRAFT
+                                || $post->status === PostStatus::REJECTED,
+                            'danger' => $post->status === PostStatus::REVOKED,
+                        ])
+                    >
+                        {{ ucfirst($post->status->value) }}
+                    </span>
+                    <span class="text-sm text-gray-600">
+                        Created on {{ $post->created_at->format('M d, Y') }}
+                    </span>
+                </div>
+                <h1 class="text-2xl font-bold mt-2">{{ $post->title }}</h1>
+                <p class="mt-4 text-gray-600 leading-relaxed">{{ $post->excerpt }}</p>
+            </a>
+        @empty
+            <div class="text-center py-12">
+                <p class="text-gray-600">No posts found matching "{{ $searchKeyword }}".</p>
+            </div>
+        @endforelse
     </section>
 </div>

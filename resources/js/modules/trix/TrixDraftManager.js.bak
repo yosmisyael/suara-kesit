@@ -17,6 +17,7 @@ export class TrixDraftManager {
         this.saveDebounceMs = options.saveDebounceMs || SETTINGS.SAVE_DEBOUNCE_MS;
         this.saveTimeout = null;
         this.isRestoring = false;
+        this.isSyncing = false;
 
         this.indicators = {
             draft: document.querySelector('#draft-indicator'),
@@ -28,7 +29,10 @@ export class TrixDraftManager {
             onSave: options.onSave || (() => {}),
             onRestore: options.onRestore || (() => {}),
             onClear: options.onClear || (() => {}),
+            onContentChange: options.onContentChange || null,
+            onTitleChange: options.onTitleChange || null,
         };
+
 
         this.init();
     }
@@ -57,19 +61,26 @@ export class TrixDraftManager {
         if (this.hasDraft()) {
             show(this.indicators.autoSave);
         }
+
+        this.syncToLivewire();
     }
 
     setupEventListeners() {
         this.trixElement.addEventListener('trix-change', () => {
             if (!this.isRestoring) {
                 this.debouncedSave();
+                this.syncToLivewire();
             }
         });
 
         if (this.titleInput) {
             this.titleInput.addEventListener('input', () => {
-                if (!this.isRestoring) {
+                if (!this.isRestoring && !this.isSyncing) {
                     this.debouncedSave();
+
+                    if (this.callbacks.onTitleChange) {
+                        this.callbacks.onTitleChange(this.titleInput.value);
+                    }
                 }
             });
         }
@@ -77,6 +88,12 @@ export class TrixDraftManager {
         if (this.form) {
             this.form.addEventListener('submit', () => this.clearDraft());
         }
+
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('post-saved', () => {
+                this.clearDraft();
+            });
+        });
 
         this.setupDiscardButton();
     }
@@ -209,5 +226,20 @@ export class TrixDraftManager {
         }
 
         setHTML(this.indicators.saveStatus, icons[status] + message);
+    }
+
+    syncToLivewire() {
+        if (!this.trixElement || !this.trixElement.editor) return;
+
+        const htmlContent = this.trixElement.value;
+
+        const hiddenInput = document.querySelector(`#${this.inputId}_input`);
+        if (hiddenInput) {
+            hiddenInput.value = htmlContent;
+        }
+
+        if (this.callbacks.onContentChange) {
+            this.callbacks.onContentChange(htmlContent);
+        }
     }
 }
