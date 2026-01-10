@@ -1,5 +1,5 @@
 /**
- * Dispatch a notification event that Alpine.js listens for.
+ * Dispatch a notification event on window that listened by Alpine on toast component.
  * @param {string} message
  * @param {string} type - 'success' | 'error'
  */

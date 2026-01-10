@@ -1,11 +1,11 @@
+import {showToast} from "../../utils/notify.js";
+
 export class TrixAttachmentHandler {
     constructor(config) {
         this.uploadUrl = config.uploadUrl;
         this.deleteUrl = config.deleteUrl;
         this.csrfToken = config.csrfToken;
         this.batchId = config.batchId;
-        this.onSuccess = config.onSuccess || (() => { console.log('image uploaded successfully') });
-        this.onError = config.onError || (() => { console.error('failed to upload attachment.') });
     }
 
     upload(attachment) {
@@ -33,24 +33,24 @@ export class TrixAttachmentHandler {
                         href: res.url,
                         attachmentId: res.attachmentId,
                     });
-                    this.onSuccess('Image uploaded successfully.');
+                    showToast('Attachment uploaded successfully.')
                 } else if (xhr.status === 422) {
                     attachment.remove();
                     const errMessage = res.errors?.image?.[0] || res.message || 'Invalid file type';
-                    this.onError(errMessage);
+                    showToast(errMessage, 'error');
                 } else {
                     attachment.remove();
-                    this.onError('We are currently experiencing an unexpected issue. Please try again later.');
+                    showToast('We are currently experiencing an unexpected issue. Please try again later.', 'error');
                 }
             } catch (e) {
                 attachment.remove();
-                this.onError('Failed to process server response.');
+                showToast('Failed to process server response.', 'error');
             }
         };
 
         xhr.onerror = () => {
             attachment.remove();
-            this.onError('Network error. Check your connection.');
+            showToast('Network error. Check your connection.', 'error');
         };
 
         xhr.send(formData);
@@ -68,7 +68,7 @@ export class TrixAttachmentHandler {
             try {
                 const res = JSON.parse(xhr.responseText);
                 if (xhr.status === 200) {
-                    this.onSuccess(res.message);
+                    showToast(res.message);
                 }
             } catch (e) {
                 console.error('Failed to process delete response:', e);

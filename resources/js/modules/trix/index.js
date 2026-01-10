@@ -1,19 +1,27 @@
-import { TrixDraftManager } from "./TrixDraftManager.js";
-import { TrixAttachmentHandler} from "./TrixAttachmentHandler.js";
-import { showToast } from "../../utils/notify.js";
+import { TrixManager } from "./TrixManager.js";
+import { TrixAttachmentHandler } from "./TrixAttachmentHandler.js";
+import {showToast} from "../../utils/notify.js";
+export { TrixManager } from './TrixManager.js';
+export { TrixAttachmentHandler } from './TrixAttachmentHandler.js';
 
 export function initializePostEditor(config) {
-    // Initialize Draft Manager
-    if (!config.trixElementId) {
-        console.error('Trix editor element not found.');
+    // Get Livewire component reference
+    if (!config.livewireComponent || !config.syncingMethodName) {
+        showToast('Post text editor didn\'t initialized properly. Please contact to developer.', 'error');
         return;
     }
-    const draftManager = new TrixDraftManager(config.trixElementId, {
+    const livewireComponent = config.livewireComponent;
+
+    // Initialize Draft Manager with Livewire callbacks
+    const draftManager = new TrixManager(config.trixElementId || 'canvas', {
         titleInput: document.querySelector('#post-title'),
         saveDebounceMs: 1000,
-        onSave: (data) => {},
-        onRestore: (data) => {},
-        onClear: () => {},
+        syncDebounceMs: 1000,
+
+        // Sync content changes to Livewire
+        onContentChange: (content) => {
+            livewireComponent.call(config.syncingMethodName, null, content);
+        },
     });
 
     // Initialize Attachment Handler
@@ -22,8 +30,6 @@ export function initializePostEditor(config) {
         deleteUrl: config.deleteUrl,
         csrfToken: config.csrfToken,
         batchId: config.batchId,
-        onSuccess: (message, data) => showToast(message, 'success'),
-        onError: (message) => showToast(message, 'error'),
     });
 
     // Setup Trix attachment events

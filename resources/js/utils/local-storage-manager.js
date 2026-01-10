@@ -30,27 +30,6 @@ export class StorageManager {
         }
     }
 
-    static getJSON(key) {
-        const value = this.get(key);
-        if (!value) return null;
-
-        try {
-            return JSON.parse(value);
-        } catch (e) {
-            console.error('Error parsing JSON from localStorage:', e);
-            return null;
-        }
-    }
-
-    static setJSON(key, value) {
-        try {
-            return this.set(key, JSON.stringify(value));
-        } catch (e) {
-            console.error('Error stringifying JSON for localStorage:', e);
-            return false;
-        }
-    }
-
     static getSize(value) {
         return new Blob([value]).size;
     }
