@@ -1,8 +1,8 @@
 export const STORAGE_KEYS = {
-    DRAFT_PREFIX: 'draft_',
-    ATTACHMENTS_SUFFIX: '_attachments',
-    TITLE_SUFFIX: '_title',
-    TIMESTAMP_SUFFIX: '_timestamp',
+    DRAFT_PREFIX: 'draft',
+    CATEGORY_SUFFIX: 'category',
+    TITLE_SUFFIX: 'title',
+    TIMESTAMP_SUFFIX: 'timestamp',
 };
 
 export const SETTINGS = {
