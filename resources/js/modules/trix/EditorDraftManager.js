@@ -71,7 +71,6 @@ export class EditorDraftManager {
         // set html elements
         this.trixEditor = trix;
         this.titleInput = title;
-        this.contentInput = content;
         this.categoryInput = category;
 
         return errors.length === 0;
