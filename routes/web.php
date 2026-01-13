@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Public\AboutController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\PostController;
 use App\Livewire\UserDashboard;
+use App\Livewire\UserPostCreate;
+use App\Livewire\UserPostList;
+use App\Livewire\UserPostOverview;
 use App\Livewire\UserSettings;
 use Illuminate\Support\Facades\Route;
 
@@ -26,10 +30,26 @@ Route::controller(UserAuthController::class)->group(function () {
         Route::get('/login', 'login')->name('public.login');
         Route::post('/login', 'handleLogin')->name('public.login.handle');
     });
-    Route::delete('/logout', 'handleLogout')->middleware('member')->name('user.logout');
+    Route::delete('/logout', 'handleLogout')->middleware('authenticated')->name('user.logout');
 });
 
-Route::middleware('member')->group(function () {
-    Route::get('/user/dashboard', UserDashboard::class)->name('user.dashboard');
-    Route::get('/user/settings', UserSettings::class)->name('user.settings');
+Route::middleware('authenticated')->group(function () {
+
+    Route::prefix('/user')->group(function () {
+        Route::get('/dashboard', UserDashboard::class)->name('user.dashboard');
+        Route::get('/settings', UserSettings::class)->name('user.settings');
+
+        // Post Resources
+        Route::prefix('/posts')->group(function () {
+            Route::get('/', UserPostOverview::class)->name('user.post');
+            Route::get('/create', UserPostCreate::class)->name('user.post.create');
+            Route::get('/list', UserPostList::class)->name('user.post.list');
+        });
+    });
+
+    // Attachment Resources
+    Route::prefix('/attachments')->controller(AttachmentController::class)->group(function () {
+        Route::post('/', 'store')->name('attachment.store');
+        Route::delete('/{attachmentId}', 'destroy')->name('attachment.destroy');
+    });
 });
