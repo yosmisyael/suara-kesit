@@ -16,14 +16,6 @@
 
         timeout = setTimeout(() => { show = false }, 4000);
     "
-
-    {{-- Handle simple Session Flashing --}}
-    x-init="
-        @if(session()->has('success'))
-            $dispatch('notify', { message: '{{ session('success') }}', type: 'success' });
-        @endif
-    "
-
     x-show="show"
     x-transition.duration.300ms
     class="fixed bottom-5 right-5 z-50 flex items-center w-full max-w-md p-4 space-x-3 text-gray-500 bg-white rounded-lg shadow-lg border border-gray-200"
