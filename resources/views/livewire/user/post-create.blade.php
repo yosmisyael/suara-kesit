@@ -3,20 +3,82 @@
         {{-- Toolbar --}}
         <div class="sticky top-0 z-10 pt-4 bg-white">
             <div class="flex items-center justify-between">
-                <div class="flex gap-4 items-center">
-                    {{-- Shows when draft is restored --}}
-                    {{--                    <span id="draft-indicator" class="hidden badge items-center bg-gray-100 text-sm">--}}
-                    {{--                        <button type="button" id="discard-draft"></button>--}}
-                    {{--                    </span>--}}
+                {{-- Category Dropdown --}}
+                <div
+                    x-data="{
+                        open: false,
+                        selectedId: '',
+                        selectedName: 'Choose post category',
+                        categories: {{ $categories->toJson() }},
 
-                    {{-- Shows save status --}}
-                    {{--                    <span id="auto-save-indicator" class="hidden text-sm text-gray-500">--}}
-                    {{--                        <span id="save-status" class="inline-flex items-center gap-1">--}}
-                    {{--                            <span class="material-symbols-outlined text-[18px]!">check</span>--}}
-                    {{--                            Temporary Saved--}}
-                    {{--                        </span>--}}
-                    {{--                    </span>--}}
+                        select(category) {
+                            this.selectedId = category.id;
+                            this.selectedName = category.name;
+                            this.open = false;
+                        },
+
+                        updateUIFromId(id) {
+                            const category = this.categories.find(category => category.id == id);
+                            if (category) {
+                                this.selectedId = category.id;
+                                this.selectedName = category.name;
+                                $wire.categoryId = this.selectedId;
+                            }
+                        }
+                    }"
+                    x-init="
+                    $watch('selectedId', value => {
+                        updateUIFromId(value);
+                        if (value && window.App.draftManager) {
+                            window.App.draftManager.onCategoryChange(value);
+                        }
+                    });
+                    "
+                    @draft-category-restored.window="updateUIFromId($event.detail.categoryId)"
+                    class="relative w-fit"
+                    @click.outside="open = false"
+                >
+                    <input type="hidden" id="category" x-model="selectedId">
+
+                    <button
+                        type="button"
+                        @click="open = !open"
+                        class="w-full p-2 text-left mr-3 flex justify-between items-center  cursor-pointer focus:outline-none"
+                    >
+                        <span x-text="selectedName"></span>
+
+                        {{-- dropdown icon --}}
+                        <svg class="w-4 h-4 transition-transform" :class="open ? 'rotate-180' : ''" fill="none"
+                             stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <div
+                        x-show="open"
+                        x-transition
+                        class="absolute z-50 w-full mt-1 bg-white shadow-lg max-h-60 overflow-auto"
+                        style="display: none;"
+                    >
+                        <ul>
+                            <template x-for="category in categories" :key="category.id">
+                                <li
+                                    @click="select(category)"
+                                    class="p-2 cursor-pointer transition-colors"
+                                    :class="{
+                                            'bg-black text-white': selectedId === category.id,
+                                            'hover:bg-gray-200': selectedId !== category.id
+                                        }"
+                                >
+                                    <span x-text="category.name"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
                 </div>
+                @error('categoryId') <p class="form-error">{{ $message }}</p> @enderror
+
+                {{-- Save Button --}}
                 <button
                     type="submit"
                     class="btn-primary ml-auto"
@@ -57,7 +119,7 @@
                 x-ref="input"
                 x-model="title"
                 @input="resize(); $wire.isDirty = true"
-                id="post-title"
+                id="title"
                 rows="1"
                 maxlength="255"
                 class="w-full text-4xl font-bold bg-transparent border-none focus:ring-0 focus:outline-none resize-none overflow-hidden placeholder-gray-300 py-2"
@@ -83,14 +145,12 @@
         {{-- Content --}}
         <div wire:ignore>
             <x-trix-input
-                id="canvas"
+                id="content"
                 name="content"
                 :value="$content"
             />
         </div>
-        @error('content')
-            <p class="form-error">{{ $message }}</p>
-        @enderror
+        @error('content') <p class="form-error">{{ $message }}</p> @enderror
     </form>
 </div>
 
@@ -101,17 +161,19 @@
 
             if (typeof window.App.initEditor === 'function') {
                 window.App.initEditor({
-                    trixElementId: "canvas",
                     uploadUrl: "{{ route('attachment.store') }}",
                     deleteUrl: "{{ route('attachment.destroy', ':id') }}",
                     csrfToken: "{{ csrf_token() }}",
-                    batchId: "{{ $batchId }}",
+                    draftId: "{{ $draftId }}",
                     livewireComponent: livewire,
-                    syncingMethodName: 'onStateChanges'
+                    hydrationMethod: 'onStateChanges',
+                    titleInputId: 'title',
+                    categoryInputId: 'category',
+                    contentInputId: 'content',
                 });
             } else {
                 window.App.utils.showToast(
-                    'Auto-restore feature failed. Please enable JavaScript.',
+                    'Failed to initialize editor, please try reloading the page.',
                     'error'
                 );
             }
