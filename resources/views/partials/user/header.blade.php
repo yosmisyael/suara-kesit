@@ -28,7 +28,6 @@
                 </x-user-nav-link>
             @endrole
 
-
             <li class="ml-auto">
                 <form action="{{ route('user.logout') }}" method="post">
                     @csrf
