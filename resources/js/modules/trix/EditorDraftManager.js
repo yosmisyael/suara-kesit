@@ -94,7 +94,9 @@ export class EditorDraftManager {
             }
         });
 
-        // TODO: listen to navigate action then remove draft from local storage
+        window.addEventListener('post-saved', () => {
+            StorageManager.clear(this.storageKey);
+        });
     }
 
     debouncedSave() {
