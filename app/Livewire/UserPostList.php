@@ -27,7 +27,7 @@ class UserPostList extends Component
             ->search($this->searchKeyword)
             ->latest()
             ->select(['id', 'title', 'excerpt', 'status', 'created_at', 'updated_at'])
-            ->paginate(10);
+            ->paginate(4);
 
         return view('livewire.user.post-list', [
             'posts' => $posts,
