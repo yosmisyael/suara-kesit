@@ -16,7 +16,7 @@
         </span>
 
         {{-- Filters --}}
-        <span class="flex flex-1 relative select-none cursor-pointer" x-data="{ isDropdownOpen: false }" @click.outsite="isDropdownOpen = false">
+        <span class="flex flex-1 relative select-none cursor-pointer" x-data="{ isDropdownOpen: false }" @click.outside="isDropdownOpen = false">
             <input type="hidden" wire:model="filter">
             <p class="flex items-center border-2 border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 p-3 w-full {{ $filter == 0 ? 'text-gray-500' : 'text-black' }}"
                @click="isDropdownOpen = !isDropdownOpen"
@@ -28,7 +28,16 @@
                 @endif
                 <span class="ml-auto material-symbols-outlined rotate-90">chevron_right</span>
             </p>
-            <ul x-show="isDropdownOpen" class="absolute top-full bg-white shadow-lg w-full">
+            <ul x-show="isDropdownOpen" x-transition class="absolute top-full bg-white shadow-lg w-full" style="display: none">
+                <li wire:click="$set('filter', 0)" @click="isDropdownOpen = false"
+                    @class([
+                        'px-4 py-2 rounded transition-colors cursor-pointer',
+                        'bg-black text-white' => $filter === 0,
+                        'hover:bg-gray-200' => $filter !== 0
+                    ])
+                >
+                        All categories
+                </li>
                 @foreach($categories as $category)
                     <li wire:click="$set('filter', {{ $category->id }})" @click="isDropdownOpen = false"
                         @class([
@@ -53,10 +62,9 @@
         @if($posts->count() > 0)
             @foreach($posts as $post)
                 {{-- Card Item --}}
-                <a href="" class="px-4 py-4 hover:shadow-md hover:border-black border border-gray-300 block">
+                <a href="{{ route('user.post.edit', ['postId' => $post->id]) }}" class="px-4 py-4 hover:shadow-md hover:border-black border border-gray-300 block" wire:navigate>
                     <div class="flex gap-2 items-center justify-between">
                         <span class="badge dark">{{ $post->category->name }}</span>
-
                         <span class="block">
                             <span
                                 @class([

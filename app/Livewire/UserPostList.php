@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\View\View;
+use Livewire\Attributes\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,8 +13,10 @@ class UserPostList extends Component
 {
     use WithPagination;
 
+    #[Session]
     public int $filter = 0;
 
+    #[Session]
     public string $searchKeyword = '';
 
     public function updateKeyword(): void
