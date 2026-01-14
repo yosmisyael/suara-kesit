@@ -1,7 +1,7 @@
 @props(['title' => 'Dashboard', 'user'])
 
 <x-layouts.user :title="$title" :user="$user">
-    <div class="wrapper flex h-screen">
+    <div class="wrapper flex h-fit">
         {{-- Post Menu Sidebar --}}
         <aside class="border-r border-gray-400 px-12 w-64 py-6">
             <x-user-post-sidebar />

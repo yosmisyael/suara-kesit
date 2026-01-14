@@ -1,6 +1,5 @@
 @if ($paginator->hasPages())
     <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
-
         {{-- Mobile View --}}
         <div class="flex justify-between flex-1 sm:hidden">
             @if ($paginator->onFirstPage())
@@ -43,13 +42,11 @@
             <div>
                 <span class="flex font-medium">
                     {{-- Previous Page Link --}}
-                    @if (!$paginator->onFirstPage())
-                        <button wire:click="previousPage"
-                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-black cursor-pointer"
-                        >
-                                <span class="material-symbols-outlined text-sm">chevron_left</span>
-                        </button>
-                    @endif
+                    <button wire:click="{{ !$paginator->onFirstPage() ? 'previousPage' : ''}}"
+                            class="inline-flex items-center px-4 py-2 text-sm font-medium focus:outline-0 {{ !$paginator->onFirstPage() ? 'text-black cursor-pointer' : 'text-gray-500 cursor-not-allowed' }}"
+                    >
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                    </button>
 
                     {{-- Pagination Elements --}}
                     @foreach ($elements as $element)
@@ -77,13 +74,11 @@
                     @endforeach
 
                     {{-- Next Page Link --}}
-                    @if ($paginator->hasMorePages())
-                        <button wire:click="nextPage" rel="next"
-                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-black cursor-pointer"
-                        >
+                    <button wire:click="{{ $paginator->hasMorePages() ? 'nextPage' : ''}}"
+                            class="inline-flex items-center px-4 py-2 text-sm font-medium focus:outline-0 {{ $paginator->hasMorePages() ? 'text-black cursor-pointer' : 'text-gray-500 cursor-not-allowed' }}"
+                    >
                             <span class="material-symbols-outlined text-sm">chevron_right</span>
-                        </button>
-                    @endif
+                    </button>
                 </span>
             </div>
         </div>
