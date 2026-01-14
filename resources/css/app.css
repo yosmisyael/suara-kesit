@@ -66,6 +66,10 @@
     .badge.default {
         @apply bg-gray-100 text-gray-700;
     }
+
+    .badge.dark {
+        @apply bg-black text-white;
+    }
 }
 
 @layer base {
