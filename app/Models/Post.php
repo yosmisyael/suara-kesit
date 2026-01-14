@@ -40,6 +40,13 @@ class Post extends Model
         return $query->where('author_id', $user->id);
     }
 
+    public function scopeWithCategory(Builder $query, int $categoryId): Builder
+    {
+        return $query->when($categoryId !== 0, function (Builder $query) use ($categoryId) {
+            return $query->where('category_id', $categoryId);
+        });
+    }
+
     public function scopeSearch(Builder $query, string $keyword): Builder
     {
         return $query->when($keyword, function (Builder $query) use ($keyword) {
