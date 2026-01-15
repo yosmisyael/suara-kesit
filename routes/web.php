@@ -8,6 +8,7 @@ use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\PostController;
 use App\Livewire\UserDashboard;
 use App\Livewire\UserPostCreate;
+use App\Livewire\UserPostEdit;
 use App\Livewire\UserPostList;
 use App\Livewire\UserPostOverview;
 use App\Livewire\UserSettings;
@@ -44,6 +45,7 @@ Route::middleware('authenticated')->group(function () {
             Route::get('/', UserPostOverview::class)->name('user.post');
             Route::get('/create', UserPostCreate::class)->name('user.post.create');
             Route::get('/list', UserPostList::class)->name('user.post.list');
+            Route::get('/{postId}', UserPostEdit::class)->name('user.post.edit');
         });
     });
 
