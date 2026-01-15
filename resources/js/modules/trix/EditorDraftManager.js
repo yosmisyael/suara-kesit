@@ -28,22 +28,22 @@ export class EditorDraftManager {
             contentInputId: options.contentInputId,
         }
 
-        this.init();
+        this.init(0, true);
 
         // expose draft manager to window
         window.App.draftManager = this;
     }
 
-    init(attempts = 0) {
+    init(attempts = 0, isEditMode = false) {
         if (this.validateAndGetElements()) {
-            this.restoreEditorFromDraft();
+            if (!isEditMode) this.restoreEditorFromDraft();
             this.setupEventListeners();
             return;
         }
 
         if (attempts <= 10) {
             setTimeout(() => {
-                this.init(attempts + 1);
+                this.init(attempts + 1, isEditMode);
             }, 100);
         } else {
             showToast('Post editor didn\'t initialized properly. Check your connection and refresh.');
@@ -78,7 +78,7 @@ export class EditorDraftManager {
 
     setupEventListeners() {
         // Manage content changes event
-        this.trixEditor.addEventListener('trix-change', () => {
+        this.trixEditor.addEventListener('trix-change', (e) => {
             if (!this.isRestoring && !this.isHydrating) {
                 // save to local storage
                 this.debouncedSave();

@@ -40,6 +40,7 @@ export function initializePostEditor(config) {
         contentInputId: config.contentInputId,
         saveDebounceMs: 1000,
         hydrateDebounceMs: 1000,
+        isEditMode: config.isEditMode ? config.isEditMode : false,
 
         // Sync content changes to Livewire
         onContentChange: (content) => {
