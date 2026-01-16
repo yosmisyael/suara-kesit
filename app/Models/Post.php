@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\PostStatus;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,7 +15,7 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 class Post extends Model
 {
-    use HasRichText;
+    use HasRichText, HasFactory;
 
     protected array $richTextAttributes = [
         'content'
