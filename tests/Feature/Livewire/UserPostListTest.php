@@ -1,10 +1,10 @@
 <?php
 
+use App\Enums\PostStatus;
 use App\Livewire\UserPostList;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use App\PostStatus;
 use Livewire\Livewire;
 
 /**
