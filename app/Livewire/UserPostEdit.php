@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use App\Models\Post;
-use App\Rules\TrixContentRequired;
 use Illuminate\View\View;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Url;
@@ -46,11 +45,6 @@ class UserPostEdit extends Component
         $this->isDirty = true;
         if ($title !== null) $this->title = $title;
         if ($content !== null) $this->content = $content;
-        \Log::info('onStateChanges called');
-        \Log::info('received content:');
-        \Log::info($content);
-        \Log::info('component content now:');
-        \Log::info($this->content);
     }
 
     public function discard(): void

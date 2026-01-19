@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\EditorialAction;
+use App\Enums\EditorialAction;
 use Illuminate\Database\Eloquent\Model;
 
 class Editorial extends Model

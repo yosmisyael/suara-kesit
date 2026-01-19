@@ -1,4 +1,4 @@
-@php use App\PostStatus; @endphp
+@php use App\Enums\PostStatus; @endphp
 <div class="flex gap-12" x-data="{ isSlideMenuOpen: false }">
     <form wire:submit="save" class="flex-1 min-w-0 pr-6 transition-all duration-300">
         <div x-show="!isSlideMenuOpen"

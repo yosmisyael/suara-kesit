@@ -1,12 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Enums;
 
-enum PostStatus: string
+enum EditorialAction: string
 {
-    case DRAFT = 'draft';
     case PENDING = 'pending';
     case PUBLISHED = 'published';
     case REJECTED = 'rejected';
     case REVOKED = 'revoked';
+    case RETURNED = 'returned';
+    case RESTORED = 'restored';
 }
