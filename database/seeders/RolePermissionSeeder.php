@@ -20,28 +20,32 @@ class RoleSeeder extends Seeder
         /**
          * Permission definition: verb resource
          * verb:
-         *      - create (create, edit, and delete own resource),
-         *      - update (edit any resource)
-         *      - manage (full access on any resource)
-         * resource: posts, comments, users, tags
+         *      - view|create|update|delete
+         *
+         * resource: posts, comments, users, tags, etc
          */
         $permissions = [
-            // post
+            // posts
+            'view posts',
             'create posts',
             'update posts',
+            'delete posts',
 
             // comments
+            'view comments',
             'create comments',
             'update comments',
-            'manage comments',
+            'delete comments',
 
             // tags
+            'view tags',
             'create tags',
-            'manage tags',
+            'update tags',
+            'delete tags',
 
-            // system
-            'manage users',
-            'manage categories',
+            // system management
+            'publish posts',
+            'revoke posts',
         ];
 
         foreach ($permissions as $permission) {
@@ -51,30 +55,30 @@ class RoleSeeder extends Seeder
         // member
         $member = Role::firstOrCreate(['name' => 'member']);
         $member->syncPermissions([
+            'view comments',
             'create comments',
+            'update comments',
+            'delete comments',
         ]);
 
         // writer
         $writer = Role::firstOrCreate(['name' => 'writer']);
         $writer->syncPermissions([
+            'view posts',
             'create posts',
+            'update posts',
+            'delete posts',
             'create tags',
         ]);
 
         // editor
         $editor = Role::firstOrCreate(['name' => 'editor']);
         $editor->syncPermissions([
-            'update posts',
-            'update comments',
+            'publish posts',
+            'revoke comments',
         ]);
 
         // administrator
         $admin = Role::firstOrCreate(['name' => 'admin']);
-        $admin->syncPermissions([
-            'manage users',
-            'manage categories',
-            'manage tags',
-            'manage comments',
-        ]);
     }
 }
