@@ -1,14 +1,14 @@
 <?php
 
 use App\Models\User;
-use Database\Seeders\RoleSeeder;
+use Database\Seeders\RolePermissionSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use function Pest\Laravel\{get, post, assertDatabaseHas};
 
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->seed(RoleSeeder::class);
+    $this->seed(RolePermissionSeeder::class);
 });
 
 test('registration page can be rendered', function () {
