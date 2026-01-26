@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
-class RoleSeeder extends Seeder
+class RolePermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -46,6 +46,7 @@ class RoleSeeder extends Seeder
             // system management
             'publish posts',
             'revoke posts',
+            'revoke comments',
         ];
 
         foreach ($permissions as $permission) {
@@ -79,6 +80,6 @@ class RoleSeeder extends Seeder
         ]);
 
         // administrator
-        $admin = Role::firstOrCreate(['name' => 'admin']);
+        Role::firstOrCreate(['name' => 'admin']);
     }
 }
