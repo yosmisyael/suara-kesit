@@ -34,7 +34,7 @@ class UserAuthController extends Controller
 
         $user = User::query()->create($validated);
 
-        $user->assignRole('member');
+        $user->assignRole('member', 'member');
 
         return redirect(route('public.login'))
             ->with('success', 'You have been registered. Please login.');
