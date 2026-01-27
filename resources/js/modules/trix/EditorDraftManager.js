@@ -28,7 +28,7 @@ export class EditorDraftManager {
             contentInputId: options.contentInputId,
         }
 
-        this.init(0, true);
+        this.init(0, options.isEditMode);
 
         // expose draft manager to window
         window.App.draftManager = this;
