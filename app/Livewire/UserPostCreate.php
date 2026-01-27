@@ -9,20 +9,24 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\Attributes\Session as LivewireSession;
 
 class UserPostCreate extends Component
 {
+    #[LivewireSession('draft_isDirty')]
     public bool $isDirty = false;
 
     public string $draftId = '';
 
-
+    #[LivewireSession('draft_title')]
     #[Rule('required|string|max:255')]
     public string $title = '';
 
+    #[LivewireSession('draft_content')]
     #[Rule('required|string')]
     public string $content = '';
 
+    #[LivewireSession('draft_category_id')]
     #[Rule('required|int|exists:categories,id')]
     public int $categoryId = 0;
 
@@ -63,6 +67,9 @@ class UserPostCreate extends Component
         );
 
         $this->isDirty = false;
+
+        session()->forget('draft_id');
+        $this->reset(['title', 'content', 'categoryId', 'isDirty']);
     }
 
     public function render(): View

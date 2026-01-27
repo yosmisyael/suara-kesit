@@ -7,15 +7,9 @@
                 <div
                     x-data="{
                         open: false,
-                        selectedId: '',
+                        selectedId: $wire.entangle('categoryId').live,
                         selectedName: 'Choose post category',
                         categories: {{ $categories->toJson() }},
-
-                        select(category) {
-                            this.selectedId = category.id;
-                            this.selectedName = category.name;
-                            this.open = false;
-                        },
 
                         updateUIFromId(id) {
                             const category = this.categories.find(category => category.id == id);
@@ -23,18 +17,24 @@
                                 this.selectedId = category.id;
                                 this.selectedName = category.name;
                                 $wire.categoryId = this.selectedId;
+                                $wire.isDirty = true;
+                            } else {
+                                this.selectedName = 'Choose post category';
                             }
+                            this.open = false;
                         }
                     }"
                     x-init="
-                    $watch('selectedId', value => {
-                        updateUIFromId(value);
-                        if (value && window.App.draftManager) {
-                            window.App.draftManager.onCategoryChange(value);
-                        }
-                    });
+                        updateUIFromId(selectedId);
+
+                        $watch('selectedId', value => {
+                            updateUIFromId(value);
+                            // if (value && window.App.draftManager) {
+                            //     window.App.draftManager.onCategoryChange(value);
+                            // }
+                        });
                     "
-                    @draft-category-restored.window="updateUIFromId($event.detail.categoryId)"
+                    {{-- @draft-category-restored.window="updateUIFromId($event.detail.categoryId)" --}}
                     class="relative w-fit"
                     @click.outside="open = false"
                 >
@@ -50,7 +50,8 @@
                         {{-- dropdown icon --}}
                         <svg class="w-4 h-4 transition-transform" :class="open ? 'rotate-180' : ''" fill="none"
                              stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
 
@@ -63,7 +64,7 @@
                         <ul>
                             <template x-for="category in categories" :key="category.id">
                                 <li
-                                    @click="select(category)"
+                                    @click="updateUIFromId(category.id)"
                                     class="p-2 cursor-pointer transition-colors"
                                     :class="{
                                             'bg-black text-white': selectedId === category.id,
@@ -84,7 +85,6 @@
                     class="btn-primary ml-auto"
                     :class="{ 'disabled': !$wire.isDirty }"
                     :disabled="!$wire.isDirty"
-                    wire:click="save"
                     wire:loading.attr="disabled"
                     wire:target="save"
                 >
@@ -105,14 +105,14 @@
         {{-- Title --}}
         <div
             x-data="{
-                title: $wire.entangle('title'),
+                title: $wire.entangle('title').live,
                 limit: 255,
                 resize() {
                     $refs.input.style.height = 'auto';
                     $refs.input.style.height = $refs.input.scrollHeight + 4 + 'px';
                 },
             }"
-            x-init="$watch('title', () => resize()); resize();"
+            x-init="$watch('title', () => resize())"
             class="relative mt-4"
         >
             <textarea
@@ -143,7 +143,26 @@
         </div>
 
         {{-- Content --}}
-        <div wire:ignore>
+        <div wire:ignore
+            x-data="{
+                content: $wire.entangle('content').live,
+                getTrix() {
+                    return $el.querySelector(`trix-editor[input='content_input']`);
+                }
+            }"
+            {{-- Clear content on submit event --}}
+            x-init="$watch('content', (value) => {
+                if (!value && getTrix().editor.getDocument().toString().trim()) {
+                    getTrix().editor.loadHTML('');
+                }
+            })"
+            {{-- load content on refresh action and capture trix element reference --}}
+            x-on:trix-initialize="$event.target.editor.loadHTML(content)"
+            x-on:trix-change="
+                content = $event.target.value;
+                if (document.activeElement === getTrix()) $wire.isDirty = true;
+            "
+        >
             <x-trix-input
                 id="content"
                 name="content"
@@ -154,29 +173,29 @@
     </form>
 </div>
 
-@push('scripts')
-    <script type="module">
-        document.addEventListener('DOMContentLoaded', function () {
-            const livewire = @this;
+{{--@push('scripts')--}}
+{{--    <script type="module">--}}
+{{--        document.addEventListener('DOMContentLoaded', function () {--}}
+{{--            let livewire = @this;--}}
 
-            if (typeof window.App.initEditor === 'function') {
-                window.App.initEditor({
-                    uploadUrl: "{{ route('attachment.store') }}",
-                    deleteUrl: "{{ route('attachment.destroy', ':id') }}",
-                    csrfToken: "{{ csrf_token() }}",
-                    draftId: "{{ $draftId }}",
-                    livewireComponent: livewire,
-                    hydrationMethod: 'onStateChanges',
-                    titleInputId: 'title',
-                    categoryInputId: 'category',
-                    contentInputId: 'content',
-                });
-            } else {
-                window.App.utils.showToast(
-                    'Failed to initialize editor, please try reloading the page.',
-                    'error'
-                );
-            }
-        });
-    </script>
-@endpush
+{{--            if (typeof window.App.initEditor === 'function') {--}}
+{{--                window.App.initEditor({--}}
+{{--                    uploadUrl: "{{ route('attachment.store') }}",--}}
+{{--                    deleteUrl: "{{ route('attachment.destroy', ':id') }}",--}}
+{{--                    csrfToken: "{{ csrf_token() }}",--}}
+{{--                    draftId: "{{ $draftId }}",--}}
+{{--                    livewireComponent: livewire,--}}
+{{--                    hydrationMethod: 'onStateChanges',--}}
+{{--                    titleInputId: 'title',--}}
+{{--                    categoryInputId: 'category',--}}
+{{--                    contentInputId: 'content',--}}
+{{--                });--}}
+{{--            } else {--}}
+{{--                window.App.utils.showToast(--}}
+{{--                    'Failed to initialize editor, please try reloading the page.',--}}
+{{--                    'error'--}}
+{{--                );--}}
+{{--            }--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@endpush--}}
