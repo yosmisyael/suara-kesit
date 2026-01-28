@@ -50,14 +50,12 @@ class UserPostCreate extends Component
     {
         $this->validate();
 
-        $post = new Post();
-        $post->title = $this->title;
-        $post->content = $this->content;
-        $post->excerpt = $post->generateExcerpt();
-        $post->author_id = auth()->user()->id;
-        $post->category_id = $this->categoryId;
-
-        $post->save();
+        Post::create([
+            'title' => $this->title,
+            'content' => $this->content,
+            'category_id' => $this->categoryId,
+            'author_id' => auth()->id(),
+        ]);
 
         $this->dispatch('post-saved');
 

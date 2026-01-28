@@ -81,6 +81,7 @@ class Post extends Model
     protected static function booted(): void
     {
         static::saving(function (Post $post) {
+            // slug generation
             if ($post->isDirty('title') && !$post->isDirty('slug')) {
                 $slug = Str::slug($post->title);
 
@@ -93,7 +94,14 @@ class Post extends Model
                 $post->slug = $count ? "$slug-$count" : $slug;
             }
 
-            // TODO: implement excerpt auto generation
+            // excerpt generation
+            $plainContent = strip_tags(html_entity_decode($post->content));
+
+            $plainContent = trim(preg_replace('/\s+/', ' ', $plainContent));
+
+            if (empty($post->excerpt) && !empty($plainContent)) {
+                $post->excerpt = Str::limit($plainContent, 160);
+            }
         });
     }
 
