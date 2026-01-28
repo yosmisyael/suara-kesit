@@ -89,7 +89,7 @@ export function initTrixAttachmentHandler(config) {
     });
 
     document.addEventListener('trix-attachment-remove', (event) => {
-        if (event.target.dataset.protectAttachments == 'true') {
+        if (event.target.dataset.protectAttachments === 'true') {
             return;
         }
 
