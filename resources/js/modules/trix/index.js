@@ -89,11 +89,15 @@ export function initTrixAttachmentHandler(config) {
     });
 
     document.addEventListener('trix-attachment-remove', (event) => {
+        if (event.target.dataset.protectAttachments == 'true') {
+            return;
+        }
+
         const attachmentId = event.attachment.attachment.attributes.values.attachmentId;
         if (attachmentId) {
             attachmentHandler.delete(attachmentId);
         }
-        showToast('deleted file ' + attachmentId)
+        showToast('attachment ' + attachmentId + ' removed');
     });
 
     return true;
