@@ -2,14 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Models\Attachment;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\Attributes\Session as LivewireSession;
+use Throwable;
 
 class UserPostCreate extends Component
 {
@@ -46,16 +49,25 @@ class UserPostCreate extends Component
         if ($content) $this->content = $content;
     }
 
+    /**
+     * @throws Throwable
+     */
     public function save(): void
     {
         $this->validate();
 
-        Post::create([
-            'title' => $this->title,
-            'content' => $this->content,
-            'category_id' => $this->categoryId,
-            'author_id' => auth()->id(),
-        ]);
+        DB::transaction(function () {
+            $post = Post::create([
+                'title' => $this->title,
+                'content' => $this->content,
+                'category_id' => $this->categoryId,
+                'author_id' => auth()->id(),
+            ]);
+
+            Attachment::where('batch_id', $this->draftId)
+                ->whereNull('post_id')
+                ->update(['post_id' => $post->id]);
+        });
 
         $this->dispatch('post-saved');
 
@@ -65,9 +77,9 @@ class UserPostCreate extends Component
         );
 
         $this->isDirty = false;
-
         session()->forget('draft_id');
         $this->reset(['title', 'content', 'categoryId', 'isDirty']);
+        $this->mount();
     }
 
     public function render(): View
