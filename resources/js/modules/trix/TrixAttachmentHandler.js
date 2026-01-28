@@ -1,11 +1,16 @@
 import {showToast} from "../../utils/notify.js";
 
 export class TrixAttachmentHandler {
+    static instance = null;
     constructor(config) {
+        if (TrixAttachmentHandler.instance) return TrixAttachmentHandler;
+
         this.uploadUrl = config.uploadUrl;
         this.deleteUrl = config.deleteUrl;
         this.csrfToken = config.csrfToken;
         this.batchId = config.batchId;
+
+        TrixAttachmentHandler.instance = this;
     }
 
     upload(attachment) {
