@@ -152,12 +152,27 @@
             }"
             {{-- Clear content on submit event --}}
             x-init="$watch('content', (value) => {
-                if (!value && getTrix().editor.getDocument().toString().trim()) {
-                    getTrix().editor.loadHTML('');
+                const trix = getTrix();
+
+                if (!value && trix.editor.getDocument().toString().trim()) {
+                    trix.dataset.protectAttachments = true;
+                    trix.editor.loadHTML('');
                 }
             })"
-            {{-- load content on refresh action and capture trix element reference --}}
-            x-on:trix-initialize="$event.target.editor.loadHTML(content)"
+            {{-- load content on refresh action and initialize attachment handler --}}
+            x-on:trix-initialize="
+                $event.target.editor.loadHTML(content);
+                if (typeof window.App.initAttachmentManager === 'function') {
+                    window.App.initAttachmentManager({
+                        uploadUrl: `{{ route('attachment.store') }}`,
+                        deleteUrl: `{{ route('attachment.destroy', ':id') }}`,
+                        csrfToken: `{{ csrf_token() }}`,
+                        batchId: `{{ $draftId }}`,
+                    });
+                }
+            "
+
+            {{-- listen to trix value change and sync to livewire prop  --}}
             x-on:trix-change="
                 content = $event.target.value;
                 if (document.activeElement === getTrix()) $wire.isDirty = true;
@@ -173,29 +188,25 @@
     </form>
 </div>
 
-{{--@push('scripts')--}}
-{{--    <script type="module">--}}
-{{--        document.addEventListener('DOMContentLoaded', function () {--}}
-{{--            let livewire = @this;--}}
+@push('scripts')
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', function () {
+            {{--let livewire = @this;--}}
 
-{{--            if (typeof window.App.initEditor === 'function') {--}}
-{{--                window.App.initEditor({--}}
-{{--                    uploadUrl: "{{ route('attachment.store') }}",--}}
-{{--                    deleteUrl: "{{ route('attachment.destroy', ':id') }}",--}}
-{{--                    csrfToken: "{{ csrf_token() }}",--}}
-{{--                    draftId: "{{ $draftId }}",--}}
-{{--                    livewireComponent: livewire,--}}
-{{--                    hydrationMethod: 'onStateChanges',--}}
-{{--                    titleInputId: 'title',--}}
-{{--                    categoryInputId: 'category',--}}
-{{--                    contentInputId: 'content',--}}
-{{--                });--}}
-{{--            } else {--}}
-{{--                window.App.utils.showToast(--}}
-{{--                    'Failed to initialize editor, please try reloading the page.',--}}
-{{--                    'error'--}}
-{{--                );--}}
-{{--            }--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@endpush--}}
+            if (typeof window.App.initAttachmentManager === 'function') {
+                {{--window.App.initEditor({--}}
+                {{--    livewireComponent: livewire,--}}
+                {{--    hydrationMethod: 'onStateChanges',--}}
+                {{--    titleInputId: 'title',--}}
+                {{--    categoryInputId: 'category',--}}
+                {{--    contentInputId: 'content',--}}
+                {{--});--}}
+            } else {
+                window.App.utils.showToast(
+                    'Failed to initialize editor, please try reloading the page.',
+                    'error'
+                );
+            }
+        });
+    </script>
+@endpush
