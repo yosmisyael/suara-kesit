@@ -105,19 +105,19 @@
         {{-- Title --}}
         <div
             x-data="{
-                title: $wire.entangle('title').live,
                 limit: 255,
                 resize() {
                     $refs.input.style.height = 'auto';
                     $refs.input.style.height = $refs.input.scrollHeight + 4 + 'px';
                 },
             }"
-            x-init="$watch('title', () => resize())"
+            x-init="$nextTick(() => resize())"
             class="relative mt-4"
         >
             <textarea
+                wire:model.live.debounce.100ms="title"
                 x-ref="input"
-                x-model="title"
+                wire:ignore
                 @input="resize(); $wire.isDirty = true"
                 id="title"
                 rows="1"
@@ -129,11 +129,11 @@
             {{-- Title length indicator --}}
             <div
                 class="absolute bottom-0 right-0 text-sm font-semibold transition-opacity duration-200"
-                :class="title.length > 0 ? 'opacity-100' : 'opacity-0'"
+                :class="$wire.title.length > 0 ? 'opacity-100' : 'opacity-0'"
             >
                 <span
-                    x-text="title.length"
-                    :class="title.length >= limit ? 'text-red-500' : 'text-gray-600'"
+                    x-text="$wire.title.length"
+                    :class="$wire.title.length >= limit ? 'text-red-500' : 'text-gray-600'"
                 ></span>
                 <span class="text-gray-300">/</span>
                 <span class="text-gray-300" x-text="limit"></span>
@@ -146,6 +146,7 @@
         <div wire:ignore
             x-data="{
                 content: $wire.entangle('content').live,
+                syncTimer: null,
                 getTrix() {
                     return $el.querySelector(`trix-editor[input='content_input']`);
                 }
@@ -159,6 +160,7 @@
                     trix.editor.loadHTML('');
                 }
             })"
+
             {{-- load content on refresh action and initialize attachment handler --}}
             x-on:trix-initialize="
                 $event.target.editor.loadHTML(content);
@@ -174,8 +176,11 @@
 
             {{-- listen to trix value change and sync to livewire prop  --}}
             x-on:trix-change="
-                content = $event.target.value;
-                if (document.activeElement === getTrix()) $wire.isDirty = true;
+                if (document.activeElement === getTrix()) {
+                    $wire.isDirty = true;
+                    clearTimeout(syncTimer);
+                    syncTimer = setTimeout(() => content = $event.target.value, 500);
+                }
             "
         >
             <x-trix-input
