@@ -8,7 +8,8 @@ export class TrixAttachmentHandler {
         this.uploadUrl = config.uploadUrl;
         this.deleteUrl = config.deleteUrl;
         this.csrfToken = config.csrfToken;
-        this.batchId = config.batchId;
+        this.batchId = config.batchId || null;
+        this.postId = config.postId || null;
 
         TrixAttachmentHandler.instance = this;
     }
@@ -21,7 +22,11 @@ export class TrixAttachmentHandler {
 
         const formData = new FormData();
         formData.append("image", attachment.file);
-        formData.append("batch_id", this.batchId);
+        if (this.postId) {
+            formData.append("post_id", this.postId);
+        } else {
+            formData.append("batch_id", this.batchId);
+        }
 
         xhr.upload.onprogress = (event) => {
             const progress = event.loaded / event.total * 100;

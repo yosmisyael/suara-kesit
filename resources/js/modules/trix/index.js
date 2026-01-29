@@ -54,11 +54,12 @@ export function initializePostEditor(config) {
 export function initTrixAttachmentHandler(config) {
     // config object validations
     const requiredProps = [
-        'batchId',
         'uploadUrl',
         'deleteUrl',
         'csrfToken'
     ];
+
+    const optionalProps = ['batchId', 'postId'];
 
     if (typeof config !== 'object') {
         showToast('Failed to load attachment feature. Please contact to developer.', 'error');
@@ -72,12 +73,20 @@ export function initTrixAttachmentHandler(config) {
         return false;
     }
 
+    // conflicting keys
+    const optKeys = optionalProps.filter(key => config[key]);
+    if (optKeys.length === 0 || optKeys.length === 2) {
+        showToast('Failed to load attachment feature. Please contact to developer.', 'error');
+        return false;
+    }
+
     // initialize attachment handler
     const attachmentHandler = new TrixAttachmentHandler({
         uploadUrl: config.uploadUrl,
         deleteUrl: config.deleteUrl,
         csrfToken: config.csrfToken,
-        batchId: config.batchId,
+        batchId: config.batchId || null,
+        postId: config.postId || null,
     });
 
     // listen to Trix attachment events
