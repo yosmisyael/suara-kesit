@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAttachmentRequest extends FormRequest
@@ -17,12 +18,13 @@ class StoreAttachmentRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'batch_id' => 'required|uuid',
+            'batch_id' => 'required_without:post_id|nullable|uuid',
+            'post_id' => 'required_without:batch_id|nullable|integer|exists:posts,id',
             'image' => 'required|image|mimes:jpeg,jpg,png,webp|max:4096',
         ];
     }

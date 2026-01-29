@@ -10,12 +10,12 @@ class AttachmentService
     /**
      * Create a "draft" attachment record.
      */
-    public function storeTempAttachment(string $batchId, string $filepath): Attachment
+    public function storeTempAttachment(string $batchId, string $filepath, ?int $postId): Attachment
     {
         return Attachment::query()->create([
             'batch_id' => $batchId,
+            'post_id' => $postId,
             'filepath' => $filepath,
-            'post_id' => null,
             'mimetype' => Storage::mimeType($filepath),
         ]);
     }

@@ -6,11 +6,7 @@ use App\Http\Requests\StoreAttachmentRequest;
 use App\Models\Attachment;
 use App\Services\AttachmentService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use function Illuminate\Support\Facades\Log;
 
 class AttachmentController extends Controller
 {
@@ -28,6 +24,7 @@ class AttachmentController extends Controller
         $attachment = $this->attachmentService->storeTempAttachment(
             $request->input('batch_id'),
             $path2File,
+            $request->input('post_id'),
         );
 
         return response()->json([
