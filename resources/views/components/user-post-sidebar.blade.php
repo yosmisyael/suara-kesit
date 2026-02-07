@@ -16,7 +16,7 @@
     <li>
         <a href="{{ route('user.post.create') }}"
            class="{{ request()->routeIs('user.post.create') ? $activeClasses : $inactiveClasses }}"
-           wire:navigate.hover
+           wire:navigate
         >
             <span class="material-symbols-outlined mt-1">add_circle</span>
             Write Post
