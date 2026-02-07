@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Attachment;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostBody;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -57,11 +58,16 @@ class UserPostCreate extends Component
         $this->validate();
 
         DB::transaction(function () {
-            $post = Post::create([
+            $post = Post::query()->create([
                 'title' => $this->title,
-                'content' => $this->content,
                 'category_id' => $this->categoryId,
                 'author_id' => auth()->id(),
+                'excerpt' => Post::generateExcerpt($this->content),
+            ]);
+
+            PostBody::query()->create([
+                'post_id' => $post->id,
+                'content' => $this->content,
             ]);
 
             Attachment::where('batch_id', $this->draftId)
