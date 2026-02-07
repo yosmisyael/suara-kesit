@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('attachments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('post_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('batch_id')->index();
+            $table->string('batch_id')->nullable()->index();
             $table->string('filepath');
             $table->string('mimetype');
             $table->timestamps();
