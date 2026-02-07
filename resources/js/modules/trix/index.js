@@ -91,13 +91,13 @@ export function initTrixAttachmentHandler(config) {
 
     // listen to Trix attachment events
     document.addEventListener('trix-attachment-add', (event) => {
-        showToast('uploaded file')
         if (event.attachment.file) {
             attachmentHandler.upload(event.attachment);
         }
     });
 
     document.addEventListener('trix-attachment-remove', (event) => {
+        // prevent unintended attachment delete
         if (event.target.dataset.protectAttachments === 'true') {
             return;
         }
@@ -106,6 +106,7 @@ export function initTrixAttachmentHandler(config) {
         if (attachmentId) {
             attachmentHandler.delete(attachmentId);
         }
+
         showToast('attachment ' + attachmentId + ' removed');
     });
 
