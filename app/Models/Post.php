@@ -15,17 +15,12 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 class Post extends Model
 {
-    use HasRichText, HasFactory;
-
-    protected array $richTextAttributes = [
-        'content'
-    ];
+    use HasFactory;
 
     protected $fillable = [
         'title',
         'slug',
         'status',
-        'content',
         'excerpt',
         'author_id',
         'category_id',
@@ -65,10 +60,8 @@ class Post extends Model
         return $this->comments()->count();
     }
 
-    public function generateExcerpt(int $limit = 150): string
+    public static function generateExcerpt(string $htmlContent, int $limit = 150): string
     {
-        $htmlContent = (string) $this->content;
-
         $plainText = strip_tags(html_entity_decode($htmlContent));
 
         $plainText = preg_replace('/\s+/', ' ', $plainText);
@@ -93,19 +86,20 @@ class Post extends Model
 
                 $post->slug = $count ? "$slug-$count" : $slug;
             }
-
-            // excerpt generation
-            $plainContent = strip_tags(html_entity_decode($post->content));
-
-            $plainContent = trim(preg_replace('/\s+/', ' ', $plainContent));
-
-            if (empty($post->excerpt) && !empty($plainContent)) {
-                $post->excerpt = Str::limit($plainContent, 160);
-            }
         });
     }
 
     // relationship methods
+    public function postBody(): HasOne
+    {
+        return $this->hasOne(PostBody::class);
+    }
+
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(Attachment::class);
+    }
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class);
