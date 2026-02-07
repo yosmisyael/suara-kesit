@@ -12,7 +12,7 @@ use Livewire\Component;
 class UserPostEdit extends Component
 {
     #[Url]
-    public int $postId;
+    public string $postId;
 
     #[Rule('required|string|max:255')]
     public string $title = '';
@@ -31,13 +31,14 @@ class UserPostEdit extends Component
 
     public function mount(): void
     {
-        $this->post = Post::with(['category', 'keywords'])
-            ->withRichText('content')
-            ->find($this->postId);
+        $this->post = Post::with(['category', 'keywords', 'postBody'])
+            ->findOrFail((int)$this->postId);
+
+        $this->authorize('update', $this->post);
 
         $this->title = $this->post->title;
-        $this->content = $this->post->content;
         $this->categoryId = $this->post->category_id;
+        $this->content = $this->post->postBody->content;
     }
 
     public function onStateChanges(?string $title, ?string $content): void
@@ -51,8 +52,10 @@ class UserPostEdit extends Component
     {
         $this->isEditMode = false;
         $this->title = $this->post->title;
-        $this->content = $this->post->content;
+        $this->content = $this->post->postBody->content;
         $this->categoryId = $this->post->category_id;
+
+        $this->dispatch('post-content-reset', content: $this->content);
     }
 
     public function save(): void
@@ -60,9 +63,9 @@ class UserPostEdit extends Component
         $this->validate();
 
         $this->post->title = $this->title;
-        $this->post->content = $this->content;
+        $this->post->postBody->content = $this->content;
         $this->post->category_id = $this->categoryId;
-        $this->post->excerpt = $this->post->generateExcerpt();
+        $this->post->excerpt = Post::generateExcerpt($this->content);
         $this->post->save();
 
         $this->dispatch('post-saved');

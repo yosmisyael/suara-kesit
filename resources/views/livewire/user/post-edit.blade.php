@@ -15,15 +15,9 @@
                 <div
                     x-data="{
                         open: false,
-                        selectedId: $wire.entangle('categoryId'),
+                        selectedId: $wire.entangle('categoryId').live,
                         selectedName: 'Choose post category',
                         categories: {{ $categories->toJson() }},
-
-                        select(category) {
-                            this.selectedId = category.id;
-                            this.selectedName = category.name;
-                            this.open = false;
-                        },
 
                         updateUIFromId(id) {
                             const category = this.categories.find(category => category.id == id);
@@ -31,20 +25,24 @@
                                 this.selectedId = category.id;
                                 this.selectedName = category.name;
                                 $wire.categoryId = this.selectedId;
+                                $wire.isDirty = true;
+                            } else {
+                                this.selectedName = 'Choose post category';
                             }
+                            this.open = false;
                         }
                     }"
                     x-init="
+                        updateUIFromId(selectedId);
+
                         $watch('selectedId', value => {
                             updateUIFromId(value);
-                            $wire.isDirty = true;
-                            if (value && window.App.draftManager) {
-                                window.App.draftManager.onCategoryChange(value);
-                            }
+                            // if (value && window.App.draftManager) {
+                            //     window.App.draftManager.onCategoryChange(value);
+                            // }
                         });
-                        $nextTick(() => updateUIFromId(selectedId));
                     "
-                    @draft-category-restored.window="updateUIFromId($event.detail.categoryId)"
+                    {{-- @draft-category-restored.window="updateUIFromId($event.detail.categoryId)" --}}
                     class="relative w-fit"
                     @click.outside="open = false"
                 >
@@ -53,15 +51,13 @@
                     <button
                         :disabled="!$wire.isEditMode"
                         type="button"
-                        @click="if($wire.isEditMode) open = !open"
-                        class="w-full p-2 text-left mr-3 flex justify-between items-center  cursor-pointer focus:outline-none"
-                        :class="!$wire.isEditMode ? 'cursor-default' : 'cursor-pointer hover:bg-gray-50'"
+                        @click="open = !open"
+                        class="w-full p-2 text-left mr-3 flex justify-between items-center focus:outline-none {{ $isEditMode ? 'cursor-pointer' : 'cursor-default' }}"
                     >
                         <span x-text="selectedName"></span>
 
                         {{-- dropdown icon --}}
-                        <svg x-show="$wire.isEditMode" class="w-4 h-4 transition-transform"
-                             :class="open ? 'rotate-180' : ''" fill="none"
+                        <svg class="w-4 h-4 transition-transform" :class="open ? 'rotate-180' : ''" fill="none"
                              stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M19 9l-7 7-7-7"></path>
@@ -77,7 +73,7 @@
                         <ul>
                             <template x-for="category in categories" :key="category.id">
                                 <li
-                                    @click="select(category)"
+                                    @click="updateUIFromId(category.id)"
                                     class="p-2 cursor-pointer transition-colors"
                                     :class="{
                                             'bg-black text-white': selectedId === category.id,
@@ -141,7 +137,6 @@
         {{-- Title --}}
         <div
             x-data="{
-                title: $wire.entangle('title'),
                 limit: 255,
                 resize() {
                     $refs.input.style.height = 'auto';
@@ -149,35 +144,33 @@
                 },
             }"
             x-init="
-                $watch('title', (value) => {
-                    if (!value) title = '';
-                    resize();
-                });
-                $nextTick(() => resize());
-            "
+            $nextTick(() => resize());
+            $watch('$wire.title', () => {
+                resize();
+            })"
             class="relative mt-4"
         >
             <textarea
+                wire:model.live.debounce.100ms="title"
                 x-ref="input"
-                x-model="title"
+                wire:ignore
                 @input="resize(); $wire.isDirty = true"
                 id="title"
                 rows="1"
                 maxlength="255"
-                class="w-full text-4xl font-bold bg-transparent border-none focus:ring-0 focus:outline-none resize-none overflow-hidden placeholder-gray-300 py-2"
-                :class="!$wire.isEditMode ? 'cursor-default resize-none' : ''"
-                placeholder="Untitled"
+                class="w-full text-4xl font-bold bg-transparent border-none focus:ring-0 focus:outline-none resize-none overflow-hidden placeholder-gray-300 py-2 {{ $isEditMode ? 'cursor-text' : 'cursor-default' }}"
+                placeholder="Title of the content"
                 :readonly="!$wire.isEditMode"
             ></textarea>
 
             {{-- Title length indicator --}}
             <div
                 class="absolute bottom-0 right-0 text-sm font-semibold transition-opacity duration-200"
-                :class="title.length > 0 ? 'opacity-100' : 'opacity-0'"
+                :class="$wire.title.length > 0 ? 'opacity-100' : 'opacity-0'"
             >
                 <span
-                    x-text="title.length"
-                    :class="title.length >= limit ? 'text-red-500' : 'text-gray-600'"
+                    x-text="$wire.title.length"
+                    :class="$wire.title.length >= limit ? 'text-red-500' : 'text-gray-600'"
                 ></span>
                 <span class="text-gray-300">/</span>
                 <span class="text-gray-300" x-text="limit"></span>
@@ -187,11 +180,58 @@
         </div>
 
         {{-- Content --}}
-        <div wire:ignore :class="!$wire.isEditMode ? 'pointer-events-none [&_trix-toolbar]:hidden!' : ''">
+        <div wire:ignore
+             :class="!$wire.isEditMode ? 'pointer-events-none [&_trix-toolbar]:hidden!' : ''"
+             x-data="{
+                content: $wire.entangle('content').live,
+                syncTimer: null,
+                getTrix() {
+                    return $el.querySelector(`trix-editor[input='content_input']`);
+                }
+            }"
+
+             {{-- Clear content on submit event --}}
+             x-init="$watch('content', (value) => {
+                const trix = getTrix();
+
+                if (value === '' && trix.editor.getDocument().toString().trim()) {
+                    trix.dataset.protectAttachments = 'true';
+                    trix.editor.loadHTML('');
+                }
+            })"
+
+            {{-- load content on refresh action and initialize attachment handler --}}
+            x-on:trix-initialize="
+                if (typeof window.App.initAttachmentManager === 'function') {
+                    window.App.initAttachmentManager({
+                        uploadUrl: `{{ route('attachment.store') }}`,
+                        deleteUrl: `{{ route('attachment.destroy', ':id') }}`,
+                        csrfToken: `{{ csrf_token() }}`,
+                        postId: `{{ $post->id }}`,
+                    });
+                }
+            "
+
+             {{-- listen to trix value change and sync to livewire prop  --}}
+             x-on:trix-change="
+                if (document.activeElement === getTrix()) {
+                    $wire.isDirty = true;
+                    clearTimeout(syncTimer);
+                    syncTimer = setTimeout(() => content = $event.target.value, 500);
+                }
+            "
+
+            {{-- revert to original content after discard action --}}
+             x-on:post-content-reset.window="
+                const trix = getTrix();
+                trix.dataset.protectAttachments = 'true';
+                trix.editor.loadHTML($event.detail.content);
+            "
+        >
             <x-trix-input
                 id="content"
                 name="content"
-                value="{!!  $post->content->toEditorHtml() !!}"
+                value="{!! $post->postBody->content !!}"
             />
         </div>
         @error('content') <p class="form-error">{{ $message }}</p> @enderror
@@ -230,30 +270,3 @@
     </section>
 </div>
 
-@push('scripts')
-    <script type="module">
-        document.addEventListener('DOMContentLoaded', function () {
-            let livewire = @this;
-
-            if (typeof window.App.initEditor === 'function') {
-                window.App.initEditor({
-                    uploadUrl: "{{ route('attachment.store') }}",
-                    deleteUrl: "{{ route('attachment.destroy', ':id') }}",
-                    csrfToken: "{{ csrf_token() }}",
-                    draftId: "{{ $postId }}",
-                    livewireComponent: livewire,
-                    hydrationMethod: 'onStateChanges',
-                    titleInputId: 'title',
-                    categoryInputId: 'category',
-                    contentInputId: 'content',
-                    isEditMode: true,
-                });
-            } else {
-                window.App.utils.showToast(
-                    'Failed to initialize editor, please try reloading the page.',
-                    'error'
-                );
-            }
-        });
-    </script>
-@endpush
