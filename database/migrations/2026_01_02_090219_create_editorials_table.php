@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('editorials', function (Blueprint $table) {
             $table->id();
             $table->string('action')->index();
-            $table->text('review');
+            $table->text('review')->nullable();
             $table->timestamps();
 
             $table->foreignId('user_id')->constrained();
