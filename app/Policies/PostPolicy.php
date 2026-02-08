@@ -49,6 +49,13 @@ class PostPolicy
             return false;
         }
 
+        if ($post->status !== PostStatus::DRAFT
+            || $post->status !== PostStatus::REVOKED
+            || $post->status !== PostStatus::REJECTED
+        ) {
+            return false;
+        }
+
         return $user->id === $post->author_id;
     }
 
