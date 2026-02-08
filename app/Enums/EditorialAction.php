@@ -4,10 +4,10 @@ namespace App\Enums;
 
 enum EditorialAction: string
 {
-    case PENDING = 'pending';
-    case PUBLISHED = 'published';
-    case REJECTED = 'rejected';
-    case REVOKED = 'revoked';
-    case RETURNED = 'returned';
-    case RESTORED = 'restored';
+    case SUBMIT = 'submit';
+    case PUBLISH = 'publish';
+    case REJECT = 'reject';
+    case REVOKE = 'revoke';
+    case RETURN = 'return';
+    case RESTORE = 'restore';
 }
