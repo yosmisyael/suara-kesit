@@ -79,13 +79,13 @@ class UserPostCreate extends Component
         });
     }
 
-    protected function cleanCreatePostAction(string $message): void
+    protected function cleanCreatePostAction(string $type, string $message): void
     {
         $this->dispatch('post-saved');
 
         $this->dispatch('notify',
             message: $message,
-            type: 'success'
+            type: $type,
         );
 
         $this->isDirty = false;
@@ -100,7 +100,7 @@ class UserPostCreate extends Component
     public function save(): void
     {
         $this->createPostRecord();
-        $this->cleanCreatePostAction('Post record has been created.');
+        $this->cleanCreatePostAction('success', 'Post record has been created.');
     }
 
     /**
@@ -109,11 +109,11 @@ class UserPostCreate extends Component
     public function submit(EditorialService $editorialService): void
     {
         $post = $this->createPostRecord();
-        $submitResult = $editorialService->submitForReview(auth()->user(), $post);
-        if ($submitResult) {
-            $this->cleanCreatePostAction('Post record has been created and submitted.');
-        } else {
-            $this->cleanCreatePostAction('Post record has been created but failed to submit. Try submit it later.');
+        try {
+            $editorialService->submitForReview(auth()->user(), $post);
+            $this->cleanCreatePostAction('success', 'Post record has been created and submitted.');
+        } catch (Throwable $exception) {
+            $this->cleanCreatePostAction('warning', 'Post record has been created but failed to submit. ' . $exception->getMessage());
         }
     }
 
