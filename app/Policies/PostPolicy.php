@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Enums\PostStatus;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class PostPolicy
 {
@@ -46,13 +47,11 @@ class PostPolicy
     public function update(User $user, Post $post): bool
     {
         if (!$user->can('update posts')) {
+            Log::info('update not allowed 1');
             return false;
         }
 
-        if ($post->status !== PostStatus::DRAFT
-            || $post->status !== PostStatus::REVOKED
-            || $post->status !== PostStatus::REJECTED
-        ) {
+        if (!in_array($post->status, [PostStatus::DRAFT, PostStatus::REJECTED, PostStatus::REVOKED])) {
             return false;
         }
 
