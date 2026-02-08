@@ -1,6 +1,6 @@
-@php use App\Enums\PostStatus; @endphp
+@php use App\Enums\PostStatus; use App\Enums\EditorialAction; @endphp
 <div class="flex gap-12" x-data="{ isSlideMenuOpen: false }">
-    <form wire:submit="save" class="flex-1 min-w-0 pr-6 transition-all duration-300">
+    <form class="flex-1 min-w-0 pr-6 transition-all duration-300">
         <div x-show="!isSlideMenuOpen"
              x-transition.opacity
              @click="isSlideMenuOpen = true"
@@ -89,16 +89,26 @@
                 @error('categoryId') <p class="form-error">{{ $message }}</p> @enderror
 
                 {{-- Edit Button --}}
-                @if(!$isEditMode)
-                    <button
-                        type="button"
-                        class="btn-primary ml-auto"
-                        wire:click.stop="$set('isEditMode', true)"
-                    >
-                        <span>Edit Post</span>
-                    </button>
-                @else
-                    <div class="inline-flex gap-4">
+                <div class="inline-flex gap-4">
+                    @if(!$isEditMode)
+                        @can('update', $post)
+                            <button
+                                type="button"
+                                class="btn-primary ml-auto"
+                                wire:click.stop="$set('isEditMode', true)"
+                            >
+                                <span>Edit Post</span>
+                            </button>
+                            <button
+                                type="button"
+                                class="btn-primary ml-auto"
+                                wire:click="submit"
+                            >
+                                <span>Submit for Review</span>
+                            </button>
+                        @endcan
+                    @else
+
                         {{-- Cancel Button --}}
                         <button
                             type="button"
@@ -110,7 +120,7 @@
 
                         {{-- Save Button --}}
                         <button
-                            type="submit"
+                            type="button"
                             class="btn-primary ml-auto"
                             :class="{ 'disabled': !$wire.isDirty }"
                             :disabled="!$wire.isDirty"
@@ -118,19 +128,20 @@
                             wire:loading.attr="disabled"
                             wire:target="save"
                         >
-                                <span
-                                    wire:loading.remove
-                                    wire:target="save"
-                                    x-text="$wire.isDirty ? 'Save' : 'Saved' "
-                                >
-                                </span>
+                                    <span
+                                        wire:loading.remove
+                                        wire:target="save"
+                                        x-text="$wire.isDirty ? 'Save' : 'Saved' "
+                                    >
+                                    </span>
 
                             <span wire:loading wire:target="save">
-                                    Saving...
-                                </span>
+                                        Saving...
+                                    </span>
                         </button>
-                    </div>
-                @endif
+
+                    @endif
+                </div>
             </div>
         </div>
 
@@ -200,8 +211,8 @@
                 }
             })"
 
-            {{-- load content on refresh action and initialize attachment handler --}}
-            x-on:trix-initialize="
+             {{-- load content on refresh action and initialize attachment handler --}}
+             x-on:trix-initialize="
                 if (typeof window.App.initAttachmentManager === 'function') {
                     window.App.initAttachmentManager({
                         uploadUrl: `{{ route('attachment.store') }}`,
@@ -221,7 +232,7 @@
                 }
             "
 
-            {{-- revert to original content after discard action --}}
+             {{-- revert to original content after discard action --}}
              x-on:post-content-reset.window="
                 const trix = getTrix();
                 trix.dataset.protectAttachments = 'true';
@@ -264,7 +275,22 @@
             </span>
         </p>
         <p class="mt-6 font-medium">Editorial History</p>
-        <p class="mt-2 italic font-medium text-gray-600">Doesn't have historical review yet.</p>
+        @foreach($post->editorials as $editorial)
+            <p class="mt-2 font-medium text-gray-600 inline-flex gap-4 items-center cursor-pointer">
+                <span @class([
+                    'badge',
+                    'success' => $editorial->action === EditorialAction::PUBLISH,
+                    'warning' => $editorial->action === EditorialAction::SUBMIT,
+                    'default' => $editorial->action === EditorialAction::RETURN
+                        || $editorial->action === EditorialAction::REJECT,
+                    'danger' => $editorial->action === EditorialAction::REVOKE,
+                    ])
+                >
+                    {{ ucfirst($editorial->action->value) }}
+                </span>
+                {{ $editorial->created_at->format('F d, Y') }}
+            </p>
+        @endforeach
         <h3 class="mt-8 text-xl font-medium">Post Performance</h3>
         <p class="mt-2 italic font-medium text-gray-600">Publish post to get analysis.</p>
     </section>

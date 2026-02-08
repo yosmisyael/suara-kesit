@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Services\EditorialService;
 use Illuminate\View\View;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Mockery\Exception;
+use Throwable;
 
 class UserPostEdit extends Component
 {
@@ -31,10 +34,10 @@ class UserPostEdit extends Component
 
     public function mount(): void
     {
-        $this->post = Post::with(['category', 'keywords', 'postBody'])
+        $this->post = Post::with(['category', 'keywords', 'postBody', 'editorials'])
             ->findOrFail((int)$this->postId);
 
-        $this->authorize('update', $this->post);
+        $this->authorize('view', $this->post);
 
         $this->title = $this->post->title;
         $this->categoryId = $this->post->category_id;
@@ -58,7 +61,7 @@ class UserPostEdit extends Component
         $this->dispatch('post-content-reset', content: $this->content);
     }
 
-    public function save(): void
+    protected function updatePostRecord(): void
     {
         $this->validate();
 
@@ -67,12 +70,35 @@ class UserPostEdit extends Component
         $this->post->category_id = $this->categoryId;
         $this->post->excerpt = Post::generateExcerpt($this->content);
         $this->post->save();
+    }
 
-        $this->dispatch('post-saved');
-        $this->dispatch('notify', message: 'Post has been updated.');
+    protected function fireNotification(string $type, string $message): void
+    {
+        // $this->dispatch('post-saved');
+        $this->dispatch('notify', type: $type, message: $message);
+    }
 
+    public function save(): void
+    {
+        $this->updatePostRecord();
+        $this->fireNotification('success', 'Post has been updated.');
         $this->isDirty = false;
         $this->isEditMode = false;
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function submit(EditorialService $editorialService): void
+    {
+        try {
+            $editorialService->submitForReview(auth()->user(), $this->post);
+
+            $this->fireNotification('success', 'Post has been submitted.');
+
+        } catch (Throwable $exception) {
+            $this->fireNotification('warning', $exception->getMessage());
+        }
     }
 
     public function render(): View
