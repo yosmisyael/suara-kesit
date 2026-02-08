@@ -36,7 +36,7 @@ class EditorialService
             Editorial::query()->create([
                 'user_id' => $user->id,
                 'post_id' => $post->id,
-                'action' => EditorialAction::PENDING,
+                'action' => EditorialAction::SUBMIT,
                 'review' => $note,
             ]);
         });
