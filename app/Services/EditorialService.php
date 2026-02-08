@@ -7,6 +7,7 @@ use App\Enums\PostStatus;
 use App\Models\Editorial;
 use App\Models\Post;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -15,19 +16,19 @@ class EditorialService
     /**
      * @throws Throwable
      */
-    public function submitForReview(User $user, Post $post, ?string $note = null): bool
+    public function submitForReview(User $user, Post $post, ?string $note = null): void
     {
         // ignore if post already published
         if ($post->status === PostStatus::PUBLISHED) {
-            return false;
+            throw new Exception('This post is already published.');
         }
 
         // check if the post already submitted and still in pending state
         if ($post->status === PostStatus::PENDING) {
-            return false;
+            throw new Exception('This post is already submitted.');
         }
 
-        return DB::transaction(function () use ($user, $post, $note) {
+        DB::transaction(function () use ($user, $post, $note) {
             // update post status
             $post->update(['status' => PostStatus::PENDING]);
 
@@ -38,8 +39,6 @@ class EditorialService
                 'action' => EditorialAction::PENDING,
                 'review' => $note,
             ]);
-
-            return true;
         });
     }
 }
