@@ -25,7 +25,7 @@
     <li>
         <a href="{{ route('user.post.list') }}"
            class="{{ request()->routeIs('user.post.list') ? $activeClasses : $inactiveClasses }}"
-           wire:navigate.hover
+           wire:navigate
         >
             <span class="material-symbols-outlined mt-1">list</span>
             Post List
