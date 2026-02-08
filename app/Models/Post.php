@@ -129,4 +129,9 @@ class Post extends Model
     {
         return $this->hasOne(PostStatistic::class);
     }
+
+    public function editorials(): HasMany
+    {
+        return $this->hasMany(Editorial::class);
+    }
 }
