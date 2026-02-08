@@ -6,6 +6,7 @@ use App\Models\Attachment;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostBody;
+use App\Services\EditorialService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -53,11 +54,11 @@ class UserPostCreate extends Component
     /**
      * @throws Throwable
      */
-    public function save(): void
+    protected function createPostRecord(): Post
     {
         $this->validate();
 
-        DB::transaction(function () {
+        return DB::transaction(function () {
             $post = Post::query()->create([
                 'title' => $this->title,
                 'category_id' => $this->categoryId,
@@ -73,12 +74,17 @@ class UserPostCreate extends Component
             Attachment::where('batch_id', $this->draftId)
                 ->whereNull('post_id')
                 ->update(['post_id' => $post->id]);
-        });
 
+            return $post;
+        });
+    }
+
+    protected function cleanCreatePostAction(string $message): void
+    {
         $this->dispatch('post-saved');
 
         $this->dispatch('notify',
-            message: 'Post record has been created.',
+            message: $message,
             type: 'success'
         );
 
@@ -86,6 +92,29 @@ class UserPostCreate extends Component
         session()->forget('draft_id');
         $this->reset(['title', 'content', 'categoryId', 'isDirty']);
         $this->mount();
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function save(): void
+    {
+        $this->createPostRecord();
+        $this->cleanCreatePostAction('Post record has been created.');
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function submit(EditorialService $editorialService): void
+    {
+        $post = $this->createPostRecord();
+        $submitResult = $editorialService->submitForReview(auth()->user(), $post);
+        if ($submitResult) {
+            $this->cleanCreatePostAction('Post record has been created and submitted.');
+        } else {
+            $this->cleanCreatePostAction('Post record has been created but failed to submit. Try submit it later.');
+        }
     }
 
     public function render(): View

@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit="save">
+    <form>
         {{-- Toolbar --}}
         <div class="sticky top-0 z-10 pt-4 bg-white">
             <div class="flex items-center justify-between">
@@ -79,26 +79,52 @@
                 </div>
                 @error('categoryId') <p class="form-error">{{ $message }}</p> @enderror
 
-                {{-- Save Button --}}
-                <button
-                    type="submit"
-                    class="btn-primary ml-auto"
-                    :class="{ 'disabled': !$wire.isDirty }"
-                    :disabled="!$wire.isDirty"
-                    wire:loading.attr="disabled"
-                    wire:target="save"
-                >
-                    <span
-                        wire:loading.remove
+                {{-- Button Wrapper --}}
+                <div class="inline-flex gap-6">
+                    {{-- Save Button --}}
+                    <button
+                        type="button"
+                        class="btn-primary ml-auto"
+                        :class="{ 'disabled': !$wire.isDirty }"
+                        :disabled="!$wire.isDirty"
+                        wire:click="save"
+                        wire:loading.attr="disabled"
                         wire:target="save"
-                        x-text="$wire.isDirty ? 'Save' : 'Saved' "
                     >
-                    </span>
+                        <span
+                            wire:loading.remove
+                            wire:target="save"
+                            x-text="$wire.isDirty ? 'Save as Draft' : 'Saved' "
+                        >
+                        </span>
 
-                    <span wire:loading wire:target="save">
-                        Saving...
-                    </span>
-                </button>
+                        <span wire:loading wire:target="save">
+                            Saving...
+                        </span>
+                    </button>
+
+                    {{-- Submit Button --}}
+                    <button
+                        type="button"
+                        class="btn-primary ml-auto"
+                        :class="{ 'disabled': !$wire.isDirty }"
+                        :disabled="!$wire.isDirty"
+                        wire:click="submit"
+                        wire:loading.attr="disabled"
+                        wire:target="submit"
+                    >
+                        <span
+                            wire:loading.remove
+                            wire:target="submit"
+                            x-text="$wire.isDirty ? 'Submit for Review' : 'Submit' "
+                        >
+                        </span>
+
+                        <span wire:loading wire:target="submit">
+                            Processing...
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
 
