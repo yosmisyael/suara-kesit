@@ -58,7 +58,6 @@
         </span>
     </div>
 
-
     {{-- Post List --}}
     <section class="h-full flex flex-col gap-4 mt-8">
         @if($posts->count() > 0)

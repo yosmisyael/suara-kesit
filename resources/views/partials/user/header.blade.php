@@ -23,6 +23,11 @@
                         Posts
                     </x-user-nav-link>
                 @endrole
+                @role('editor')
+                <x-user-nav-link route="editor.overview">
+                    Submissions
+                </x-user-nav-link>
+                @endrole
                 <x-user-nav-link route="user.settings">
                     Settings
                 </x-user-nav-link>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Public\AboutController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\PostController;
+use App\Livewire\EditorSubmissionOverview;
 use App\Livewire\UserDashboard;
 use App\Livewire\UserPostCreate;
 use App\Livewire\UserPostEdit;
@@ -46,6 +47,11 @@ Route::middleware('authenticated')->group(function () {
             Route::get('/create', UserPostCreate::class)->name('user.post.create');
             Route::get('/list', UserPostList::class)->name('user.post.list');
             Route::get('/{postId}', UserPostEdit::class)->name('user.post.edit');
+        });
+
+        // Editorial resource
+        Route::prefix('/editorial')->group(function () {
+            Route::get('/', EditorSubmissionOverview::class)->name('editor.overview');
         });
     });
 
